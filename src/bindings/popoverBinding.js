@@ -34,20 +34,20 @@ ko.bindingHandlers.popover = {
             // remove old handler, to use updated values
             $element.off('shown.bs.popover', ko.utils.domData.get(element, popoverDomDataEventHandlerKey));
 
-            var handler = function () {
+            var renderPopoverTemplate = function () {
                 ko.renderTemplate(template, data, {}, document.getElementById(id));
             };
             
             // place template rendering after popover is shown, because we don't have root element for template before that
-            $element.on('shown.bs.popover', handler);
-            ko.utils.domData.set(element, popoverDomDataEventHandlerKey, handler);
+            $element.on('shown.bs.popover', renderPopoverTemplate);
+            ko.utils.domData.set(element, popoverDomDataEventHandlerKey, renderPopoverTemplate);
 
             options.content = '<div id="' + id + '" ></div>';
             options.html = true;
             
             // support rerendering of template, if observable changes, when popover is opened
             if ($(id).is(':visible')) {
-                handler();
+                renderPopoverTemplate();
             }
         }
 
