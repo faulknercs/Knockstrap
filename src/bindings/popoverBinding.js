@@ -1,4 +1,5 @@
-﻿var popoverDomDataTemplateKey = '__popoverTemplateKey__';
+﻿var popoverDomDataTemplateKey = '__popoverTemplateKey__',
+    popoverDomDataEventHandlerKey = '__popoverEventHandlerKey__';
 
 ko.bindingHandlers.popover = {
 
@@ -28,16 +29,26 @@ ko.bindingHandlers.popover = {
             if (!id) {
                 id = ko.utils.uniqueId('ks-popover-');
                 ko.utils.domData.set(element, popoverDomDataTemplateKey, id);
-                
-                // place template rendering after popover is shown, because we don't have root element for template before that
-                // and set event handling only at first time
-                $element.on('shown.bs.popover', function () {
-                    ko.renderTemplate(template, data, {}, document.getElementById(id)); 
-                });
             }
+
+            // remove old handler, to use updated values
+            $element.off('shown.bs.popover', ko.utils.domData.get(element, popoverDomDataEventHandlerKey));
+
+            var handler = function () {
+                ko.renderTemplate(template, data, {}, document.getElementById(id));
+            };
+            
+            // place template rendering after popover is shown, because we don't have root element for template before that
+            $element.on('shown.bs.popover', handler);
+            ko.utils.domData.set(element, popoverDomDataEventHandlerKey, handler);
 
             options.content = '<div id="' + id + '" ></div>';
             options.html = true;
+            
+            // support rerendering of template, if observable changes, when popover is opened
+            if ($(id).is(':visible')) {
+                handler();
+            }
         }
 
         var popoverData = $element.data('bs.popover');
