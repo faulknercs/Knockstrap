@@ -1,2 +1,4 @@
-﻿<p data-bind="text: message"></p>
-<a class="close" data-bind="click: close" aria-hidden="true">&times;</a>
+﻿<div class="alert alert-block fade in" data-bind="css: priority">
+    <button class="close" data-bind="click: close" aria-hidden="true">&times;</button>
+    <p data-bind="text: message"></p>
+</div>
