@@ -5,8 +5,8 @@
 
     update: function (element, valueAccessor) {
         var value = valueAccessor(),
-            usedTemplateEngine = !value.name ? ko.stringTemplateEngine.instance : null,
-            name = ko.unwrap(value.name) || 'alert',
+            usedTemplateEngine = !value.template ? ko.stringTemplateEngine.instance : null,
+            template = ko.unwrap(value.template) || 'alert',
 
             data = value.data || {
                 message: value.message,
@@ -20,7 +20,7 @@
             };
 
 
-        ko.renderTemplate(name, data, ko.utils.extend({ templateEngine: usedTemplateEngine }, value.templateOptions), element);
+        ko.renderTemplate(template, data, ko.utils.extend({ templateEngine: usedTemplateEngine }, value.templateOptions), element);
     }
 };
 
