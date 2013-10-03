@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Knockstrap examples</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/examples.css" rel="stylesheet" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="../build/knockstrap.js"></script>
+</head>
+<body data-target="#side-nav" data-spy="scroll">
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Knockstrap</a>
+            </div>
+            <nav class="">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a>Home</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div id="side-nav" class="affix examples-menu" role="complementary">
+                    <ul class="nav">
+                        <li>
+                            <a href="#tooltip">Tooltip</a>
+                        </li>
+                        <li>
+                            <a href="#popover">Popover</a>
+                        </li>
+                        <li>
+                            <a href="#alert">Alert</a>
+                        </li>
+                        <li>
+                            <a href="#modal">Modal</a>
+                        </li>
+                        <li>
+                            <a href="#progress">Progress</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9" role="main">
+                <!-- Tooltip example -->
+                <div class="row">
+                    <div class="page-header">
+                        <h1 id="tooltip">Tooltip</h1>
+                    </div>
+                    <h2>Examples</h2>
+                    <div class="panel panel-default" data-bind="with: tooltipExample">
+                        <div class="panel-body">
+                            Lorem ipsum dolor sit amet, <a data-bind="tooltip: { title: 'Tooltip example' }">consectetur</a> adipiscing elit. Vestibulum nec pharetra eros. 
+                            Sed luctus vitae ligula <a data-bind="tooltip: { title: title, placement: placement }">viverra</a> porttitor. Vestibulum porttitor egestas lacus.
+                        </div>
+                        <div class="panel-body form-inline">
+                            <div class="form-group">
+                                <label>Observable text</label>
+                                <input type="text" class="form-control" data-bind="value: title, valueUpdate: 'afterkeydown'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Observable placement</label>
+                                <div class="btn-toolbar">
+                                    <input type="radio" name="tooltipPlacement" value="left" data-bind="checked: placement" />
+                                    Left
+                                    <input type="radio" name="tooltipPlacement" value="right" data-bind="checked: placement" />
+                                    Right
+                                    <input type="radio" name="tooltipPlacement" value="top" data-bind="checked: placement" />
+                                    Top
+                                    <input type="radio" name="tooltipPlacement" value="bottom" data-bind="checked: placement" />
+                                    Bottom
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h2>Usage</h2>
+                    <p>Usage with data-bind</p>
+                    <div class="highlight">
+                    </div>
+                    <h3>Options</h3>
+                    <div>
+                        <p>All of the options can be observables, also option's object can be observable too</p>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>string | observable</td>
+                                    <td>empty string</td>
+                                    <td>Tooltip text. If element has attribute 'title', this option is not used</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Popover example -->
+                <div class="row">
+                    <div class="page-header">
+                        <h1 id="popover">Popover</h1>
+                    </div>
+                    <h2>Examples</h2>
+                    <div class="panel panel-default" data-bind="with: popoverExample">
+                        <div class="panel-body">
+                            <script type="text/html" id="firstPopoverTemplate">
+                                <p data-bind="text: text"></p>
+                            </script>
+                            
+                            <script type="text/html" id="secondPopoverTemplate">
+                                <p>Second template</p>
+                            </script>
+
+                            <button class="btn btn-primary" data-bind="popover: { options: { title: 'Popover with template', placement: 'top' }, template: popoverTemplate, data: { text: 'First template'} }">
+                                Click
+                            </button>
+                            <button class="btn" data-bind="click: switchTemplates">Switch templates</button>
+                            
+                            <button class="btn btn-primary" data-bind="popover: { options: { title: 'Focus', content: 'Focus popover', trigger: 'focus', placement: 'bottom' } }">Focus</button>
+                            
+                            <button class="btn btn-primary" data-bind="popover: { options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } }">Hover</button>
+                        </div>
+                    </div>
+
+                    <h2>Usage</h2>
+                </div>
+                
+                <!-- Alert example -->
+                <div class="row">
+                    <div class="page-header">
+                        <h1 id="alert">Alert</h1>
+                    </div>
+                    <h2>Examples</h2>
+                    <div class="panel panel-default" data-bind="with: alertExample">
+                        <div class="panel-body">
+                            <div data-bind="alert: { message: message, priority: priority }"></div>
+                            
+                            <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"></div>
+                            
+                            <!-- ko alert: { message: 'Using virtual root element', priority: 'success' } -->
+                            <!-- /ko -->
+                            
+                            <script type="text/html" id="alertExampleTemplate">
+                                <div class="alert alert-block alert-danger">
+                                    <span data-bind="text: message"></span>
+                                    <button class="btn btn-primary" data-bind="click: close">Close</button>
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+
+                    <h2>Usage</h2>
+                </div>
+                
+                <!-- Modal example -->
+                <div class="row">
+                    <div class="page-header">
+                        <h1 id="modal">Modal</h1>
+                    </div>
+                    <h2>Examples</h2>
+                    <p>Demonstrates possibilities of modal binding</p>
+                    <div class="panel panel-default" data-bind="with: modalExample">
+                        <div class="panel-body">
+                            <button class="btn btn-primary" data-bind="click: show">Show modal</button>
+
+                            <div data-bind="modal: {
+                                                visible: modalVisible,
+                                                header: { data: { label: headerLabel } },
+                                                body: { name: bodyTemplate, data: bodyData },
+                                                footer: { data: { action: switchTemplates, closeLabel: 'Custom close text', primaryLabel: 'Change body template' } }
+                                            }">
+                            </div>
+                            <script type="text/html" id="firstModalTemplate">
+                                <p data-bind="text: text"></p>
+                                <div class="form-group">
+                                    <label data-bind="text: label"></label>
+                                    <input type="text" data-bind="value: label, valueUpdate: 'afterkeydown'" class="form-control"/>
+                                </div>
+                            </script>
+                            <script type="text/html" id="secondModalTemplate">
+                                <p data-bind="text: text"></p>
+                                <p data-bind="text: simpleLabel"></p>
+                            </script>
+                        </div>
+                    </div>
+
+                    <h2>Usage</h2>
+                </div>
+                
+                <!-- Progress example -->
+                <div class="row">
+                    <div class="page-header">
+                        <h1 id="progress">Progress</h1>
+                    </div>
+                    <h2>Examples</h2>
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="form-group progress-val">
+                                <label>Progress value</label>
+                                <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+                            </div>
+                            <div data-bind="progress: progress"></div>
+                        </div>
+                    </div>
+
+                    <h2>Usage</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Example viewmodels -->
+    <script type="text/javascript" src="js/examples.js"></script>
+</body>
+</html>

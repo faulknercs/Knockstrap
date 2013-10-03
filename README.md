@@ -24,9 +24,15 @@ Bindings Library for the knockout to twitter bootstrap.
 - bootstrap
 
 ### Building
-Build using grunt:
+#### Building using grunt:
 
-Install node.js and grunt plugin. Then you can build project with:
+Install node.js and grunt plugin. 
+
+Install all grunt plugins:
+
+	npm install
+
+Then you can build project with:
 
 	grunt
 

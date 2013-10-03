@@ -1,0 +1,26 @@
+﻿body {
+    padding-top: 50px;
+}
+
+.progress-val {
+    width: 200px;
+}
+
+.examples-menu {
+    width: 170px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.examples-menu .active {
+    background-color: #ddd;
+}
+
+h1[id] {
+    margin-top: -45px;
+    padding-top: 80px;
+}
