@@ -10,6 +10,8 @@ Bindings Library for the knockout to twitter bootstrap.
 - Modal
 - Tooltip
 - Popover
+- Alert
+- Progress
 
 [Documentation]()
 
@@ -22,5 +24,14 @@ Bindings Library for the knockout to twitter bootstrap.
 - bootstrap
 
 ### Building
+Build using grunt:
+
+Install node.js and grunt plugin. Then you can build project with:
+
+	grunt
+
+Also, you can specify custom build and temp directories:
+
+	grunt -buildPath=D:/custom/build -tempPath=D:/custom/temp
 
 ### License: [MIT License](http://www.opensource.org/licenses/mit-license.php)
