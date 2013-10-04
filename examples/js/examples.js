@@ -49,7 +49,7 @@ function PopoverExampleViewModel() {
 function AlertExampleViewModel() {
     var self = this;
 
-    self.priority = ko.observable('info');
+    self.type = ko.observable('info');
     
     self.message = ko.observable('Alert message');
     
@@ -61,7 +61,7 @@ function ExamplesViewModel() {
 
     self.tooltipExample = new TooltipExampleViewModel();
 
-    self.progress = ko.observable(20);
+    self.progress = ko.observable();
 
     self.modalExample = new ModalExampleViewModel();
 

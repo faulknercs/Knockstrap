@@ -19,7 +19,7 @@
             <nav class="">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a>Home</a>
+                        <a href="examples.html">Home</a>
                     </li>
                 </ul>
             </nav>
@@ -89,25 +89,8 @@
                     </div>
                     <h3>Options</h3>
                     <div>
+                        <p>Uses default Bootstrap 3 options. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
                         <p>All of the options can be observables, also option's object can be observable too</p>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Default</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>title</td>
-                                    <td>string | observable</td>
-                                    <td>empty string</td>
-                                    <td>Tooltip text. If element has attribute 'title', this option is not used</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 
@@ -139,6 +122,43 @@
                     </div>
 
                     <h2>Usage</h2>
+                    <p>Usage with data-bind</p>
+                    <div class="highlight">
+                    </div>
+                    <h3>Options</h3>
+                    <div>
+                        <p>All of the options can be observables, also option's object can be observable too</p>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>object | observable</td>
+                                    <td>Default values from bootstrap 3</td>
+                                    <td>Bootstrap options for popover. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a></td>
+                                </tr>
+                                <tr>
+                                    <td>template</td>
+                                    <td>string | observable</td>
+                                    <td>undefined</td>
+                                    <td>Name of template for popover content. If name is not specified, uses 'text' property from 'options' object</td>
+                                </tr>
+                                <tr>
+                                    <td>data</td>
+                                    <td>object | observable</td>
+                                    <td>undefined</td>
+                                    <td>Data for template</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 
                 <!-- Alert example -->
@@ -149,11 +169,11 @@
                     <h2>Examples</h2>
                     <div class="panel panel-default" data-bind="with: alertExample">
                         <div class="panel-body">
-                            <div data-bind="alert: { message: message, priority: priority }"></div>
+                            <div data-bind="alert: { message: message, type: type }"></div>
                             
                             <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"></div>
                             
-                            <!-- ko alert: { message: 'Using virtual root element', priority: 'success' } -->
+                            <!-- ko alert: { message: 'Using virtual root element', type: 'success' } -->
                             <!-- /ko -->
                             
                             <script type="text/html" id="alertExampleTemplate">
@@ -166,6 +186,45 @@
                     </div>
 
                     <h2>Usage</h2>
+                    <p>This binding can be used with virtual elements.</p>
+                    <p>All of the options can be observables.</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>message</td>
+                                <td>string | observable</td>
+                                <td>empty string</td>
+                                <td>Text of alert message.</td>
+                            </tr>
+                            <tr>
+                                <td>type</td>
+                                <td>string | observable</td>
+                                <td>'info'</td>
+                                <td>Type of alert message. Possible values are 'info', 'warning', 'danger', 'success'. To specify your own type you should define css-styles for this type.
+                                        For exmaple, for type 'my-custom-type', you shoud provide css class 'alert-my-custom type'</td>
+                            </tr>
+                            <tr>
+                                <td>template</td>
+                                <td>string | observable</td>
+                                <td>'alert'</td>
+                                <td>Name of template for alert content</td>
+                            </tr>
+                            <tr>
+                                <td>data</td>
+                                <td>object | observable</td>
+                                <td>object with message and type properties</td>
+                                <td>Data for template</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
                 <!-- Modal example -->
@@ -201,6 +260,43 @@
                     </div>
 
                     <h2>Usage</h2>
+                    <p>All of the options can be observables.</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>visible</td>
+                                <td>boolean | observable</td>
+                                <td>false</td>
+                                <td>Shows modal, if true, otherwise hides modal</td>
+                            </tr>
+                            <tr>
+                                <td>header</td>
+                                <td>object | observable</td>
+                                <td></td>
+                                <td>Template binding for modal header</td>
+                            </tr>
+                            <tr>
+                                <td>body</td>
+                                <td>object | observable</td>
+                                <td></td>
+                                <td>Template binding for modal body</td>
+                            </tr>
+                            <tr>
+                                <td>footer</td>
+                                <td>object | observable</td>
+                                <td></td>
+                                <td>Template binding for modal footer</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
                 <!-- Progress example -->
@@ -221,6 +317,23 @@
                     </div>
 
                     <h2>Usage</h2>
+                    <p>All of the options can be observables.</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>progress</td>
+                                <td>number | observable</td>
+                                <td>Progress value in percents</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
