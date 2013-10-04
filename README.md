@@ -13,9 +13,7 @@ Bindings Library for the knockout to twitter bootstrap.
 - Alert
 - Progress
 
-[Documentation]()
-
-[Download]()
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.1.0/knockstrap-0.1.0.zip)
 
 ### Dependencies
 
