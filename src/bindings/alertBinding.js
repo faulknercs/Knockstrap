@@ -10,8 +10,8 @@
 
             data = value.data || {
                 message: value.message,
-                priority: ko.computed(function() {
-                    return 'alert-' + ko.unwrap(value.priority);
+                type: ko.computed(function() {
+                    return 'alert-' + (ko.unwrap(value.type) || 'info');
                 }),
                 
                 close: value.close || function () {
