@@ -61,7 +61,7 @@ function ExamplesViewModel() {
 
     self.tooltipExample = new TooltipExampleViewModel();
 
-    self.progress = ko.observable();
+    self.progress = ko.observable(20);
 
     self.modalExample = new ModalExampleViewModel();
 
