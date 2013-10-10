@@ -16,10 +16,14 @@ ko.bindingHandlers.radio = {
     },
 
     update: function (element, valueAccessor) {
-        var value = valueAccessor(),
-            radioButton = $(element).find('input[value="' + value + '"]');
+        var radioButton = $(element).find('input[value="' + ko.unwrap(valueAccessor()) + '"]'),
+            radioButtonWrapper = radioButton.parent();
 
-        radioButton.parent().siblings().removeClass('active');
-        radioButton.addClass('active');
+        if (radioButton.length) {
+            radioButtonWrapper.siblings().removeClass('active');
+            radioButtonWrapper.addClass('active');
+
+            radioButton[0].checked = true;
+        }
     }
 };
