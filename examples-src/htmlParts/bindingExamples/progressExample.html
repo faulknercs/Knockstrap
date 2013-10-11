@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="page-header">
+        <h1 id="progress">Progress</h1>
+    </div>
+    <h2>Examples</h2>
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <div class="form-group form-fixed-width">
+                <label>Progress value</label>
+                <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+            </div>
+            <div data-bind="progress: progress"></div>
+        </div>
+    </div>
+
+    <h2>Usage</h2>
+    <p>All of the options can be observables.</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>progress</td>
+                <td>number | observable</td>
+                <td>Progress value in percents</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

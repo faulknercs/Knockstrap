@@ -1,0 +1,64 @@
+﻿<div class="row">
+    <div class="page-header">
+        <h1 id="alert">Alert</h1>
+    </div>
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: alertExample">
+        <div class="panel-body">
+            <div data-bind="alert: { message: message, type: type }"></div>
+
+            <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"></div>
+
+            <!-- ko alert: { message: 'Using virtual root element', type: 'success' } -->
+            <!-- /ko -->
+
+            <script type="text/html" id="alertExampleTemplate">
+                <div class="alert alert-block alert-danger">
+                    <span data-bind="text: message"></span>
+                    <button class="btn btn-primary" data-bind="click: close">Close</button>
+                </div>
+            </script>
+        </div>
+    </div>
+
+    <h2>Usage</h2>
+    <p>This binding can be used with virtual elements.</p>
+    <p>All of the options can be observables.</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>message</td>
+                <td>string | observable</td>
+                <td>empty string</td>
+                <td>Text of alert message.</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>string | observable</td>
+                <td>'info'</td>
+                <td>Type of alert message. Possible values are 'info', 'warning', 'danger', 'success'. To specify your own type you should define css-styles for this type.
+                                        For exmaple, for type 'my-custom-type', you shoud provide css class 'alert-my-custom type'</td>
+            </tr>
+            <tr>
+                <td>template</td>
+                <td>string | observable</td>
+                <td>'alert'</td>
+                <td>Name of template for alert content</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>object | observable</td>
+                <td>object with message and type properties</td>
+                <td>Data for template</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="page-header">
+        <h1 id="tooltip">Tooltip</h1>
+    </div>
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: tooltipExample">
+        <div class="panel-body">
+            Lorem ipsum dolor sit amet, <a data-bind="tooltip: { title: 'Tooltip example' }">consectetur</a> adipiscing elit. Vestibulum nec pharetra eros. 
+                            Sed luctus vitae ligula <a data-bind="tooltip: { title: title, placement: placement }">viverra</a> porttitor. Vestibulum porttitor egestas lacus.
+        </div>
+        <div class="panel-body form-inline">
+            <div class="form-group">
+                <label>Observable text</label>
+                <input type="text" class="form-control" data-bind="value: title, valueUpdate: 'afterkeydown'" />
+            </div>
+            <div class="form-group">
+                <label>Observable placement</label>
+                <div class="btn-toolbar">
+                    <input type="radio" name="tooltipPlacement" value="left" data-bind="checked: placement" />
+                    Left
+                    <input type="radio" name="tooltipPlacement" value="right" data-bind="checked: placement" />
+                    Right
+                    <input type="radio" name="tooltipPlacement" value="top" data-bind="checked: placement" />
+                    Top
+                    <input type="radio" name="tooltipPlacement" value="bottom" data-bind="checked: placement" />
+                    Bottom
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Usage</h2>
+    <p>Usage with data-bind</p>
+    <div class="highlight">
+    </div>
+    <h3>Options</h3>
+    <div>
+        <p>Uses default Bootstrap 3 options. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
+        <p>All of the options can be observables, also option's object can be observable too</p>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿<div class="row">
+    <div class="page-header">
+        <h1 id="modal">Modal</h1>
+    </div>
+    <h2>Examples</h2>
+    <p>Demonstrates possibilities of modal binding</p>
+    <div class="panel panel-default" data-bind="with: modalExample">
+        <div class="panel-body">
+            <button class="btn btn-primary" data-bind="click: show">Show modal</button>
+
+            <div data-bind="modal: {
+                                visible: modalVisible,
+                                header: { data: { label: headerLabel } },
+                                body: { name: bodyTemplate, data: bodyData },
+                                footer: { data: { action: switchTemplates, closeLabel: 'Custom close text', primaryLabel: 'Change body template' } }
+                            }">
+            </div>
+            <script type="text/html" id="firstModalTemplate">
+                <p data-bind="text: text"></p>
+                <div class="form-group">
+                    <label data-bind="text: label"></label>
+                    <input type="text" data-bind="value: label, valueUpdate: 'afterkeydown'" class="form-control" />
+                </div>
+            </script>
+            <script type="text/html" id="secondModalTemplate">
+                <p data-bind="text: text"></p>
+                <p data-bind="text: simpleLabel"></p>
+            </script>
+        </div>
+    </div>
+
+    <h2>Usage</h2>
+    <p>All of the options can be observables.</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>visible</td>
+                <td>boolean | observable</td>
+                <td>false</td>
+                <td>Shows modal, if true, otherwise hides modal</td>
+            </tr>
+            <tr>
+                <td>header</td>
+                <td>object | observable</td>
+                <td></td>
+                <td>Template binding for modal header</td>
+            </tr>
+            <tr>
+                <td>body</td>
+                <td>object | observable</td>
+                <td></td>
+                <td>Template binding for modal body</td>
+            </tr>
+            <tr>
+                <td>footer</td>
+                <td>object | observable</td>
+                <td></td>
+                <td>Template binding for modal footer</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
