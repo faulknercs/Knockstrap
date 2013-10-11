@@ -52,13 +52,19 @@ function AlertExampleViewModel() {
     self.type = ko.observable('info');
     
     self.message = ko.observable('Alert message');
-    
-    
+}
+
+function ButtonsExampleViewModel() {
+    var self = this;
+
+    self.isToggled = ko.observable(false);
+
+    self.radioValue = ko.observable();
 }
 
 function ExamplesViewModel() {
     var self = this;
-
+    
     self.tooltipExample = new TooltipExampleViewModel();
 
     self.progress = ko.observable(20);
@@ -69,6 +75,7 @@ function ExamplesViewModel() {
 
     self.alertExample = new AlertExampleViewModel();
 
+    self.buttonsExample = new ButtonsExampleViewModel();
 }
 
 if (!ko.bindingHandlers.modal) {

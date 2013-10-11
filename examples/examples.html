@@ -46,6 +46,9 @@
                         <li>
                             <a href="#progress">Progress</a>
                         </li>
+                        <li>
+                            <a href="#buttons">Buttons</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -237,7 +240,7 @@
                     <div class="panel panel-default" data-bind="with: modalExample">
                         <div class="panel-body">
                             <button class="btn btn-primary" data-bind="click: show">Show modal</button>
-
+                            
                             <div data-bind="modal: {
                                                 visible: modalVisible,
                                                 header: { data: { label: headerLabel } },
@@ -308,7 +311,7 @@
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-                            <div class="form-group progress-val">
+                            <div class="form-group form-fixed-width">
                                 <label>Progress value</label>
                                 <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
                             </div>
@@ -335,6 +338,50 @@
                         </tbody>
                     </table>
                 </div>
+                
+                <!-- Buttons example -->
+                <div class="row" data-bind="with: buttonsExample">
+                    <div class="page-header">
+                        <h1 id="buttons">Buttons</h1>
+                    </div>
+
+                    <h3>Toggle buttons</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Is toggled:</label>
+                                <span data-bind="text: isToggled"></span>
+                            </div>
+                            <button class="btn btn-info" data-bind="toggle: isToggled">Toggle button</button>
+                        </div>
+                    </div>
+
+                    <h3>Radio buttons</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="btn-group form-group" data-toggle="buttons" data-bind="radio: radioValue">
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="option1" value="A"/>
+                                    A
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="option2" value="B"/>
+                                    B
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="option3" value="C"/>
+                                    C
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Selected value:</label>
+                                <input type="text" class="form-control form-fixed-width" data-bind="value: radioValue, valueUpdate: 'afterkeydown'"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
