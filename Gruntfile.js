@@ -110,5 +110,5 @@
     grunt.loadNpmTasks('grunt-preprocess');
     
     grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'uglify', 'clean:temp', 'jshint']);
-    grunt.registerTask('clean:examples', 'examples', ['preprocess:examples', 'copy:examples']);
+    grunt.registerTask('examples', ['clean:examples', 'preprocess:examples', 'copy:examples']);
 }
