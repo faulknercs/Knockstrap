@@ -1,11 +1,13 @@
 ﻿module.exports = function(grunt) {
     
     var buildPath = grunt.option('buildPath') || './build',
-		tempPath = grunt.option('tempPath') || './temp';
+		tempPath = grunt.option('tempPath') || './temp',
+        examplesPath = grunt.option('examplesPath') || './examples';
 
     grunt.initConfig({
         buildPath: buildPath,
         tempPath: tempPath,
+        examplesPath: examplesPath,
         
         pkg: grunt.file.readJSON('package.json'),
         // TODO: update jshint options
@@ -50,14 +52,24 @@
 
         copy: {
             templates: {
-                files: [{ expand: true, src: ['src/templates/templatesWrapper.js'], dest: '<%= tempPath %>/', flatten: true },
-                        { expand: true, src: ['src/main.js'], dest: '<%= tempPath %>/', flatten: true }]
+                expand: true,
+                src: ['src/templates/templatesWrapper.js', 'src/main.js'],
+                dest: '<%= tempPath %>/',
+                flatten: true
+            },
+            
+            examples: {
+                expand: true,
+                cwd: 'examples-src',
+                src: ['css/*', 'js/*'],
+                dest: '<%= examplesPath %>/'
             }
         },
 
         clean: {
             build: ['<%= buildPath %>'],
-            temp: ['<%= tempPath %>']
+            temp: ['<%= tempPath %>'],
+            examples: ['<%= examplesPath %>']
         },
         
         uglify: {
@@ -71,15 +83,20 @@
             }
         },
 
-        directives: {
+        preprocess: {
             templates: {
-                src: ['<%= tempPath %>/templatesWrapper.js'],
+                src: '<%= tempPath %>/templatesWrapper.js',
                 dest: '<%= tempPath %>/templates.js'
             },
-            
-            all: {
-                src: ['<%= tempPath %>/main.js'],
+
+            main: {
+                src: '<%= tempPath %>/main.js',
                 dest: '<%= buildPath %>/knockstrap.js'
+            },
+
+            examples: {
+                src: 'examples-src/index.html',
+                dest: '<%= examplesPath %>/index.html'
             }
         }
     });
@@ -90,7 +107,8 @@
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-templates-concat');
-    grunt.loadNpmTasks('grunt-directives');
+    grunt.loadNpmTasks('grunt-preprocess');
     
-    grunt.registerTask('default', ['clean', 'templates_concat', 'copy', 'concat', 'directives', 'uglify', 'clean:temp', 'jshint']);
+    grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'uglify', 'clean:temp', 'jshint']);
+    grunt.registerTask('clean:examples', 'examples', ['preprocess:examples', 'copy:examples']);
 }
