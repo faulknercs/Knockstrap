@@ -3,7 +3,7 @@ Knockstrap
 
 ### Description
 
-Bindings Library for the knockout to twitter bootstrap.
+Knockstrap is binding library for Knockout.js, which provides binding to Twitter Bootstrap widgets
 
 #### Supported widgets:
 
