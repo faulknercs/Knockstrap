@@ -2,6 +2,8 @@
     <div class="page-header">
         <h1 id="tooltip">Tooltip</h1>
     </div>
+    <p>Binding to Bootstrap popover</p>
+
     <h2>Examples</h2>
     <div class="panel panel-default" data-bind="with: tooltipExample">
         <div class="panel-body">
@@ -28,14 +30,40 @@
             </div>
         </div>
     </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div&gt;
+    Lorem ipsum dolor sit amet, &lt;a data-bind="tooltip: { title: 'Tooltip example' }"&gt;consectetur&lt;/a&gt; adipiscing elit. 
+    Vestibulum nec pharetra eros. Sed luctus vitae ligula 
+    &lt;a data-bind="tooltip: { title: tooltipTitle, placement: tooltipPlacement }"&gt;viverra&lt;/a&gt; porttitor. 
+    Vestibulum porttitor egestas lacus.
+&lt;/div&gt;
+    
+&lt;!-- ... --&gt;
 
-    <h2>Usage</h2>
-    <p>Usage with data-bind</p>
-    <div class="highlight">
-    </div>
-    <h3>Options</h3>
+&lt;input type="text" data-bind="value: title, valueUpdate: 'afterkeydown'" /&gt;
+&lt;div&gt;
+    &lt;input type="radio" name="tooltipPlacement" value="left" data-bind="checked: placement" /&gt;
+    Left
+    &lt;input type="radio" name="tooltipPlacement" value="right" data-bind="checked: placement" /&gt;
+    Right
+    &lt;input type="radio" name="tooltipPlacement" value="top" data-bind="checked: placement" /&gt;
+    Top
+    &lt;input type="radio" name="tooltipPlacement" value="bottom" data-bind="checked: placement" /&gt;
+    Bottom
+&lt;/div&gt;</pre>
+ 
+    <h4>View model</h4>   
+    <pre class="prettyprint linenums lang-javascript">
+function TooltipExampleViewModel() {
+    this.tooltipTitle = ko.observable('Observable title');
+    this.tooltipPlacement = ko.observable('left');
+}</pre>
+
+    <h2>Options</h2>
     <div>
-        <p>Uses default Bootstrap 3 options. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
-        <p>All of the options can be observables, also option's object can be observable too</p>
+        <p>Uses Bootstrap 3 options. If any option is not specified, uses default value. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
+        <p>All of the options can be observables. Also option's object can be observable too, e.g. <code>data-bind="tooltip: observableObjectWithTooltipOptions"</code></p>
     </div>
 </div>

@@ -2,6 +2,8 @@
     <div class="page-header">
         <h1 id="popover">Popover</h1>
     </div>
+    <p>Binding to Bootstrap popover. Supports custom templates with observables for popover content</p>
+
     <h2>Examples</h2>
     <div class="panel panel-default" data-bind="with: popoverExample">
         <div class="panel-body">
@@ -23,43 +25,76 @@
             <button class="btn btn-primary" data-bind="popover: { options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } }">Hover</button>
         </div>
     </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;button class="btn btn-primary" data-bind="popover: { 
+        options: { title: 'Popover with template', placement: 'top' }, 
+        template: popoverTemplate, 
+        data: { text: 'First template' } 
+    }"&gt;Click&lt;/button&gt;
 
-    <h2>Usage</h2>
-    <p>Usage with data-bind</p>
-    <div class="highlight">
-    </div>
-    <h3>Options</h3>
-    <div>
-        <p>All of the options can be observables, also option's object can be observable too</p>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>options</td>
-                    <td>object | observable</td>
-                    <td>Default values from bootstrap 3</td>
-                    <td>Bootstrap options for popover. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a></td>
-                </tr>
-                <tr>
-                    <td>template</td>
-                    <td>string | observable</td>
-                    <td>undefined</td>
-                    <td>Name of template for popover content. If name is not specified, uses 'text' property from 'options' object</td>
-                </tr>
-                <tr>
-                    <td>data</td>
-                    <td>object | observable</td>
-                    <td>undefined</td>
-                    <td>Data for template</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+&lt;button class="btn" data-bind="click: switchTemplates"&gt;Switch templates&lt;/button&gt;
+
+&lt;button class="btn btn-primary" data-bind="popover: { 
+        options: { title: 'Focus', content: 'Focus popover', trigger: 'focus', placement: 'bottom' } 
+    }"&gt;Focus&lt;/button&gt;
+
+&lt;button class="btn btn-primary" data-bind="popover: { 
+        options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } 
+    }"&gt;Hover&lt;/button&gt;
+        
+&lt;script type="text/html" id="Script1"&gt;
+    &lt;p data-bind="text: text"&gt;&lt;/p&gt;
+&lt;/script&gt;
+
+&lt;script type="text/html" id="Script2"&gt;
+    &lt;p&gt;Second template&lt;/p&gt;
+&lt;/script&gt;</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function PopoverExampleViewModel() {
+    var self = this;
+    
+    self.popoverTemplate = ko.observable('firstPopoverTemplate');
+    self.switchTemplates = function() {
+        self.popoverTemplate() === 'firstPopoverTemplate' 
+                                    ? self.popoverTemplate('secondPopoverTemplate') 
+                                    : self.popoverTemplate('firstPopoverTemplate');
+    };
+}</pre>
+
+    <h2>Options</h2>
+    <p>All of the options can be observables, also option's object can be observable too</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>options</td>
+                <td>object | observable</td>
+                <td>Default values from bootstrap 3</td>
+                <td>Bootstrap options for popover. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a></td>
+            </tr>
+            <tr>
+                <td>template</td>
+                <td>string | observable</td>
+                <td>undefined</td>
+                <td>Name of template for popover content. If name is not specified, uses 'text' property from 'options' object</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>object | observable</td>
+                <td>undefined</td>
+                <td>Data for template</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

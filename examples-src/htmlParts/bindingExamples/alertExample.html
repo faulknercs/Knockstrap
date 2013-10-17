@@ -2,6 +2,8 @@
     <div class="page-header">
         <h1 id="alert">Alert</h1>
     </div>
+    <p>Binding to Bootstrap alert widget. This binding can be used with virtual elements. Supports custom templates with observables</p>
+
     <h2>Examples</h2>
     <div class="panel panel-default" data-bind="with: alertExample">
         <div class="panel-body">
@@ -20,10 +22,34 @@
             </script>
         </div>
     </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="alert: { message: message, type: type }"&gt;&lt;/div&gt;
 
-    <h2>Usage</h2>
-    <p>This binding can be used with virtual elements.</p>
+&lt;div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"&gt;&lt;/div&gt;
+
+&lt;!-- ko alert: { message: 'Using virtual root element', type: 'success' } --&gt;
+&lt;!-- /ko --&gt;
+
+&lt;script type="text/html" id="alertExampleTemplate"&gt;
+    &lt;div class="alert alert-block alert-danger"&gt;
+        &lt;span data-bind="text: message"&gt;&lt;/span&gt;
+        &lt;button class="btn btn-primary" data-bind="click: close"&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/script&gt;</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function AlertExampleViewModel() {
+    this.type = ko.observable('info');
+    
+    this.message = ko.observable('Alert message');
+}</pre>
+
+    <h2>Options</h2>
     <p>All of the options can be observables.</p>
+
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -44,8 +70,15 @@
                 <td>type</td>
                 <td>string | observable</td>
                 <td>'info'</td>
-                <td>Type of alert message. Possible values are 'info', 'warning', 'danger', 'success'. To specify your own type you should define css-styles for this type.
-                                        For exmaple, for type 'my-custom-type', you shoud provide css class 'alert-my-custom type'</td>
+                <td>Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
+                    To specify your own type you should define css-styles for this type.
+                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'alert-my-custom-type'</code></td>
+            </tr>
+            <tr>
+                <td>close</td>
+                <td>function</td>
+                <td>default function</td>
+                <td>Function, which removes alert. See <a href="#alert-default-descr">default data object description</a></td>
             </tr>
             <tr>
                 <td>template</td>
@@ -56,8 +89,32 @@
             <tr>
                 <td>data</td>
                 <td>object | observable</td>
-                <td>object with message and type properties</td>
-                <td>Data for template</td>
+                <td>default object</td>
+                <td>Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p id="alert-default-descr">Default data object for template contains:</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>message</td>
+                <td>Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding</td>
+            </tr>
+            <tr>
+                <td>close</td>
+                <td>Function, which removes alert widget. For default template, this function is called, when user clicks to close button. You can specify your own function via <code>close</code> option</td>
             </tr>
         </tbody>
     </table>
