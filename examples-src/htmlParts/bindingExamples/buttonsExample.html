@@ -3,7 +3,10 @@
         <h1 id="buttons">Buttons</h1>
     </div>
 
-    <h3>Toggle buttons</h3>
+    <h2>Toggle buttons</h2>
+    <p>Binding to Bootstrap toggle button.</p>
+    
+    <h3>Examples</h3>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
@@ -13,21 +16,40 @@
             <button class="btn btn-info" data-bind="toggle: isToggled">Toggle button</button>
         </div>
     </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;button class="btn btn-info" data-bind="toggle: isToggled"&gt;Toggle button&lt;/button&gt;
+</pre>
+    
+    <h4>Viem model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ButtonsExampleViewModel() {
+    //...
 
-    <h3>Radio buttons</h3>
+    this.isToggled = ko.observable(false);
+}
+</pre>
+    
+    <h3>Options</h3>
+
+    <h2>Radio buttons</h2>
+    <p>Two-way binding to Bootstrap radio buttons. Default Knockout checked binding doesn't work with Bootstrap's buttons, so you can use this binding</p>
+    
+    <h3>Examples</h3>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="btn-group form-group" data-toggle="buttons" data-bind="radio: radioValue">
                 <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option1" value="A" />
+                    <input type="radio" name="options" value="A" />
                     A
                 </label>
                 <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option2" value="B" />
+                    <input type="radio" name="options" value="B" />
                     B
                 </label>
                 <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option3" value="C" />
+                    <input type="radio" name="options" value="C" />
                     C
                 </label>
             </div>
@@ -37,4 +59,33 @@
             </div>
         </div>
     </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div class="btn-group form-group" data-toggle="buttons" data-bind="radio: radioValue"&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="radio" name="options" value="A" /&gt;
+        A
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="radio" name="options" value="B" /&gt;
+        B
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="radio" name="options" value="C" /&gt;
+        C
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ButtonsExampleViewModel() {
+    //...
+
+    this.radioValue = ko.observable();
+}
+</pre>
+    
+    <h3>Options</h3>
 </div>
