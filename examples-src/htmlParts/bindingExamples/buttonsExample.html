@@ -32,6 +32,7 @@ function ButtonsExampleViewModel() {
 </pre>
     
     <h3>Options</h3>
+    <p>Observable value is set in true, when button is toggled, otherwise, value is set in false. This binding is two-way.</p>
 
     <h2>Radio buttons</h2>
     <p>Two-way binding to Bootstrap radio buttons. Default Knockout checked binding doesn't work with Bootstrap's buttons, so you can use this binding</p>
@@ -88,4 +89,9 @@ function ButtonsExampleViewModel() {
 </pre>
     
     <h3>Options</h3>
+    <p>
+        Observable value is set to value of chosen radiobutton. Initially, when no radio button is toggled, observable value is undefined. 
+        This binding is two-way. For correct work all radio buttons should have value attribute.
+    </p>
+    
 </div>

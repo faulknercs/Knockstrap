@@ -3,7 +3,8 @@
         <h1 id="modal">Modal</h1>
     </div>
     <h2>Examples</h2>
-    <p>Demonstrates possibilities of modal binding</p>
+    <p>Binding to Bootstrap modal widget. </p>
+
     <div class="panel panel-default" data-bind="with: modalExample">
         <div class="panel-body">
             <button class="btn btn-primary" data-bind="click: show">Show modal</button>
@@ -12,7 +13,7 @@
                                 visible: modalVisible,
                                 header: { data: { label: headerLabel } },
                                 body: { name: bodyTemplate, data: bodyData },
-                                footer: { data: { action: switchTemplates, closeLabel: 'Custom close text', primaryLabel: 'Change body template' } }
+                                footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
                             }">
             </div>
             <script type="text/html" id="firstModalTemplate">
@@ -28,15 +29,77 @@
             </script>
         </div>
     </div>
+    
+    <h3>Html markup</h3>
+    <pre class="prettyprint linenums">
+&lt;button class="btn btn-primary" data-bind="click: show"&gt;Show modal&lt;/button&gt;
 
-    <h2>Usage</h2>
+&lt;div data-bind="modal: {
+    visible: modalVisible,
+    header: { data: { label: headerLabel } },
+    body: { name: bodyTemplate, data: bodyData },
+    footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
+}"&gt;&lt;/div&gt;
+
+&lt;script type="text/html" id="firstModalTemplate"&gt;
+    &lt;p data-bind="text: text"&gt;&lt;/p&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label data-bind="text: label"&gt;&lt;/label&gt;
+        &lt;input type="text" data-bind="value: label, valueUpdate: 'afterkeydown'" class="form-control" /&gt;
+    &lt;/div&gt;
+&lt;/script&gt;
+
+&lt;script type="text/html" id="secondModalTemplate"&gt;
+    &lt;p data-bind="text: text"&gt;&lt;/p&gt;
+    &lt;p data-bind="text: simpleLabel"&gt;&lt;/p&gt;
+&lt;/script&gt;
+</pre>
+
+    <h3>View model</h3>
+    <pre class="prettyprint linenums lang-javascript">
+function ModalExampleViewModel() {
+
+    var self = this;
+
+    var firstTemplateData = {
+        text: 'First template',
+        label: ko.observable('Observable label')
+    };
+
+    var secondTemplateData = {
+        text: 'Second template',
+        simpleLabel: 'Simple text label'
+    };
+
+    self.modalVisible = ko.observable(false);
+
+    self.show = function() {
+        self.modalVisible(true);
+    };
+
+    self.headerLabel = ko.observable('Some header text');
+    self.bodyTemplate = ko.observable('firstModalTemplate');
+    self.bodyData = ko.computed(function() {
+        return self.bodyTemplate() === 'firstModalTemplate' ? firstTemplateData : secondTemplateData;
+    });
+
+    self.okText = ko.observable();
+
+    self.switchTemplates = function() {
+        self.bodyTemplate() === 'firstModalTemplate' 
+                            ? self.bodyTemplate('secondModalTemplate') 
+                            : self.bodyTemplate('firstModalTemplate');
+    };
+}
+</pre>
+
+    <h2>Options</h2>
     <p>All of the options can be observables.</p>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Type</th>
-                <th>Default</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -44,26 +107,77 @@
             <tr>
                 <td>visible</td>
                 <td>boolean | observable</td>
-                <td>false</td>
-                <td>Shows modal, if true, otherwise hides modal</td>
+                <td>Shows modal, if true, otherwise hides modal. By default is false</td>
             </tr>
             <tr>
                 <td>header</td>
                 <td>object | observable</td>
-                <td></td>
-                <td>Template binding for modal header</td>
+                <td>Template binding for modal header, uses options from Knockout template binding.</td>
             </tr>
             <tr>
                 <td>body</td>
                 <td>object | observable</td>
-                <td></td>
-                <td>Template binding for modal body</td>
+                <td>Template binding for modal body, uses options from Knockout template binding.</td>
             </tr>
             <tr>
                 <td>footer</td>
                 <td>object | observable</td>
-                <td></td>
-                <td>Template binding for modal footer</td>
+                <td>Template binding for modal footer, uses options from Knockout template binding.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Header template</h3>
+    <h4>Default template</h4>
+    <pre class="prettyprint linenums">
+&lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+&lt;h3 data-bind="text: label"&gt;&lt;/h3&gt;
+</pre>
+    <p>Default template name for header is <code>'modalHeader'</code></p>
+    <h4>Default data object</h4>
+    <p>Default data object for header contains only <code>label</code> property, which contains text for modal header</p>
+    
+    <h3>Body template</h3>
+    <h4>Template</h4>
+    <pre class="prettyprint linenums">&lt;div data-bind="html: content"&gt;&lt;/div&gt;</pre>
+    <p>Default template name for body is <code>'modalBody'</code></p>
+    <h4>Default data object</h4>
+    <p>
+        Default data object for header contains only <code>content</code> property. It can contain text (or html markup) for modal body. 
+        If you want to use bindings inside modal body, you should provide custom template and data.
+    </p>
+    
+    <h3>Footer template</h3>
+    <h4>Template</h4>
+    <pre class="prettyprint linenums">
+&lt;a href="#" class="btn btn-primary" data-bind="click: action, html: primaryLabel"&gt;&lt;/a&gt;
+&lt;a href="#" class="btn btn-default" data-bind="html: closeLabel" data-dismiss="modal"&gt;&lt;/a&gt;
+</pre>
+    <p>Default template name for footer is <code>'modalFooter'</code></p>
+    <h4>Default data object</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>action</td>
+                <td>function</td>
+                <td>Function, which will be called, when user clicks on primary button. This property has no default value, so, if you are using default template, you need provide function</td>
+            </tr>
+            <tr>
+                <td>primaryLabel</td>
+                <td>string | observable</td>
+                <td>Text for primary button. Default value is <code>'Ok'</code></td>
+            </tr>
+            <tr>
+                <td>closeLabel</td>
+                <td>string | observable</td>
+                <td>Text for close button. Default value is <code>'Close'</code></td>
             </tr>
         </tbody>
     </table>
