@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Knockstrap - Knockout bindings for Bootstrap</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/examples.css" rel="stylesheet" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</head>
+<body data-target="#side-nav" data-spy="scroll">
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Knockstrap</a>
+            </div>
+            <nav>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="examples.html">Examples</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/faulknercs/Knockstrap/releases">Releases</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/faulknercs/Knockstrap">GitHub Project</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Knockstrap</h1>
+            <p>Knockout bindings library</p>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h1>Overview</h1>
+            </div>
+            <p>Knockstrap is binding library for Knockout.js, which provides binding to Twitter Bootstrap widgets</p>
+            <h4>Features</h4>
+            <ul>
+                <li>
+                    Using Bootstrap widgets via <code>data-bind</code> attribute
+                </li>
+                <li>
+                    Supports dynamicaly changing parameters and data of widgets via observables
+                </li>
+                <li>
+                    Supports Knockout templates for such widgets, as <code>modal</code> or <code>popover</code>
+                </li>
+                <li>
+                    Supports using of third party template engines
+                </li>
+                <li>
+                    Provides default templates for such widgets, as <code>modal</code>, for typical using
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <a class="btn btn-primary btn-lg" href="https://github.com/faulknercs/Knockstrap/releases">Download</a>
+        </div>
+        <div class="row">
+            <div class="page-header">
+                <h1>Using</h1>
+            </div>
+            <p>
+                If you have all dependencies, you only need to include <code>knockstrap.min.js</code> or <code>knockstrap.js</code> to your pages:
+                <pre>&lt;script src="../js/knockstrap.min.js"&gt;&lt;/script&gt;</pre>
+            </p>
+            <h4>Dependencies</h4>
+            <ul>
+                <li>
+                    <a href="http://knockoutjs.com/">Knockout.js</a>
+                </li>
+                <li>
+                    <a href="http://jquery.com/">jQuery</a>
+                </li>
+                <li>
+                    <a href="http://getbootstrap.com/">Bootstrap 3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

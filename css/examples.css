@@ -1,0 +1,47 @@
+﻿body {
+    padding-top: 50px;
+}
+
+.form-fixed-width {
+    width: 200px;
+}
+
+.examples-menu {
+    width: 170px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.affix {
+    top: 50px;
+}
+
+.examples-menu .active {
+    background-color: #ddd;
+}
+
+h1[id] {
+    margin-top: -40px;
+    padding-top: 80px;
+}
+
+.page-header {
+    margin-top: 0;
+}
+
+pre.prettyprint {
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.prettyprint [class^="L"] {
+    list-style-type: decimal;
+}
+
+#alert-default-descr {
+    margin-top: -65px;
+    padding-top: 65px;
+}
