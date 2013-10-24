@@ -13,7 +13,7 @@ Knockstrap is binding library for Knockout.js, which provides binding to Twitter
 - Alert
 - Progress
 
-[Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.1.0/knockstrap-0.1.0.zip)
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.2.0/knockstrap-0.2.0.zip)
 
 ### Dependencies
 
