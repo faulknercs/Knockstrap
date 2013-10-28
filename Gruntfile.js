@@ -45,7 +45,7 @@
                 namespace: 'templates'
             },
             dist: {
-                'src': ['src/templates/*.html'],
+                'src': ['src/templates/**/*.html'],
                 'dest': '<%= tempPath %>/compiledTemplates.js'
             }
         },
