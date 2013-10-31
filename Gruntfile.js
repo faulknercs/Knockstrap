@@ -8,7 +8,8 @@
         buildPath: buildPath,
         tempPath: tempPath,
         examplesPath: examplesPath,
-        
+        fileHeader: '/*! <%= pkg.name %> <%= pkg.version %> | (c) 2013 <%= pkg.author %> |  http://www.opensource.org/licenses/mit-license */\n',
+
         pkg: grunt.file.readJSON('package.json'),
         // TODO: update jshint options
         jshint: {
@@ -74,7 +75,7 @@
         
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+                banner: '<%= fileHeader %>'
             },
             release: {
                 files: {
@@ -90,6 +91,12 @@
             },
 
             main: {
+                options: {
+                    context: {
+                        header: '<%= fileHeader %>'
+                    }  
+                },
+
                 src: '<%= tempPath %>/main.js',
                 dest: '<%= buildPath %>/knockstrap.js'
             },

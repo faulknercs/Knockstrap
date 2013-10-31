@@ -1,11 +1,10 @@
-﻿(function (moduleName, factory) {
+﻿// @echo header
+(function (moduleName, factory) {
     'use strict';
 
-    // TODO: write amd wrapper;
-
-    if (typeof require === 'function' && typeof module !== 'undefined' && exports) {
+    if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         // CommonJS/Node.js
-        //module.exports = 
+        factory(require('knockout'), require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
         // AMD
         define(moduleName, ['knockout', 'jQuery'], factory);
