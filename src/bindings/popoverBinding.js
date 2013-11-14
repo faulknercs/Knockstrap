@@ -15,7 +15,7 @@ ko.bindingHandlers.popover = {
         return { controlsDescendantBindings: true };
     },
 
-    update: function (element, valueAccessor) {
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
             value = ko.unwrap(valueAccessor()),
             options = ko.utils.unwrapProperties(value.options);
@@ -35,7 +35,7 @@ ko.bindingHandlers.popover = {
             $element.off('shown.bs.popover', ko.utils.domData.get(element, popoverDomDataEventHandlerKey));
 
             var renderPopoverTemplate = function () {
-                ko.renderTemplate(template, data, {}, document.getElementById(id));
+                ko.renderTemplate(template, bindingContext.createChildContext(data), {}, document.getElementById(id));
             };
             
             // place template rendering after popover is shown, because we don't have root element for template before that

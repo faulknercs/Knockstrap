@@ -24,7 +24,7 @@
             options = ko.utils.extend({ show: false }, ko.utils.unwrapProperties(value.options));
 
         if (!value.header || !value.body || !value.footer) {
-            throw new Error('Header, body and footer properties are required for modal!');
+            throw new Error('header, body and footer options are required for modal binding.');
         }
 
         var model = {
