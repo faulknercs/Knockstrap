@@ -2,6 +2,10 @@
     padding-top: 50px;
 }
 
+a {
+    cursor: pointer;
+}
+
 .form-fixed-width {
     width: 200px;
 }
