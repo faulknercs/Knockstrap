@@ -33,7 +33,7 @@
             footerTemplate: $.extend(true, { templateEngine: !value.footer.name ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer)
         };
         
-        ko.renderTemplate("modal", bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
+        ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
         $element.addClass('modal fade').attr('role', 'dialog');
         $element.modal(options);

@@ -1,0 +1,17 @@
+<!-- ko template: indicatorsTemplate -->
+<!-- /ko -->
+<div class="carousel-inner">
+    <!-- ko foreach: items -->
+    <div class="item active">
+        <img data-bind="attr: { src: src, alt: alt }">
+        <div class="container">
+            <div class="carousel-caption">
+                <!-- ko template: { name: $parent.itemTemplateName, data: $data, templateEngine: ko.stringTemplateEngine.instance } -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- ko template: controlsTemplate -->
+<!-- /ko -->
