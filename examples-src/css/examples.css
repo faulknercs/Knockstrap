@@ -49,3 +49,8 @@ pre.prettyprint {
     margin-top: -65px;
     padding-top: 65px;
 }
+
+.tooltip-radios {
+    margin-top: 5px;
+    margin-left: 0;
+}
