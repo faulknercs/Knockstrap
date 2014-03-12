@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="page-header">
+        <h1 id="carousel">Carousel</h1>
+    </div>
+    <p>Binding to Bootstrap Carousrel widget</p>
+    
+    <h2>Examples</h2>
+    
+    <div class="panel panel-default" data-bind="with: carouselExample">
+        <div class="panel-body">
+            <div data-bind="carousel: { content: { data: items } }"></div>
+
+        </div>
+    </div>
+    
+    <h3>Html markup</h3>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="carousel: { content: { data: items } }"&gt;&lt;/div&gt;
+
+</pre>
+    
+    <h3>View model</h3>
+    <pre class="prettyprint linenums lang-javascript">
+        
+</pre>
+
+    <h2>Options</h2>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>string | observable</td>
+                <td>Id of carousel</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

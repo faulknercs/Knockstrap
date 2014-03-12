@@ -52,7 +52,7 @@
                 };
 
                 $.extend(true, extended, value[type]);
-                if (!value[type].name) {
+                if (!value[type] || !value[type].name) {
                     extended.templateEngine = ko.stringTemplateEngine.instance;
                 }
 
@@ -75,7 +75,8 @@
 
             items: value.content.data,
             converter: value.content.converter ||defaults.itemTemplate.converter,
-            itemTemplateName: value.content.name || defaults.itemTemplate.name
+            itemTemplateName: value.content.name || defaults.itemTemplate.name,
+            //templateEngine: !value.content.name ? ko.stringTemplateEngine.instance : null
         };
 
         ko.renderTemplate('carousel', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);

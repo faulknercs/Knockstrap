@@ -62,6 +62,30 @@ function ButtonsExampleViewModel() {
     self.radioValue = ko.observable();
 }
 
+function CarouselExampleViewModel() {
+    var self = this;
+
+    self.itemsFirst = ko.observableArray([
+        {
+            src: 'holder.js/900x200/text:First image',
+            alt: 'First image',
+            content: 'First caption'
+        }, {
+            src: 'holder.js/900x200/text:Second image',
+            alt: 'Second image',
+            content: 'Second caption'
+        }, {
+            src: 'holder.js/900x200/text:Third image',
+            alt: 'Third image',
+            content: 'Third caption'
+        }
+    ]);
+
+    self.itemsSecond = ko.observableArray([
+
+    ]);
+}
+
 function ExamplesViewModel() {
     var self = this;
     
@@ -76,6 +100,8 @@ function ExamplesViewModel() {
     self.alertExample = new AlertExampleViewModel();
 
     self.buttonsExample = new ButtonsExampleViewModel();
+
+    self.carouselExample = new CarouselExampleViewModel();
 }
 
 if (!ko.bindingHandlers.modal) {

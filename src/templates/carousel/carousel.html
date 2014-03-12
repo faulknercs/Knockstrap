@@ -2,11 +2,11 @@
 <!-- /ko -->
 <div class="carousel-inner">
     <!-- ko foreach: items -->
-    <div class="item active" data-bind="with: $parent.converter($data)">
+    <div class="item" data-bind="with: $parent.converter($data), css: { active: $index() == 0 }">
         <img data-bind="attr: { src: src, alt: alt }">
         <div class="container">
             <div class="carousel-caption">
-                <!-- ko template: { name: $parent.itemTemplateName, data: content, templateEngine: ko.stringTemplateEngine.instance } -->
+                <!-- ko template: { name: $parents[1].itemTemplateName, data: content, templateEngine: ko.stringTemplateEngine.instance } -->
                 <!-- /ko -->
             </div>
         </div>
