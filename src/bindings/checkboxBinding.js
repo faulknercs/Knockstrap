@@ -40,9 +40,9 @@ ko.bindingHandlers.checkbox = {
             value = ko.unwrap(valueAccessor());
 
         if (value instanceof Array) {
-            if ($element.attr('buttons')) {
-                $element.each(function (index, el) {
-                    $(el).toggleClass('active', value.indexOf(el.value) !== -1);
+            if ($element.attr('data-toggle') === 'buttons') {
+                $element.find('input:checkbox').each(function (index, el) {
+                    $(el).parent().toggleClass('active', value.indexOf(el.value) !== -1);
                 });
             } else {
                 $element.toggleClass('active', value.indexOf($element.val()) !== -1);
