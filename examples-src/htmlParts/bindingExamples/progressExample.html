@@ -31,20 +31,19 @@ function ProgressExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>progress</td>
-                <td>number | observable</td>
-                <td>Progress value in percents</td>
-            </tr>
-        </tbody>
-    </table>
+ 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="progress: progressValue"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>progressValue</strong></p>
+                <p>Type: number, can be observable</p>
+                <p>Progress value in percents. Values greater than 100, assumed equal to 100</p>
+            </li>
+        </ul>
+    </div>
+
 </div>
