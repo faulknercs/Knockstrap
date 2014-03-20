@@ -40,7 +40,7 @@ function ButtonsExampleViewModel() {
         <ul class="list-group">
             <li class="list-group-item">
                 <p><strong>value</strong></p>
-                <p>Type: boolean, can be observable</p>
+                <p>Type: boolean, should be observable</p>
                 <p>
                     Observable value is set in true, when button is toggled, otherwise, value is set in false. This binding is two-way, 
                     if observable value changes, <code>'active'</code> class will be set to element.
@@ -112,10 +112,83 @@ function ButtonsExampleViewModel() {
         <ul class="list-group">
             <li class="list-group-item">
                 <p><strong>value</strong></p>
-                <p>Type: string, can be observable</p>
+                <p>Type: string, should be observable</p>
                 <p>
                     Observable value is set to value of chosen radiobutton. Initially, when no radio button is toggled, observable value is undefined. 
                     This binding is two-way. For correct work all radio buttons should have value attribute.
+                </p>
+            </li>
+        </ul>
+    </div>
+    
+    <h2>Checkbox buttons</h2>
+    <p>Two-way binding to Bootstrap checkbox buttons. Default Knockout checked binding doesn't work with Bootstrap's buttons, so you can use this binding</p>
+    
+    <h3>Examples</h3>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: checkboxArray">
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="A" />
+                    A
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="B" />
+                    B
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="C" />
+                    C
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Selected values:</label>
+                <span data-bind="text: checkboxArray"></span>
+            </div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: checkboxArray"&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="A" /&gt;
+        A
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="B" /&gt;
+        B
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="C" /&gt;
+        C
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ButtonsExampleViewModel() {
+    //...
+
+    this.checkboxArray = ko.observableArray();
+}
+</pre>
+    
+    <h3>Options</h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="checkbox: value"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>value</strong></p>
+                <p>Type: array or boolean, should be observable</p>
+                <p>
+                    Array, contains selected values or boolean, which is set to true or false, depending of checkbox state. 
+                    This binding is two-way, if array values changed, corresponding checkbox is set up, if value is deleted from array, otherwise, it is set down.
+                    For boolean case, if observable value changes, corrseponding checkbox is set up, if value is true, otherwise, it is set down.
                 </p>
             </li>
         </ul>

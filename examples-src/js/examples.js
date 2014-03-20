@@ -60,6 +60,10 @@ function ButtonsExampleViewModel() {
     self.isToggled = ko.observable(false);
 
     self.radioValue = ko.observable();
+
+    self.checkboxArray = ko.observableArray();
+
+    self.checkboxValue = ko.observable();
 }
 
 function CarouselExampleViewModel() {
