@@ -67,34 +67,30 @@ function PopoverExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables, also option's object can be observable too</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>options</td>
-                <td>object | observable</td>
-                <td>Default values from bootstrap 3</td>
-                <td>Bootstrap options for popover. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a></td>
-            </tr>
-            <tr>
-                <td>template</td>
-                <td>string | observable</td>
-                <td>undefined</td>
-                <td>Name of template for popover content. If name is not specified, uses 'text' property from 'options' object</td>
-            </tr>
-            <tr>
-                <td>data</td>
-                <td>object | observable</td>
-                <td>undefined</td>
-                <td>Data for template</td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="popover: { options: popoverOptions, template: templateName, data: templateData }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>popoverOptions</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Bootstrap options for popover. If any option is not specified, uses default value. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a>
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateName</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Name of template for popover content. If template is not specified, uses <code>content</code> property from <code>options</code> object</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateData</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Data for template</p>
+            </li>
+        </ul>
+    </div>
 </div>
