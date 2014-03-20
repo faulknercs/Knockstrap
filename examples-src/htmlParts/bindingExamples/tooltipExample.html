@@ -62,8 +62,21 @@ function TooltipExampleViewModel() {
 }</pre>
 
     <h2>Options</h2>
-    <div>
-        <p>Uses Bootstrap 3 options. If any option is not specified, uses default value. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
-        <p>All of the options can be observables. Also option's object can be observable too, e.g. <code>data-bind="tooltip: observableObjectWithTooltipOptions"</code></p>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="tooltip: tooltipOptions"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>tooltipOptions</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Uses Bootstrap 3 options. If any option is not specified, uses default value. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a>. 
+                    All of the options can be observables. Also option's object can be observable too.
+                </p>
+            </li>
+        </ul>
     </div>
 </div>
