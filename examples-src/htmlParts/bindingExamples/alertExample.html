@@ -49,73 +49,74 @@ function AlertExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>message</td>
-                <td>string | observable</td>
-                <td>empty string</td>
-                <td>Text of alert message.</td>
-            </tr>
-            <tr>
-                <td>type</td>
-                <td>string | observable</td>
-                <td>'info'</td>
-                <td>Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
-                    To specify your own type you should define css-styles for this type.
-                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'alert-my-custom-type'</code></td>
-            </tr>
-            <tr>
-                <td>close</td>
-                <td>function</td>
-                <td>default function</td>
-                <td>Function, which removes alert. See <a href="#alert-default-descr">default data object description</a></td>
-            </tr>
-            <tr>
-                <td>template</td>
-                <td>string | observable</td>
-                <td>'alert'</td>
-                <td>Name of template for alert content</td>
-            </tr>
-            <tr>
-                <td>data</td>
-                <td>object | observable</td>
-                <td>default object</td>
-                <td>Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored</td>
-            </tr>
-        </tbody>
-    </table>
     
-    <p id="alert-default-descr">Default data object for template contains:</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>message</td>
-                <td>Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding</td>
-            </tr>
-            <tr>
-                <td>type</td>
-                <td>CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding</td>
-            </tr>
-            <tr>
-                <td>close</td>
-                <td>Function, which removes alert widget. For default template, this function is called, when user clicks to close button. You can specify your own function via <code>close</code> option</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="alert: { message: alertMessage, type: alertType, template: templateName, data: data, close: closeCallback }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>alertMessage</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Text of alert message.</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>alertType</strong></p>
+                <p>Type: string, can be observable (default: <code>'info'</code>)</p>
+                <p>
+                    Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
+                    To specify your own type you should define css-styles for this type.
+                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'alert-my-custom-type'</code>.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateName</strong></p>
+                <p>Type: string, can be observable (default: <code>'alertTemplate'</code>)</p>
+                <p>
+                    Name of template for alert content.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>data</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored.
+                </p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>message</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding.
+                        </p>       
+                    </li>    
+                    <li class="list-group-item">
+                        <p><strong>type</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding.
+                        </p>       
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>close</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            Function, which removes alert widget. For default template, this function is called, when user clicks to close button. 
+                            You can specify your own function via <code>close</code> option.
+                        </p>       
+                    </li>       
+                </ul>
+
+            </li>
+            <li class="list-group-item">
+                <p><strong>closeCallback</strong></p>
+                <p>Type: function</p>
+                <p>
+                    Function, which removes alert.
+                </p>
+            </li>
+        </ul>
+    </div>
 </div>
