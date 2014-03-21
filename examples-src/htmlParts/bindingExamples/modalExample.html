@@ -96,90 +96,114 @@ function ModalExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>visible</td>
-                <td>boolean | observable</td>
-                <td>Shows modal, if true, otherwise hides modal. By default is false</td>
-            </tr>
-            <tr>
-                <td>header</td>
-                <td>object | observable</td>
-                <td>Template binding for modal header, uses options from Knockout template binding.</td>
-            </tr>
-            <tr>
-                <td>body</td>
-                <td>object | observable</td>
-                <td>Template binding for modal body, uses options from Knockout template binding.</td>
-            </tr>
-            <tr>
-                <td>footer</td>
-                <td>object | observable</td>
-                <td>Template binding for modal footer, uses options from Knockout template binding.</td>
-            </tr>
-        </tbody>
-    </table>
     
-    <h3>Header template</h3>
-    <h4>Default template</h4>
-    <pre class="prettyprint linenums">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>
+                data-bind="modal: { visible: modalVisible, header: headerTemplate, body: bodyTemplate, footer: footerTemplate }"
+            </code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>modalVisible</strong></p>
+                <p>Type: boolean, should be observable (default: <code>false</code>)</p>
+                <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>headerTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal header, uses options from Knockout template binding.</p>
+                <p>Default values of <code>headerTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalHeader'</code>)</p>
+                        <p>Name of template for modal header. Default template:</p>
+                        <pre class="prettyprint linenums">
 &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
 &lt;h3 data-bind="text: label"&gt;&lt;/h3&gt;
 </pre>
-    <p>Default template name for header is <code>'modalHeader'</code></p>
-    <h4>Default data object</h4>
-    <p>Default data object for header contains only <code>label</code> property, which contains text for modal header</p>
-    
-    <h3>Body template</h3>
-    <h4>Template</h4>
-    <pre class="prettyprint linenums">&lt;div data-bind="html: content"&gt;&lt;/div&gt;</pre>
-    <p>Default template name for body is <code>'modalBody'</code></p>
-    <h4>Default data object</h4>
-    <p>
-        Default data object for header contains only <code>content</code> property. It can contain text (or html markup) for modal body. 
-        If you want to use bindings inside modal body, you should provide custom template and data.
-    </p>
-    
-    <h3>Footer template</h3>
-    <h4>Template</h4>
-    <pre class="prettyprint linenums">
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for header template. For default template, you should provide <code>label</code> property</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>bodyTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal body, uses options from Knockout template binding.</p>
+                <p>Default values of <code>bodyTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalBody'</code>)</p>
+                        <p>Name of template for modal body. Default template:</p>
+                        <pre class="prettyprint linenums">&lt;div data-bind="html: content"&gt;&lt;/div&gt;</pre>
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for body template. For default template, you should provide <code>content</code> property, which can contain html.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>footerTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal footer, uses options from Knockout template binding.</p>
+                <p>Default values of <code>footerTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalFooter'</code>)</p>
+                        <p>Name of template for modal footer. Default template:</p>
+                        <pre class="prettyprint linenums">
 &lt;a href="#" class="btn btn-primary" data-bind="click: action, html: primaryLabel"&gt;&lt;/a&gt;
 &lt;a href="#" class="btn btn-default" data-bind="html: closeLabel" data-dismiss="modal"&gt;&lt;/a&gt;
 </pre>
-    <p>Default template name for footer is <code>'modalFooter'</code></p>
-    <h4>Default data object</h4>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>action</td>
-                <td>function</td>
-                <td>Function, which will be called, when user clicks on primary button. This property has no default value, so, if you are using default template, you need provide function</td>
-            </tr>
-            <tr>
-                <td>primaryLabel</td>
-                <td>string | observable</td>
-                <td>Text for primary button. Default value is <code>'Ok'</code></td>
-            </tr>
-            <tr>
-                <td>closeLabel</td>
-                <td>string | observable</td>
-                <td>Text for close button. Default value is <code>'Close'</code></td>
-            </tr>
-        </tbody>
-    </table>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for footer template. For default template, data object contains:</p>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <p><strong>action</strong></p>
+                                <p>Type: function</p>
+                                <p>
+                                    Function, which will be called, when user clicks on primary button. 
+                                    This property has no default value, so, if you are using default template, you need provide <code>action</code> property in data object.
+                                </p>
+
+                            </li>
+
+                            <li class="list-group-item">
+                                <p><strong>primaryLabel</strong></p>
+                                <p>Type: string, can be observable (default: <code>'Ok'</code>)</p>
+                                <p>Text for primary button in default template.</p>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <p><strong>closeLabel</strong></p>
+                                <p>Type: string, can be observable (default: <code>'Close'</code>)</p>
+                                <p>Text for closing button in default template.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

@@ -54,3 +54,7 @@ pre.prettyprint {
     margin-top: 5px;
     margin-left: 0;
 }
+
+.list-group {
+    margin-bottom: 0;
+}
