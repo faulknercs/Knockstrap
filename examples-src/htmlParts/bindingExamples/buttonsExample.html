@@ -127,6 +127,7 @@ function ButtonsExampleViewModel() {
     <h3>Examples</h3>
     <div class="panel panel-default">
         <div class="panel-body">
+            <p><label>Array value example:</label></p>
             <div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: checkboxArray">
                 <label class="btn btn-primary">
                     <input type="checkbox" value="A" />
@@ -144,6 +145,23 @@ function ButtonsExampleViewModel() {
             <div class="form-group">
                 <label>Selected values:</label>
                 <span data-bind="text: checkboxArray"></span>
+            </div>
+
+            <p><label>Boolean value example:</label></p>
+            <div class="btn-group form-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="checkbox" data-bind="checkbox: checkboxValueA" />
+                    A
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" data-bind="checkbox: checkboxValueB" />
+                    B
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Selected values:</label>
+                <div>A value: <span data-bind="text: checkboxValueA"></span></div>
+                <div>B value: <span data-bind="text: checkboxValueB"></span></div>
             </div>
         </div>
     </div>
@@ -164,6 +182,17 @@ function ButtonsExampleViewModel() {
         C
     &lt;/label&gt;
 &lt;/div&gt;
+
+&lt;div class="btn-group form-group" data-toggle="buttons"&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" data-bind="checkbox: checkboxValueA" /&gt;
+        A
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" data-bind="checkbox: checkboxValueB" /&gt;
+        B
+    &lt;/label&gt;
+&lt;/div&gt;
 </pre>
     
     <h4>View model</h4>
@@ -172,6 +201,10 @@ function ButtonsExampleViewModel() {
     //...
 
     this.checkboxArray = ko.observableArray();
+        
+    this.checkboxValueA = ko.observable(true);
+        
+    this.checkboxValueB = ko.observable(false);
 }
 </pre>
     

@@ -63,7 +63,9 @@ function ButtonsExampleViewModel() {
 
     self.checkboxArray = ko.observableArray();
 
-    self.checkboxValue = ko.observable();
+    self.checkboxValueA = ko.observable(true);
+    
+    self.checkboxValueB = ko.observable(false);
 }
 
 function CarouselExampleViewModel() {
