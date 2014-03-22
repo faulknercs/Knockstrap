@@ -4,7 +4,7 @@
         controlsTemplate: {
             name: 'carouselControls',
             templateEngine: ko.stringTemplateEngine.instance,
-            dataFactory: function(value) {
+            dataConverter: function(value) {
                 return {
                     id: ko.computed(function() {
                         return '#' + ko.unwrap(value.id);
@@ -16,7 +16,7 @@
         indicatorsTemplate: {
             name: 'carouselIndicators',
             templateEngine: ko.stringTemplateEngine.instance,
-            dataFactory: function(value) {
+            dataConverter: function(value) {
                 return {
                     id: ko.computed(function() {
                         return '#' + ko.unwrap(value.id);
@@ -32,9 +32,7 @@
             templateEngine: ko.stringTemplateEngine.instance,
 
             converter: function (item) {
-                return ko.computed(function() {
-                    return item;
-                });
+                return item;
             }
         }
     },
@@ -46,7 +44,7 @@
             extendDefaults = function(defs, type) {
                 var extended = {
                     name: defs.name,
-                    data: defs.dataFactory(value),
+                    data: value.data || (value[type] && value[type].dataConverter && value[type].dataConverter(value)) || defs.dataConverter(value),
 
                     templateEngine: ko.stringTemplateEngine.instance
                 };
@@ -76,7 +74,7 @@
             items: value.content.data,
             converter: value.content.converter ||defaults.itemTemplate.converter,
             itemTemplateName: value.content.name || defaults.itemTemplate.name,
-            //templateEngine: !value.content.name ? ko.stringTemplateEngine.instance : null
+            templateEngine: !value.content.name ? ko.stringTemplateEngine.instance : null
         };
 
         ko.renderTemplate('carousel', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);

@@ -6,7 +6,7 @@
         <img data-bind="attr: { src: src, alt: alt }">
         <div class="container">
             <div class="carousel-caption">
-                <!-- ko template: { name: $parents[1].itemTemplateName, data: content, templateEngine: ko.stringTemplateEngine.instance } -->
+                <!-- ko template: { name: $parents[1].itemTemplateName, data: $data, templateEngine: $parents[1].templateEngine } -->
                 <!-- /ko -->
             </div>
         </div>
