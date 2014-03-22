@@ -3,64 +3,232 @@
         <h1 id="carousel">Carousel</h1>
     </div>
     <p>Binding to Bootstrap Carousrel widget</p>
-    
+
     <h2>Examples</h2>
-    
+
+    <h4>With default templates and options:</h4>
     <div class="panel panel-default" data-bind="with: carouselExample">
         <div class="panel-body">
             <div data-bind="carousel: { content: { data: itemsFirst } }"></div>
-
         </div>
     </div>
     
-    <h3>Html markup</h3>
-    <pre class="prettyprint linenums">
-&lt;div data-bind="carousel: { content: { data: itemsFirst } }"&gt;&lt;/div&gt;
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">&lt;div data-bind="carousel: { content: { data: itemsFirst } }"&gt;&lt;/div&gt;</pre>
 
-</pre>
-    
-    <h3>View model</h3>
+    <h4>View model</h4>
     <pre class="prettyprint linenums lang-javascript">
-        
+function CarouselExampleViewModel() {
+    // ...
+
+    self.itemsFirst = ko.observableArray([
+        {
+            src: 'holder.js/900x200/text:First image',
+            alt: 'First image',
+            content: 'First caption'
+        }, {
+            src: 'holder.js/900x200/text:Second image',
+            alt: 'Second image',
+            content: 'Second caption'
+        }, {
+            src: 'holder.js/900x200/text:Third image',
+            alt: 'Third image',
+            content: 'Third caption'
+        }
+    ]);
+}
+</pre>
+
+    <h4>Carousel with custom item template:</h4>
+    <div class="panel panel-default" data-bind="with: carouselExample">
+        <div class="panel-body">
+            <div data-bind="carousel: { content: { name: 'carouselItemTemplate', data: itemsSecond } }"></div>
+            
+            <script type="text/html" id="carouselItemTemplate">
+                <h4 data-bind="text: primary"></h4>
+                <p data-bind="text: secondary"></p>
+            </script>
+        </div>
+    </div>
+
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="carousel: { content: { name: 'carouselItemTemplate', data: itemsSecond } }"&gt;&lt;/div&gt;
+            
+&lt;script type="text/html" id="Script1"&gt;
+    &lt;h4 data-bind="text: primary"&gt;&lt;/h4&gt;
+    &lt;p data-bind="text: secondary"&gt;&lt;/p&gt;
+&lt;/script&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function CarouselExampleViewModel() {
+    // ...
+
+    self.itemsSecond = ko.observableArray([
+        {
+            src: 'holder.js/900x270/text:First image',
+            alt: 'First image',
+            primary: 'First caption',
+            secondary: 'First subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Second image',
+            alt: 'Second image',
+            primary: 'Second caption',
+            secondary: 'Second subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Third image',
+            alt: 'Third image',
+            primary: 'Third caption',
+            secondary: 'Third subcaption'
+        }
+    ]);
+}       
 </pre>
 
     <h2>Options</h2>
-    
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>id</td>
-                <td>string | observable</td>
-                <td>Id of carousel</td>
-            </tr>
-            <tr>
-                <td>options</td>
-                <td>object | observable</td>
-                <td>Bootstrap options for carousel. Please, see <a href="http://getbootstrap.com/javascript/#carousel-usage">Bootstrap documentation</a></td>
-            </tr>
-            <tr>
-                <td>content</td>
-                <td>string | observable</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>controls</td>
-                <td>string | observable</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>indicators</td>
-                <td>string | observable</td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="carousel: { id: id, options: options, content: content, indicators: indicators, controls: controls }"</code>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>id</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Id of carousel. It will be ignored, if carousel has <code>id</code> attribute. If there is no id attribute and id option is not specified, id will be generated.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>options</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Bootstrap options for carousel. Please, see <a href="http://getbootstrap.com/javascript/#carousel-usage">Bootstrap documentation</a>.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>content</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for single carousel item, uses options from Knockout template binding.</p>
+                <p>Default values of item template:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselContent'</code>)</p>
+                        <p>Name of single item temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">&lt;div data-bind="text: content"&gt;&lt;/div&gt;</pre>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: array, can be observable</p>
+                        <p>
+                            Items for carousel. Each item will be passed to content template. Each item should contains <code>src</code>, <code>alt</code>properties. 
+                            For default template item should contain <code>content</code> property.
+                        </p>
+                    </li>
+                    
+                    <li>
+                        <p><strong>converter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which applies for each item and returning data object for template. Default function just return item itself.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>indicators</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for carousel indicators, uses options from Knockout template binding.</p>
+                <p>Default values of <code>indicators</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselIndicators'</code>)</p>
+                        <p>Name of controls temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">
+&lt;ol class="carousel-indicators" data-bind="foreach: items"&gt;
+    &lt;li data-bind="attr: { 'data-target': $parent.id, 'data-slide-to': $index }"&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object, can be observable</p>
+                        <p>Data for indicators template. For default template, it should contains <code>id</code> and <code>items</code> properties.</p>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>dataConverter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which creates data object for indicators template. Accepts binding value as parameter. Will be ignored, if <code>data</code> property is specified. Default function:</p>
+                        
+                        <pre class="prettyprint linenums lang-javascript">
+function(value) {
+    return {
+        id: ko.computed(function() {
+            return '#' + ko.unwrap(value.id);
+        }),
+                    
+        items: value.content.data
+    };
+}
+</pre>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>controls</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for carousel controls, uses options from Knockout template binding.</p>
+                <p>Default values of <code>controls</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselControls'</code>)</p>
+                        <p>Name of controls temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">
+&lt;a class="left carousel-control" data-bind="attr: { href: id }" data-slide="prev"&gt;
+    &lt;span class="icon-prev"&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;a class="right carousel-control" data-bind="attr: { href: id }" data-slide="next"&gt;
+    &lt;span class="icon-next"&gt;&lt;/span&gt;
+&lt;/a&gt;
+</pre>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object, can be observable</p>
+                        <p>Data for controls template. For default template, it should contains <code>id</code> property.</p>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>dataConverter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which creates data object for controls template. Accepts binding value as parameter. Will be ignored, if <code>data</code> property is specified. Default function:</p>
+                        
+                        <pre class="prettyprint linenums lang-javascript">
+function(value) {
+    return {
+        id: ko.computed(function() {
+            return '#' + ko.unwrap(value.id);
+        })
+    };
+}
+</pre>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

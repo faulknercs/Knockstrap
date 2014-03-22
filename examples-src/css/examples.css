@@ -58,3 +58,7 @@ pre.prettyprint {
 .list-group {
     margin-bottom: 0;
 }
+
+.panel code {
+    white-space: normal;
+}

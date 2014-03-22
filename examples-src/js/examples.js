@@ -88,7 +88,22 @@ function CarouselExampleViewModel() {
     ]);
 
     self.itemsSecond = ko.observableArray([
-
+        {
+            src: 'holder.js/900x270/text:First image',
+            alt: 'First image',
+            primary: 'First caption',
+            secondary: 'First subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Second image',
+            alt: 'Second image',
+            primary: 'Second caption',
+            secondary: 'Second subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Third image',
+            alt: 'Third image',
+            primary: 'Third caption',
+            secondary: 'Third subcaption'
+        }
     ]);
 }
 
