@@ -1,10 +1,16 @@
 ﻿ko.utils.uniqueId = (function () {
 
-    var count = 0;
+    var prefixesCounts = {
+        'ks-unique-': 0
+    };
 
-    return function(prefix) {
-        var id = prefix || 'ks-unique-';
+    return function (prefix) {
+        prefix = prefix || 'ks-unique-';
 
-        return id + count++;
+        if (!prefixesCounts[prefix]) {
+            prefixesCounts[prefix] = 0;
+        }
+
+        return prefix + prefixesCounts[prefix]++;
     };
 })();
