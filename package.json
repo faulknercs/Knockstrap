@@ -2,6 +2,8 @@
   "name": "knockstrap",
   "version": "0.2.0",
   "description": "Knockout bindings to Twitter Bootstrap",
+  "homepage": "http://faulknercs.github.io/Knockstrap/",
+  "bugs": "https://github.com/faulknercs/Knockstrap/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/faulknercs/knockstrap.git"
@@ -16,6 +18,11 @@
   "author": "Artem Stepanyuk",
   "license": "MIT",
   "readmeFilename": "README.md",
+  "dependencies": {
+    "jquery": ">=1.9.0",
+    "knockout": ">=2.0.0",
+    "twitter-bootstrap-3.0.0": "~3"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
