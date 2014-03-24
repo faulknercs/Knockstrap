@@ -28,7 +28,7 @@ ko.bindingHandlers.checkbox = {
             }, 0);
         };
 
-        if ($element.attr('data-toggle') === 'buttons' && $element.find('input[type=checkbox]').length) {
+        if ($element.attr('data-toggle') === 'buttons' && $element.find('input:checkbox').length) {
             $element.on('change', 'input:checkbox', handler);
         } else if ($element.attr('type') === 'checkbox') {
             $element.on('change', handler);

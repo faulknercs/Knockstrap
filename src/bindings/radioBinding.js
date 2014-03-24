@@ -1,18 +1,19 @@
 ﻿// Knockout checked binding doesn't work with Bootstrap radio-buttons
 ko.bindingHandlers.radio = {
     init: function (element, valueAccessor) {
-        var $element = $(element),
-            radioButtons = $element.find('input[type="radio"]');
+        var $element = $(element);
 
-        radioButtons.on('change', function(e) {
-            var radio = $(e.target),
-                value = valueAccessor(),
-                newValue = radio.val();
+        $element.on('change', 'input:radio', function (e) {
+            // we need to handle change event after bootsrap will handle its event
+            // to prevent incorrect changing of radio button styles
+            setTimeout(function() {
+                var radio = $(e.target),
+                    value = valueAccessor(),
+                    newValue = radio.val();
 
-            value(newValue);
+                value(newValue);
+            }, 0);
         });
-        
-        return;
     },
 
     update: function (element, valueAccessor) {
