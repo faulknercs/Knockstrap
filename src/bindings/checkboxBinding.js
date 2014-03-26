@@ -1,11 +1,8 @@
 ﻿// Knockout checked binding doesn't work with Bootstrap checkboxes
 ko.bindingHandlers.checkbox = {
     init: function (element, valueAccessor) {
-        var $element = $(element);
-
-        // todo: add checking compatibility of element with binding
-
-        var handler = function (e) {
+        var $element = $(element),
+            handler = function (e) {
             // we need to handle change event after bootsrap will handle its event
             // to prevent incorrect changing of checkbox state
             setTimeout(function() {
@@ -32,6 +29,8 @@ ko.bindingHandlers.checkbox = {
             $element.on('change', 'input:checkbox', handler);
         } else if ($element.attr('type') === 'checkbox') {
             $element.on('change', handler);
+        } else {
+            throw new Error('checkbox binding should be used only with bootstrap checkboxes');
         }
     },
 
