@@ -13,11 +13,14 @@
     "bootstrap",
     "knockstrap",
     "custom",
-    "bindings"
+    "bindings",
+	"library",
+	"templates"
   ],
   "author": "Artem Stepanyuk",
   "license": "MIT",
   "readmeFilename": "README.md",
+  "main": "build/knockstrap.js",
   "dependencies": {
     "jquery": ">=1.9.0",
     "knockout": ">=2.0.0",
