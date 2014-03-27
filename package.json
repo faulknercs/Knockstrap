@@ -1,7 +1,7 @@
 {
   "name": "knockstrap",
   "version": "0.2.0",
-  "description": "Knockout bindings to Twitter Bootstrap",
+  "description": "Knockout bindings to Twitter Bootstrap 3",
   "homepage": "http://faulknercs.github.io/Knockstrap/",
   "bugs": "https://github.com/faulknercs/Knockstrap/issues",
   "repository": {
