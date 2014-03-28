@@ -3,7 +3,7 @@ Knockstrap
 
 ### Description
 
-Knockstrap is binding library for Knockout.js, which provides binding to Twitter Bootstrap widgets
+Knockstrap is binding library for Knockout.js, which provides bindings to Twitter Bootstrap widgets
 
 #### Supported widgets:
 
@@ -14,8 +14,10 @@ Knockstrap is binding library for Knockout.js, which provides binding to Twitter
 - Progress
 - Toggle button
 - Radio button
+- Checkbox button
+- Carousel
 
-[Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.2.0/knockstrap-0.2.0.zip)
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.3.0/knockstrap-0.3.0.zip)
 
 [Examples](http://faulknercs.github.io/Knockstrap/examples.html)
 
