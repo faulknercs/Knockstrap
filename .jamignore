@@ -5,4 +5,5 @@ examples
 examples-src
 Gruntfile.js
 .gitignore
-.jamignore
+.npmignore
+bower.json
