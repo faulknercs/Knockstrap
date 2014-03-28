@@ -2,6 +2,10 @@
     padding-top: 50px;
 }
 
+a {
+    cursor: pointer;
+}
+
 .form-fixed-width {
     width: 200px;
 }
@@ -44,4 +48,17 @@ pre.prettyprint {
 #alert-default-descr {
     margin-top: -65px;
     padding-top: 65px;
+}
+
+.tooltip-radios {
+    margin-top: 5px;
+    margin-left: 0;
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+.panel code {
+    white-space: normal;
 }

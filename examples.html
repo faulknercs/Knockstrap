@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Knockstrap - Knockout bindings for Bootstrap - Examples</title>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/examples.css" rel="stylesheet" />
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-    <script src="js/knockstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min.js"></script>
+    <script src="../build/knockstrap.js"></script>
 </head>
 <body data-target="#side-nav" data-spy="scroll">
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
@@ -64,6 +65,9 @@
                         <li>
                             <a href="#buttons">Buttons</a>
                         </li>
+                        <li>
+                            <a href="#carousel">Carousel</a>
+                        </li>
                     </ul>
                 </div>
                 
@@ -81,14 +85,14 @@
             Lorem ipsum dolor sit amet, <a data-bind="tooltip: { title: 'Tooltip example' }">consectetur</a> adipiscing elit. Vestibulum nec pharetra eros. 
                             Sed luctus vitae ligula <a data-bind="tooltip: { title: title, placement: placement }">viverra</a> porttitor. Vestibulum porttitor egestas lacus.
         </div>
-        <div class="panel-body form-inline">
-            <div class="form-group">
+        <div class="panel-body form">
+            <div class="form-group col-md-4">
                 <label>Observable text</label>
                 <input type="text" class="form-control" data-bind="value: title, valueUpdate: 'afterkeydown'" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-5">
                 <label>Observable placement</label>
-                <div class="btn-toolbar">
+                <div class="btn-toolbar tooltip-radios">
                     <input type="radio" name="tooltipPlacement" value="left" data-bind="checked: placement" />
                     Left
                     <input type="radio" name="tooltipPlacement" value="right" data-bind="checked: placement" />
@@ -133,9 +137,22 @@ function TooltipExampleViewModel() {
 }</pre>
 
     <h2>Options</h2>
-    <div>
-        <p>Uses Bootstrap 3 options. If any option is not specified, uses default value. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a></p>
-        <p>All of the options can be observables. Also option's object can be observable too, e.g. <code>data-bind="tooltip: observableObjectWithTooltipOptions"</code></p>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="tooltip: tooltipOptions"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>tooltipOptions</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Uses Bootstrap 3 options. If any option is not specified, uses default value. See <a href="http://getbootstrap.com/javascript/#tooltips-usage">Bootstrap documentation</a>. 
+                    All of the options can be observables. Also option's object can be observable too.
+                </p>
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -209,36 +226,50 @@ function PopoverExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables, also option's object can be observable too</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>options</td>
-                <td>object | observable</td>
-                <td>Default values from bootstrap 3</td>
-                <td>Bootstrap options for popover. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a></td>
-            </tr>
-            <tr>
-                <td>template</td>
-                <td>string | observable</td>
-                <td>undefined</td>
-                <td>Name of template for popover content. If name is not specified, uses 'text' property from 'options' object</td>
-            </tr>
-            <tr>
-                <td>data</td>
-                <td>object | observable</td>
-                <td>undefined</td>
-                <td>Data for template</td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="popover: { options: popoverOptions, template: templateName, data: templateData }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>popoverOptions</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Bootstrap options for popover. If any option is not specified, uses default value. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a>
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateName</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Name of template for popover content. If template is not specified, uses <code>content</code> property from <code>options</code> object</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateData</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Data for template</p>
+            </li>
+        </ul>
+    </div>
+    
+    <h4>Short notation</h4>
+    <p>If you don't need use template, you can use short notation of binding, which uses only option object.</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="popover: popoverOptions"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>popoverOptions</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Bootstrap options for popover. If any option is not specified, uses default value. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a>
+                </p>
+            </li>
+        </ul>
+    </div>
 </div>
 
                 
@@ -293,75 +324,76 @@ function AlertExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>message</td>
-                <td>string | observable</td>
-                <td>empty string</td>
-                <td>Text of alert message.</td>
-            </tr>
-            <tr>
-                <td>type</td>
-                <td>string | observable</td>
-                <td>'info'</td>
-                <td>Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
-                    To specify your own type you should define css-styles for this type.
-                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'alert-my-custom-type'</code></td>
-            </tr>
-            <tr>
-                <td>close</td>
-                <td>function</td>
-                <td>default function</td>
-                <td>Function, which removes alert. See <a href="#alert-default-descr">default data object description</a></td>
-            </tr>
-            <tr>
-                <td>template</td>
-                <td>string | observable</td>
-                <td>'alert'</td>
-                <td>Name of template for alert content</td>
-            </tr>
-            <tr>
-                <td>data</td>
-                <td>object | observable</td>
-                <td>default object</td>
-                <td>Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored</td>
-            </tr>
-        </tbody>
-    </table>
     
-    <p id="alert-default-descr">Default data object for template contains:</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>message</td>
-                <td>Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding</td>
-            </tr>
-            <tr>
-                <td>type</td>
-                <td>CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding</td>
-            </tr>
-            <tr>
-                <td>close</td>
-                <td>Function, which removes alert widget. For default template, this function is called, when user clicks to close button. You can specify your own function via <code>close</code> option</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="alert: { message: alertMessage, type: alertType, template: templateName, data: data, close: closeCallback }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>alertMessage</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Text of alert message.</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>alertType</strong></p>
+                <p>Type: string, can be observable (default: <code>'info'</code>)</p>
+                <p>
+                    Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
+                    To specify your own type you should define css-styles for this type.
+                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'alert-my-custom-type'</code>.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateName</strong></p>
+                <p>Type: string, can be observable (default: <code>'alertTemplate'</code>)</p>
+                <p>
+                    Name of template for alert content.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>data</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored.
+                </p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>message</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding.
+                        </p>       
+                    </li>    
+                    <li class="list-group-item">
+                        <p><strong>type</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding.
+                        </p>       
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>close</strong></p>
+                        <p>Type: string, can be observable</p>
+                        <p>
+                            Function, which removes alert widget. For default template, this function is called, when user clicks to close button. 
+                            You can specify your own function via <code>close</code> option.
+                        </p>       
+                    </li>       
+                </ul>
+
+            </li>
+            <li class="list-group-item">
+                <p><strong>closeCallback</strong></p>
+                <p>Type: function</p>
+                <p>
+                    Function, which removes alert.
+                </p>
+            </li>
+        </ul>
+    </div>
 </div>
 
                 
@@ -369,8 +401,9 @@ function AlertExampleViewModel() {
     <div class="page-header">
         <h1 id="modal">Modal</h1>
     </div>
-    <h2>Examples</h2>
+    
     <p>Binding to Bootstrap modal widget. </p>
+    <h2>Examples</h2>
 
     <div class="panel panel-default" data-bind="with: modalExample">
         <div class="panel-body">
@@ -462,92 +495,116 @@ function ModalExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>visible</td>
-                <td>boolean | observable</td>
-                <td>Shows modal, if true, otherwise hides modal. By default is false</td>
-            </tr>
-            <tr>
-                <td>header</td>
-                <td>object | observable</td>
-                <td>Template binding for modal header, uses options from Knockout template binding.</td>
-            </tr>
-            <tr>
-                <td>body</td>
-                <td>object | observable</td>
-                <td>Template binding for modal body, uses options from Knockout template binding.</td>
-            </tr>
-            <tr>
-                <td>footer</td>
-                <td>object | observable</td>
-                <td>Template binding for modal footer, uses options from Knockout template binding.</td>
-            </tr>
-        </tbody>
-    </table>
     
-    <h3>Header template</h3>
-    <h4>Default template</h4>
-    <pre class="prettyprint linenums">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>
+                data-bind="modal: { visible: modalVisible, header: headerTemplate, body: bodyTemplate, footer: footerTemplate }"
+            </code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>modalVisible</strong></p>
+                <p>Type: boolean, should be observable (default: <code>false</code>)</p>
+                <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>headerTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal header, uses options from Knockout template binding.</p>
+                <p>Default values of <code>headerTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalHeader'</code>)</p>
+                        <p>Name of template for modal header. Default template:</p>
+                        <pre class="prettyprint linenums">
 &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
 &lt;h3 data-bind="text: label"&gt;&lt;/h3&gt;
 </pre>
-    <p>Default template name for header is <code>'modalHeader'</code></p>
-    <h4>Default data object</h4>
-    <p>Default data object for header contains only <code>label</code> property, which contains text for modal header</p>
-    
-    <h3>Body template</h3>
-    <h4>Template</h4>
-    <pre class="prettyprint linenums">&lt;div data-bind="html: content"&gt;&lt;/div&gt;</pre>
-    <p>Default template name for body is <code>'modalBody'</code></p>
-    <h4>Default data object</h4>
-    <p>
-        Default data object for header contains only <code>content</code> property. It can contain text (or html markup) for modal body. 
-        If you want to use bindings inside modal body, you should provide custom template and data.
-    </p>
-    
-    <h3>Footer template</h3>
-    <h4>Template</h4>
-    <pre class="prettyprint linenums">
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for header template. For default template, you should provide <code>label</code> property</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>bodyTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal body, uses options from Knockout template binding.</p>
+                <p>Default values of <code>bodyTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalBody'</code>)</p>
+                        <p>Name of template for modal body. Default template:</p>
+                        <pre class="prettyprint linenums">&lt;div data-bind="html: content"&gt;&lt;/div&gt;</pre>
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for body template. For default template, you should provide <code>content</code> property, which can contain html.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>footerTemplate</strong></p>
+                <p>Type: object</p>
+                <p>Template binding for modal footer, uses options from Knockout template binding.</p>
+                <p>Default values of <code>footerTemplate</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'modalFooter'</code>)</p>
+                        <p>Name of template for modal footer. Default template:</p>
+                        <pre class="prettyprint linenums">
 &lt;a href="#" class="btn btn-primary" data-bind="click: action, html: primaryLabel"&gt;&lt;/a&gt;
 &lt;a href="#" class="btn btn-default" data-bind="html: closeLabel" data-dismiss="modal"&gt;&lt;/a&gt;
 </pre>
-    <p>Default template name for footer is <code>'modalFooter'</code></p>
-    <h4>Default data object</h4>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>action</td>
-                <td>function</td>
-                <td>Function, which will be called, when user clicks on primary button. This property has no default value, so, if you are using default template, you need provide function</td>
-            </tr>
-            <tr>
-                <td>primaryLabel</td>
-                <td>string | observable</td>
-                <td>Text for primary button. Default value is <code>'Ok'</code></td>
-            </tr>
-            <tr>
-                <td>closeLabel</td>
-                <td>string | observable</td>
-                <td>Text for close button. Default value is <code>'Close'</code></td>
-            </tr>
-        </tbody>
-    </table>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object</p>
+                        <p>Data for footer template. For default template, data object contains:</p>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <p><strong>action</strong></p>
+                                <p>Type: function</p>
+                                <p>
+                                    Function, which will be called, when user clicks on primary button. 
+                                    This property has no default value, so, if you are using default template, you need provide <code>action</code> property in data object.
+                                </p>
+
+                            </li>
+
+                            <li class="list-group-item">
+                                <p><strong>primaryLabel</strong></p>
+                                <p>Type: string, can be observable (default: <code>'Ok'</code>)</p>
+                                <p>Text for primary button in default template.</p>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <p><strong>closeLabel</strong></p>
+                                <p>Type: string, can be observable (default: <code>'Close'</code>)</p>
+                                <p>Text for closing button in default template.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
 
                 
@@ -584,22 +641,21 @@ function ProgressExampleViewModel() {
 
     <h2>Options</h2>
     <p>All of the options can be observables.</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>progress</td>
-                <td>number | observable</td>
-                <td>Progress value in percents</td>
-            </tr>
-        </tbody>
-    </table>
+ 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="progress: progressValue"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>progressValue</strong></p>
+                <p>Type: number, can be observable</p>
+                <p>Progress value in percents. Values greater than 100, assumed equal to 100</p>
+            </li>
+        </ul>
+    </div>
+
 </div>
 
                 
@@ -637,7 +693,22 @@ function ButtonsExampleViewModel() {
 </pre>
     
     <h3>Options</h3>
-    <p>Observable value is set in true, when button is toggled, otherwise, value is set in false. This binding is two-way.</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="toggle: value"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>value</strong></p>
+                <p>Type: boolean, should be observable</p>
+                <p>
+                    Observable value is set in true, when button is toggled, otherwise, value is set in false. This binding is two-way, 
+                    if observable value changes, <code>'active'</code> class will be set to element.
+                </p>
+            </li>
+        </ul>
+    </div>
 
     <h2>Radio buttons</h2>
     <p>Two-way binding to Bootstrap radio buttons. Default Knockout checked binding doesn't work with Bootstrap's buttons, so you can use this binding</p>
@@ -694,12 +765,365 @@ function ButtonsExampleViewModel() {
 </pre>
     
     <h3>Options</h3>
-    <p>
-        Observable value is set to value of chosen radiobutton. Initially, when no radio button is toggled, observable value is undefined. 
-        This binding is two-way. For correct work all radio buttons should have value attribute.
-    </p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="radio: value"</code>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>value</strong></p>
+                <p>Type: string, should be observable</p>
+                <p>
+                    Observable value is set to value of chosen radiobutton. Initially, when no radio button is toggled, observable value is undefined. 
+                    This binding is two-way. For correct work all radio buttons should have value attribute.
+                </p>
+            </li>
+        </ul>
+    </div>
     
+    <h2>Checkbox buttons</h2>
+    <p>Two-way binding to Bootstrap checkbox buttons. Default Knockout checked binding doesn't work with Bootstrap's buttons, so you can use this binding</p>
+    
+    <h3>Examples</h3>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p><label>Array value example:</label></p>
+            <div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: checkboxArray">
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="A" />
+                    A
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="B" />
+                    B
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" value="C" />
+                    C
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Selected values:</label>
+                <span data-bind="text: checkboxArray"></span>
+            </div>
+
+            <p><label>Boolean value example:</label></p>
+            <div class="btn-group form-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="checkbox" data-bind="checkbox: checkboxValueA" />
+                    A
+                </label>
+                <label class="btn btn-primary">
+                    <input type="checkbox" data-bind="checkbox: checkboxValueB" />
+                    B
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Selected values:</label>
+                <div>A value: <span data-bind="text: checkboxValueA"></span></div>
+                <div>B value: <span data-bind="text: checkboxValueB"></span></div>
+            </div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: checkboxArray"&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="A" /&gt;
+        A
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="B" /&gt;
+        B
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" value="C" /&gt;
+        C
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="btn-group form-group" data-toggle="buttons"&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" data-bind="checkbox: checkboxValueA" /&gt;
+        A
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+        &lt;input type="checkbox" data-bind="checkbox: checkboxValueB" /&gt;
+        B
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ButtonsExampleViewModel() {
+    //...
+
+    this.checkboxArray = ko.observableArray();
+        
+    this.checkboxValueA = ko.observable(true);
+        
+    this.checkboxValueB = ko.observable(false);
+}
+</pre>
+    
+    <h3>Options</h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="checkbox: value"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>value</strong></p>
+                <p>Type: array or boolean, should be observable</p>
+                <p>
+                    Array, contains selected values or boolean, which is set to true or false, depending of checkbox state. 
+                    This binding is two-way, if array values changed, corresponding checkbox is set up, if value is deleted from array, otherwise, it is set down.
+                    For boolean case, if observable value changes, corrseponding checkbox is set up, if value is true, otherwise, it is set down.
+                </p>
+            </li>
+        </ul>
+    </div>
 </div>
+            
+<div class="row">
+    <div class="page-header">
+        <h1 id="carousel">Carousel</h1>
+    </div>
+    <p>Binding to Bootstrap Carousrel widget</p>
+
+    <h2>Examples</h2>
+
+    <h4>With default templates and options:</h4>
+    <div class="panel panel-default" data-bind="with: carouselExample">
+        <div class="panel-body">
+            <div data-bind="carousel: { content: { data: itemsFirst } }"></div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">&lt;div data-bind="carousel: { content: { data: itemsFirst } }"&gt;&lt;/div&gt;</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function CarouselExampleViewModel() {
+    // ...
+
+    self.itemsFirst = ko.observableArray([
+        {
+            src: 'holder.js/900x200/text:First image',
+            alt: 'First image',
+            content: 'First caption'
+        }, {
+            src: 'holder.js/900x200/text:Second image',
+            alt: 'Second image',
+            content: 'Second caption'
+        }, {
+            src: 'holder.js/900x200/text:Third image',
+            alt: 'Third image',
+            content: 'Third caption'
+        }
+    ]);
+}
+</pre>
+
+    <h4>Carousel with custom item template:</h4>
+    <div class="panel panel-default" data-bind="with: carouselExample">
+        <div class="panel-body">
+            <div data-bind="carousel: { content: { name: 'carouselItemTemplate', data: itemsSecond } }"></div>
+            
+            <script type="text/html" id="carouselItemTemplate">
+                <h4 data-bind="text: primary"></h4>
+                <p data-bind="text: secondary"></p>
+            </script>
+        </div>
+    </div>
+
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="carousel: { content: { name: 'carouselItemTemplate', data: itemsSecond } }"&gt;&lt;/div&gt;
+            
+&lt;script type="text/html" id="Script1"&gt;
+    &lt;h4 data-bind="text: primary"&gt;&lt;/h4&gt;
+    &lt;p data-bind="text: secondary"&gt;&lt;/p&gt;
+&lt;/script&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function CarouselExampleViewModel() {
+    // ...
+
+    self.itemsSecond = ko.observableArray([
+        {
+            src: 'holder.js/900x270/text:First image',
+            alt: 'First image',
+            primary: 'First caption',
+            secondary: 'First subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Second image',
+            alt: 'Second image',
+            primary: 'Second caption',
+            secondary: 'Second subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Third image',
+            alt: 'Third image',
+            primary: 'Third caption',
+            secondary: 'Third subcaption'
+        }
+    ]);
+}       
+</pre>
+
+    <h2>Options</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="carousel: { id: id, options: options, content: content, indicators: indicators, controls: controls }"</code>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>id</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>Id of carousel. It will be ignored, if carousel has <code>id</code> attribute. If there is no id attribute and id option is not specified, id will be generated.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>options</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Bootstrap options for carousel. Please, see <a href="http://getbootstrap.com/javascript/#carousel-usage">Bootstrap documentation</a>.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>content</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for single carousel item, uses options from Knockout template binding.</p>
+                <p>Default values of item template:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselContent'</code>)</p>
+                        <p>Name of single item temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">&lt;div data-bind="text: content"&gt;&lt;/div&gt;</pre>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: array, can be observable</p>
+                        <p>
+                            Items for carousel. Each item will be passed to content template. Each item should contains <code>src</code>, <code>alt</code>properties. 
+                            For default template item should contain <code>content</code> property.
+                        </p>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>converter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which applies for each item and returning data object for template. Default function just return item itself.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>indicators</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for carousel indicators, uses options from Knockout template binding.</p>
+                <p>Default values of <code>indicators</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselIndicators'</code>)</p>
+                        <p>Name of controls temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">
+&lt;ol class="carousel-indicators" data-bind="foreach: items"&gt;
+    &lt;li data-bind="attr: { 'data-target': $parent.id, 'data-slide-to': $index }"&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object, can be observable</p>
+                        <p>Data for indicators template. For default template, it should contains <code>id</code> and <code>items</code> properties.</p>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>dataConverter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which creates data object for indicators template. Accepts binding value as parameter. Will be ignored, if <code>data</code> property is specified. Default function:</p>
+                        
+                        <pre class="prettyprint linenums lang-javascript">
+function(value) {
+    return {
+        id: ko.computed(function() {
+            return '#' + ko.unwrap(value.id);
+        }),
+                    
+        items: value.content.data
+    };
+}
+</pre>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>controls</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Template binding for carousel controls, uses options from Knockout template binding.</p>
+                <p>Default values of <code>controls</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>name</strong></p>
+                        <p>Type: string, can be observable (default: <code>'carouselControls'</code>)</p>
+                        <p>Name of controls temlate for carousel. Default template:</p>
+
+                        <pre class="prettyprint linenums">
+&lt;a class="left carousel-control" data-bind="attr: { href: id }" data-slide="prev"&gt;
+    &lt;span class="icon-prev"&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;a class="right carousel-control" data-bind="attr: { href: id }" data-slide="next"&gt;
+    &lt;span class="icon-next"&gt;&lt;/span&gt;
+&lt;/a&gt;
+</pre>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>data</strong></p>
+                        <p>Type: object, can be observable</p>
+                        <p>Data for controls template. For default template, it should contains <code>id</code> property.</p>
+                    </li>
+                    
+                    <li class="list-group-item">
+                        <p><strong>dataConverter</strong></p>
+                        <p>Type: function</p>
+                        <p>Function, which creates data object for controls template. Accepts binding value as parameter. Will be ignored, if <code>data</code> property is specified. Default function:</p>
+                        
+                        <pre class="prettyprint linenums lang-javascript">
+function(value) {
+    return {
+        id: ko.computed(function() {
+            return '#' + ko.unwrap(value.id);
+        })
+    };
+}
+</pre>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
             </div>
         </div>
     </div>

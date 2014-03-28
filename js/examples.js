@@ -60,6 +60,51 @@ function ButtonsExampleViewModel() {
     self.isToggled = ko.observable(false);
 
     self.radioValue = ko.observable();
+
+    self.checkboxArray = ko.observableArray();
+
+    self.checkboxValueA = ko.observable(true);
+    
+    self.checkboxValueB = ko.observable(false);
+}
+
+function CarouselExampleViewModel() {
+    var self = this;
+
+    self.itemsFirst = ko.observableArray([
+        {
+            src: 'holder.js/900x200/text:First image',
+            alt: 'First image',
+            content: 'First caption'
+        }, {
+            src: 'holder.js/900x200/text:Second image',
+            alt: 'Second image',
+            content: 'Second caption'
+        }, {
+            src: 'holder.js/900x200/text:Third image',
+            alt: 'Third image',
+            content: 'Third caption'
+        }
+    ]);
+
+    self.itemsSecond = ko.observableArray([
+        {
+            src: 'holder.js/900x270/text:First image',
+            alt: 'First image',
+            primary: 'First caption',
+            secondary: 'First subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Second image',
+            alt: 'Second image',
+            primary: 'Second caption',
+            secondary: 'Second subcaption'
+        }, {
+            src: 'holder.js/900x270/text:Third image',
+            alt: 'Third image',
+            primary: 'Third caption',
+            secondary: 'Third subcaption'
+        }
+    ]);
 }
 
 function ExamplesViewModel() {
@@ -76,6 +121,8 @@ function ExamplesViewModel() {
     self.alertExample = new AlertExampleViewModel();
 
     self.buttonsExample = new ButtonsExampleViewModel();
+
+    self.carouselExample = new CarouselExampleViewModel();
 }
 
 if (!ko.bindingHandlers.modal) {
