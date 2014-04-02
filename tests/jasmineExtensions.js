@@ -1,6 +1,9 @@
-﻿jasmine.Suite.prototype.prepareTestElement = function () {
+﻿jasmine.Suite.prototype.prepareTestElement = function (markup) {
+
+    markup = markup || '<div></div>';
+
     beforeEach(function() {
-        this.testElement = $("<div></div>");
+        this.testElement = $(markup);
     });
 
     afterEach(function () {
