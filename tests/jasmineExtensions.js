@@ -3,7 +3,7 @@
     markup = markup || '<div></div>';
 
     beforeEach(function() {
-        this.testElement = $(markup);
+        this.testElement = $(markup).appendTo('body');
     });
 
     afterEach(function () {
