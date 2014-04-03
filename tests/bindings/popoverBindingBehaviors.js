@@ -1,0 +1,3 @@
+﻿describe('Binding: popover', function () {
+
+});
