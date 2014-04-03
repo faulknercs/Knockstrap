@@ -14,8 +14,8 @@
     "knockstrap",
     "custom",
     "bindings",
-	"library",
-	"templates"
+    "library",
+    "templates"
   ],
   "author": "Artem Stepanyuk",
   "license": "MIT",
@@ -34,15 +34,16 @@
     "grunt-templates-concat": "0.0.6",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-preprocess": "~3.0.1"
+    "grunt-preprocess": "~3.0.1",
+    "grunt-nuget": "~0.1.2"
   },
   "jam": {
     "dependencies": {
       "jquery": ">=1.9.0",
       "knockout": ">=2.0.0",
-	  "bootstrap-v3.0.1": "~3"
+      "bootstrap-v3.0.1": "~3"
     },
-	"main": "build/knockstrap.js"
+    "main": "build/knockstrap.js"
   },
   "github": "https://github.com/faulknercs/Knockstrap/"
 }

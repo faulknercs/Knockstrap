@@ -107,6 +107,17 @@
                     '<%= examplesPath %>/examples.html': 'examples-src/examples.html'
                 }
             }
+        },
+
+        nugetpack: {
+            release: {
+                src: 'knockstrap.nuspec',
+                dest: 'build/',
+
+                options: {
+                    version: '<%= pkg.version %>'
+                }
+            }
         }
     });
 
@@ -117,7 +128,9 @@
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-templates-concat');
     grunt.loadNpmTasks('grunt-preprocess');
+    grunt.loadNpmTasks('grunt-nuget');
     
     grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'uglify', 'clean:temp', 'jshint']);
     grunt.registerTask('examples', ['clean:examples', 'preprocess:examples', 'copy:examples']);
+    grunt.registerTask('nuget', ['default', 'nugetpack']);
 }
