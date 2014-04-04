@@ -13,6 +13,8 @@
     }
 
 })('knockstrap', function (ko, $) {
+    'use strict';
+    
     // @include utils.js
 
     // @include templates.js

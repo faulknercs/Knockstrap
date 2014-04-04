@@ -6,4 +6,5 @@ examples-src
 Gruntfile.js
 .gitignore
 .npmignore
+knockstrap.nuspec
 bower.json

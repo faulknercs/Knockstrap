@@ -11,7 +11,7 @@
         fileHeader: '/*! <%= pkg.name %> <%= pkg.version %> | (c) 2013 <%= pkg.author %> |  http://www.opensource.org/licenses/mit-license */\n',
 
         pkg: grunt.file.readJSON('package.json'),
-        // TODO: update jshint options
+        
         jshint: {
             options: {
                 curly: true,
@@ -19,11 +19,9 @@
                 eqeqeq: true,
                 immed: true,
                 latedef: true,
-                
+                strict: true,
+                unused: true,
                 browser: true,
-                globals: {
-                
-                }
             },
             sources: {
                 src: ['<%= buildPath %>/knockstrap.js']

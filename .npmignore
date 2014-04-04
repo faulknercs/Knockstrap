@@ -6,3 +6,4 @@ examples-src
 Gruntfile.js
 .gitignore
 .jamignore
+knockstrap.nuspec
