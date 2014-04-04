@@ -18,7 +18,7 @@ ko.bindingHandlers.popover = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
             value = ko.unwrap(valueAccessor()),
-            options = !value.options && !value.template ? ko.utils.unwrapProperties(value) : ko.utils.unwrapProperties(value.options);
+            options = (!value.options && !value.template ? ko.utils.unwrapProperties(value) : ko.utils.unwrapProperties(value.options)) || {};
 
         if (value.template) {
             // use unwrap to local var to track dependency from template, if it is observable

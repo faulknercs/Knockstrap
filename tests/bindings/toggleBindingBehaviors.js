@@ -1,0 +1,3 @@
+﻿describe('Binding: toggle', function () {
+
+});

@@ -1,0 +1,3 @@
+﻿describe('Binding: carousel', function () {
+
+});

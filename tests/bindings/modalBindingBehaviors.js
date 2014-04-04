@@ -1,0 +1,3 @@
+﻿describe('Binding: modal', function () {
+
+});
