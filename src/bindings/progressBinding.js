@@ -3,6 +3,10 @@
         var $element = $(element),
             value = valueAccessor();
 
+        if (typeof ko.unwrap(value) !== 'number') {
+            throw new Error('progress binding can accept only numbers');
+        }
+
         var barWidth = ko.computed(function () {
             return ko.unwrap(value) + '%';
         });
