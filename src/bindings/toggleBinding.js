@@ -2,7 +2,11 @@
     init: function (element, valueAccessor) {
         var value = valueAccessor();
 
-        ko.utils.registerEventHandler(element, 'click', function() {
+        if (!ko.isObservable(value)) {
+            throw new Error('toggle binding should be used only with observable values');
+        }
+
+        $(element).on('click', function () {
             var previousValue = ko.unwrap(value);
             value(!previousValue);
         });
