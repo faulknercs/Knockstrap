@@ -54,9 +54,10 @@
         this.testElement.on('shown.bs.popover', function () {
             expect(el.find('+ div #test').length).toEqual(1);
             done();
+
+            $('#test-template').remove();
         });
 
         this.testElement.click();
-        $('#test-template').remove();
     });
 });
