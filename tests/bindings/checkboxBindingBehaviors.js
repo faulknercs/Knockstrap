@@ -72,4 +72,31 @@
 
         jasmine.clock().uninstall();
     });
+    
+    it('Should change array values according to clicked button for dynamically added checkboxes', function () {
+        var vm = { value: ko.observableArray() };
+
+        this.testElement.append('<label class="btn btn-primary"><input type="checkbox" name="options" value="D" />C</label>');
+
+        //need because of realization of binding
+        jasmine.clock().install();
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        this.testElement.children().eq(3).click();
+        jasmine.clock().tick(1);
+        expect(vm.value()).toContain('D');
+
+        jasmine.clock().uninstall();
+    });
+
+    it('Should check dynamically added button according to array changes', function () {
+        var vm = { value: ko.observableArray() };
+
+        this.testElement.append('<label class="btn btn-primary"><input type="checkbox" name="options" value="D" />C</label>');
+
+        ko.applyBindings(vm, this.testElement[0]);
+        vm.value('C');
+        expect(getValuesArray(this.testElement.find('.active input:checked'))).toContain('D');
+    });
 });
