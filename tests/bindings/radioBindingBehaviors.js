@@ -34,11 +34,11 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('.active input').val()).toEqual('A');
+        expect(this.testElement.find('.active input:checked').val()).toEqual('A');
         vm.value('B');
-        expect(this.testElement.find('.active input').val()).toEqual('B');
+        expect(this.testElement.find('.active input:checked').val()).toEqual('B');
         vm.value('A');
-        expect(this.testElement.find('.active input').val()).toEqual('A');
+        expect(this.testElement.find('.active input:checked').val()).toEqual('A');
     });
     
     it('Should change value according to clicked button', function () {
@@ -94,6 +94,6 @@
 
         ko.applyBindings(vm, this.testElement[0]);
         vm.value('C');
-        expect(this.testElement.find('.active input').val()).toEqual('C');
+        expect(this.testElement.find('.active input:checked').val()).toEqual('C');
     });
 });
