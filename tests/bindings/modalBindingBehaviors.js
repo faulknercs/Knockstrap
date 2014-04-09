@@ -54,4 +54,62 @@
         }).toThrow();
     });
 
+    it('Should render default header with passed text', function () {
+        var vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { data: { action: function () { } } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('h3').text()).toEqual('test');
+    });
+    
+    it('Should render body with passed template', function () {
+        var vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { data: { action: function () { } } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.modal-body #test').text()).toEqual('Text');
+    });
+    
+    it('Should render default footer with passed text', function () {
+        var vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { data: { action: function () { }, primaryLabel: 'primary', closeLabel: 'close' } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.modal-footer .btn-primary').text()).toEqual('primary');
+        expect(this.testElement.find('.modal-footer .btn-default').text()).toEqual('close');
+    });
+    
+    it('Should call passed action, when primary button was clicked in default footer template', function () {
+        var spy = jasmine.createSpy(),
+            vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { data: { action: spy  } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+        this.testElement.find('.modal-footer .btn-primary').click();
+
+        expect(spy).toHaveBeenCalled();
+    });
 });
