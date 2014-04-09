@@ -1,5 +1,5 @@
 ﻿describe('Binding: popover', function () {
-    this.prepareTestElement('<div data-bind="popover: value"></div>');
+    this.prepareTestElement('<div data-bind="popover: value">Test</div>');
 
     it('Should call popover method on creation and pass to it value, when value doesn\'t contain options property', function () {
         var vm = {
@@ -36,5 +36,28 @@
 
         expect($.fn.popover).not.toHaveBeenCalled();
         expect(this.testElement.data('bs.popover').options.title).toEqual(vm.value.title());
+    });
+
+    it('Should render template with passed template id', function(done) {
+        var vm = {
+            value: {
+                options: { title: 'test', content: 'test' },
+                template: 'test-template'
+            }
+        };
+
+        this.testElement.after('<script id="test-template" type="text/html"><div id="test">Text</div></script>');
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        var el = this.testElement;
+        this.testElement.on('shown.bs.popover', function () {
+            expect(el.find('+ div #test').length).toEqual(1);
+            done();
+
+            $('#test-template').remove();
+        });
+
+        this.testElement.click();
     });
 });
