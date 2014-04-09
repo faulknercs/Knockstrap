@@ -128,7 +128,8 @@
     grunt.loadNpmTasks('grunt-preprocess');
     grunt.loadNpmTasks('grunt-nuget');
     
-    grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'uglify', 'clean:temp', 'jshint']);
+    grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
+    grunt.registerTask('release', ['default', 'uglify']);
     grunt.registerTask('examples', ['clean:examples', 'preprocess:examples', 'copy:examples']);
-    grunt.registerTask('nuget', ['default', 'nugetpack']);
+    grunt.registerTask('nuget', ['release', 'nugetpack']);
 }
