@@ -20,8 +20,16 @@
                 immed: true,
                 latedef: true,
                 strict: true,
+                undef: true,
                 unused: true,
                 browser: true,
+                globals: {
+                    $: false,
+                    ko: false,
+                    require: false,
+                    exports: false,
+                    define: false
+                },
             },
             sources: {
                 src: ['<%= buildPath %>/knockstrap.js']
@@ -116,6 +124,21 @@
                     version: '<%= pkg.version %>'
                 }
             }
+        },
+        
+        jasmine: {
+            test: {
+                src: 'build/knockstrap.js',
+                options: {
+                    specs: ['tests/utilsBehaviours.js', 'tests/**/*.js'],
+                    vendor: [
+                        'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js',
+                        'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                        'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+                    ],
+                    helpers: 'tests/jasmineExtensions.js'
+                }
+            }
         }
     });
 
@@ -124,12 +147,13 @@
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-templates-concat');
     grunt.loadNpmTasks('grunt-preprocess');
     grunt.loadNpmTasks('grunt-nuget');
     
     grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
-    grunt.registerTask('release', ['default', 'uglify']);
+    grunt.registerTask('release', ['default', 'jasmine', 'uglify']);
     grunt.registerTask('examples', ['clean:examples', 'preprocess:examples', 'copy:examples']);
     grunt.registerTask('nuget', ['release', 'nugetpack']);
 }

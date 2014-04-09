@@ -35,7 +35,8 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-preprocess": "~3.0.1",
-    "grunt-nuget": "~0.1.2"
+    "grunt-nuget": "~0.1.2",
+    "grunt-contrib-jasmine": "~0.6.3"
   },
   "jam": {
     "dependencies": {
