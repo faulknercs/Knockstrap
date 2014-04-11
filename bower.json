@@ -9,8 +9,11 @@
 	"examples",
 	"examples-src",
 	"node_modules",
+	"tests",
 	".gitignore",
 	".npmignore",
+	".jamignore",
+	"knockstrap.nuspec",
 	"Gruntfile.js"
   ],
   "keywords": [

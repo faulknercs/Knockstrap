@@ -3,7 +3,9 @@ src
 temp
 examples
 examples-src
+tests
 Gruntfile.js
 .gitignore
 .jamignore
 knockstrap.nuspec
+bower.json
