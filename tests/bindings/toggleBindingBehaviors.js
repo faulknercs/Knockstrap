@@ -14,7 +14,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.hasClass('active')).toBe(true);
+        expect(this.testElement).toHaveClass('active');
     });
 
     it('Should hasn\'t "active" class, if created with "false" init value', function() {
@@ -22,7 +22,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.hasClass('active')).toBe(false);
+        expect(this.testElement).not.toHaveClass('active');
     });
 
     it('Should toggle "active" class, when value changes', function() {
@@ -30,11 +30,11 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.hasClass('active')).toBe(false);
+        expect(this.testElement).not.toHaveClass('active');
         vm.value(true);
-        expect(this.testElement.hasClass('active')).toBe(true);
+        expect(this.testElement).toHaveClass('active');
         vm.value(false);
-        expect(this.testElement.hasClass('active')).toBe(false);
+        expect(this.testElement).not.toHaveClass('active');
     });
 
     it('Should toggle value, when element was clicked', function() {
