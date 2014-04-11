@@ -153,7 +153,10 @@
                         'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
                         'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js'
                     ],
-                    helpers: 'tests/jasmineExtensions.js'
+                    helpers: [
+                        'tests/jasmineExtensions.js',
+                        'https://rawgithub.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js'
+                    ]
                 }
             }
         }
