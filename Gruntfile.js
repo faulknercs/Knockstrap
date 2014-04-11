@@ -66,10 +66,10 @@
             },
             
             examples: {
-                expand: true,
-                cwd: 'examples-src',
-                src: ['css/*', 'js/*'],
-                dest: '<%= examplesPath %>/'
+                files: [
+                    { expand: true, cwd: 'examples-src', src: ['css/*', 'js/*'], dest: '<%= examplesPath %>/' },
+                    { expand: true, flatten: true, src: ['build/*'], dest: '<%= examplesPath %>/js/' }
+                ]
             }
         },
 
@@ -108,6 +108,23 @@
             },
 
             examples: {
+                options: {
+                    context: {
+                        knockstrap: 'js/knockstrap.js'
+                    }
+                },
+                files: {
+                    '<%= examplesPath %>/index.html': 'examples-src/index.html',
+                    '<%= examplesPath %>/examples.html': 'examples-src/examples.html'
+                }
+            },
+            
+            examplesRelease: {
+                options: {
+                    context: {
+                        knockstrap: 'js/knockstrap.min.js'
+                    }
+                },
                 files: {
                     '<%= examplesPath %>/index.html': 'examples-src/index.html',
                     '<%= examplesPath %>/examples.html': 'examples-src/examples.html'
@@ -132,9 +149,9 @@
                 options: {
                     specs: ['tests/utilsBehaviours.js', 'tests/**/*.js'],
                     vendor: [
-                        'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js',
                         'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                         'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+                        'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js'
                     ],
                     helpers: 'tests/jasmineExtensions.js'
                 }
@@ -154,6 +171,9 @@
     
     grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
     grunt.registerTask('release', ['default', 'jasmine', 'uglify']);
-    grunt.registerTask('examples', ['clean:examples', 'preprocess:examples', 'copy:examples']);
+    
+    grunt.registerTask('examples', ['default', 'clean:examples', 'preprocess:examples', 'copy:examples']);
+    grunt.registerTask('examples-release', ['release', 'clean:examples', 'preprocess:examplesRelease', 'copy:examples']);
+    
     grunt.registerTask('nuget', ['release', 'nugetpack']);
 }
