@@ -17,8 +17,8 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.children().hasClass('active')).toBe(false);
-        expect(this.testElement.find('input:checked').length).toEqual(0);
+        expect(this.testElement.children()).not.toHaveClass('active');
+        expect(this.testElement.find('input')).not.toBeChecked();
     });
     
     it('Should check button corresponding to the init value', function () {
@@ -26,7 +26,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('.active input:checked').val()).toEqual('A');
+        expect(this.testElement.find('.active input:checked')).toHaveValue('A');
     });
     
     it('Should check button according to value changes', function () {
@@ -34,11 +34,11 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('.active input:checked').val()).toEqual('A');
+        expect(this.testElement.find('.active input:checked')).toHaveValue('A');
         vm.value('B');
-        expect(this.testElement.find('.active input:checked').val()).toEqual('B');
+        expect(this.testElement.find('.active input:checked')).toHaveValue('B');
         vm.value('A');
-        expect(this.testElement.find('.active input:checked').val()).toEqual('A');
+        expect(this.testElement.find('.active input:checked')).toHaveValue('A');
     });
     
     it('Should change value according to clicked button', function () {
@@ -66,8 +66,8 @@
 
         vm.value('Z');
 
-        expect(this.testElement.children().hasClass('active')).toBe(false);
-        expect(this.testElement.find('input:checked').length).toEqual(0);
+        expect(this.testElement.children()).not.toHaveClass('active');
+        expect(this.testElement.find('input')).not.toBeChecked();
     });
     
     it('Should change value according to clicked button for dynamically added radiobuttons', function () {
@@ -94,6 +94,6 @@
 
         ko.applyBindings(vm, this.testElement[0]);
         vm.value('C');
-        expect(this.testElement.find('.active input:checked').val()).toEqual('C');
+        expect(this.testElement.find('.active input:checked')).toHaveValue('C');
     });
 });
