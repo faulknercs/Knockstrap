@@ -1,58 +1,63 @@
 ﻿describe('Binding: popover', function () {
     this.prepareTestElement('<div data-bind="popover: value">Test</div>');
 
-    it('Should call popover method on creation and pass to it value, when value doesn\'t contain options property', function () {
+    it('Should add popover to element when value is popover options', function () {
         var vm = {
-            value: { title: 'test', content: 'test' }
+            value: { title: 'title', content: 'test' }
         };
 
-        spyOn($.fn, 'popover');
         ko.applyBindings(vm, this.testElement[0]);
+        this.testElement.click();
 
-        expect($.fn.popover).toHaveBeenCalledWith(vm.value);
+        expect($('.popover')).toExist();
+        expect($('.popover')).toContainText('test');
     });
 
-    it('Should call popover method on creation and pass to it options, when value contains options property', function() {
+    it('Should add popover to element when value contains options object', function () {
         var vm = {
             value: {
-                options: { title: 'test', content: 'test' }
+                options: { title: 'title', content: 'test' }
             }
         };
 
-        spyOn($.fn, 'popover');
         ko.applyBindings(vm, this.testElement[0]);
+        this.testElement.click();
 
-        expect($.fn.popover).toHaveBeenCalledWith(vm.value.options);
+        expect($('.popover')).toExist();
+        expect($('.popover')).toContainText('test');
     });
+
     
-    it('Should extend popover data after options update instead of calling popover again', function () {
+    it('Should update popover according to changes of observables', function () {
         var vm = {
             value: { title: ko.observable('test') }
         };
 
         ko.applyBindings(vm, this.testElement[0]);
-        spyOn($.fn, 'popover');
-        vm.value.title('changed text');
+        vm.value.title('new text');
+        this.testElement.click();
 
-        expect($.fn.popover).not.toHaveBeenCalled();
-        expect(this.testElement.data('bs.popover').options.title).toEqual(vm.value.title());
+        expect($('.popover')).toContainText('new text');
     });
 
-    it('Should render template with passed template id', function(done) {
+    it('Should render template with passed template id and data', function(done) {
         var vm = {
             value: {
                 options: { title: 'test', content: 'test' },
-                template: 'test-template'
+                template: 'test-template',
+                data: { testText: 'test data' }
             }
         };
 
-        this.testElement.after('<script id="test-template" type="text/html"><div id="test">Text</div></script>');
+        this.testElement.after('<script id="test-template" type="text/html"><div id="test" data-bind="text: testText"></div></script>');
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        var el = this.testElement;
+        // content renders only after popover shown fully
         this.testElement.on('shown.bs.popover', function () {
-            expect(el.find('+ div #test').length).toEqual(1);
+            expect($('.popover')).toContainElement('#test');
+            expect($('.popover')).toContainText('test data');
+
             done();
 
             $('#test-template').remove();
