@@ -27,9 +27,10 @@
         this.testElement.on('shown.bs.modal', function() {
             expect(el).toBeVisible();
             
-            // clean up, for some reasons, backdrop doesn't disapper, if modal was closed immediately after open (possible bootstrap bug)
+            // clean up, for some reasons, backdrop doesn't disappear, if modal was closed immediately after open (possible bootstrap bug)
             el.modal('hide');
             $('.modal-backdrop').remove();
+            $('body').removeClass('modal-open');
             done();
         });
     });
