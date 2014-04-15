@@ -9,7 +9,32 @@
         $('#test-template').remove();
     });
 
-    it('Should trow exception, if there is no "header" property in options', function() {
+    it('Should create visible modal for true init value for "visible" option', function (done) {
+        var vm = {
+            value: {
+                visible: ko.observable(true),
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { data: { action: function () { } } }
+            }
+        };
+        
+        ko.applyBindings(vm, this.testElement[0]);
+
+        var el = this.testElement;
+
+        // modal doesn't appears immediately, so check visibility after shown event
+        this.testElement.on('shown.bs.modal', function() {
+            expect(el).toBeVisible();
+            
+            // clean up, for some reasons, backdrop doesn't disapper, if modal was closed immediately after open (possible bootstrap bug)
+            el.modal('hide');
+            $('.modal-backdrop').remove();
+            done();
+        });
+    });
+
+    it('Should throw exception, if there is no "header" property in options', function() {
         var vm = {
             value: {
                 body: { name: 'test-template' },
@@ -24,7 +49,7 @@
         }).toThrow();
     });
     
-    it('Should trow exception, if there is no "body" property in options', function () {
+    it('Should throw exception, if there is no "body" property in options', function () {
         var vm = {
             value: {
                 header: { data: { label: 'test' } },
@@ -39,7 +64,7 @@
         }).toThrow();
     });
     
-    it('Should trow exception, if there is no "footer" property in options', function () {
+    it('Should not throw exception, if there is no "footer" property in options', function () {
         var vm = {
             value: {
                 header: { data: { label: 'test' } },
@@ -51,13 +76,13 @@
 
         expect(function () {
             ko.applyBindings(vm, el);
-        }).toThrow();
+        }).not.toThrow();
     });
 
     it('Should render default header with passed text', function () {
         var vm = {
             value: {
-                header: { data: { label: 'test' } },
+                header: { data: { label: 'test-header' } },
                 body: { name: 'test-template' },
                 footer: { data: { action: function () { } } }
             }
@@ -65,7 +90,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('h3').text()).toEqual('test');
+        expect(this.testElement).toContainText('test-header');
     });
     
     it('Should render body with passed template', function () {
@@ -79,7 +104,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('.modal-body #test').text()).toEqual('Text');
+        expect(this.testElement).toContainElement('#test');
     });
     
     it('Should render default footer with passed text', function () {
@@ -93,8 +118,8 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        expect(this.testElement.find('.modal-footer .btn-primary').text()).toEqual('primary');
-        expect(this.testElement.find('.modal-footer .btn-default').text()).toEqual('close');
+        expect(this.testElement.find('.modal-footer .btn-primary')).toContainText('primary');
+        expect(this.testElement.find('.modal-footer .btn-default')).toContainText('close');
     });
     
     it('Should call passed action, when primary button was clicked in default footer template', function () {
@@ -111,5 +136,47 @@
         this.testElement.find('.modal-footer .btn-primary').click();
 
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('Should render default footer only with close button, if action was not passed', function() {
+        var vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).not.toContainElement('.btn-primary');
+        expect(this.testElement).toContainElement('.btn-default');
+    });
+
+    it('Should render footer with passed template', function () {
+        var vm = {
+            value: {
+                header: { data: { label: 'test' } },
+                body: { name: 'test-template' },
+                footer: { name: 'test-template' }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.modal-footer #test');
+    });
+
+    it('Should render header with passed template', function() {
+        var vm = {
+            value: {
+                header: { name: 'test-template' },
+                body: { name: 'test-template' },
+                footer: { data: { action: function () { }, primaryLabel: 'primary', closeLabel: 'close' } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+        
+        expect(this.testElement).toContainElement('.modal-header #test');
     });
 });
