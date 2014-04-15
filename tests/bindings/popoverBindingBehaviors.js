@@ -1,6 +1,10 @@
 ﻿describe('Binding: popover', function () {
     this.prepareTestElement('<div data-bind="popover: value">Test</div>');
 
+    afterEach(function() {
+        $('.popover').remove();
+    });
+
     it('Should add popover to element when value is popover options', function () {
         var vm = {
             value: { title: 'title', content: 'test' }
