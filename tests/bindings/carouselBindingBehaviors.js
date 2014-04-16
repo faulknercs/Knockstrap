@@ -76,16 +76,14 @@
     });
 
     it('Should use "dataConverter" and pass binding value to it for controls template, when "data" was not specified', function () {
-        var spy = jasmine.createSpy().and.callFake(function () {
-                // for default template
-                return { id: 'any' };
-            }),
-            vm = {
-                value: {
-                    content: { data: testData },
-                    controls: { name: 'test-template', dataConverter: spy }
-                }
-            };
+        var spy = jasmine.createSpy();
+        
+        var vm = {
+            value: {
+                content: { data: testData },
+                controls: { name: 'test-template', dataConverter: spy }
+            }
+        };
 
         ko.applyBindings(vm, this.testElement[0]);
 
@@ -104,5 +102,103 @@
         ko.applyBindings(vm, this.testElement[0]);
 
         expect(spy).not.toHaveBeenCalled();
+    });
+    
+    it('Should render carousel indicators with passed template id and template data', function () {
+        var vm = {
+            value: {
+                content: { data: testData },
+                indicators: { name: 'test-template', data: { label: 'test text' } }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.test-template');
+        expect(this.testElement.find('.test-template')).toHaveText('test text');
+    });
+    
+    it('Should use "dataConverter" and pass binding value to it for indicators template, when "data" was not specified', function () {
+        var spy = jasmine.createSpy();
+
+        var vm = {
+            value: {
+                content: { data: testData },
+                indicators: { name: 'test-template', dataConverter: spy }
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(spy).toHaveBeenCalledWith(vm.value);
+    });
+
+    it('Should not use "dataConverter" for indicators template, if "data" was passed', function () {
+        var spy = jasmine.createSpy(),
+            vm = {
+                value: {
+                    content: { data: testData },
+                    indicators: { name: 'test-template', data: { label: 'test text' }, dataConverter: spy }
+                }
+            };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(spy).not.toHaveBeenCalled();
+    });
+    
+    it('Should render carousel items with default item template', function () {
+        var vm = {
+                value: {
+                    content: { data: testData },
+                }
+            };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.item')).toHaveLength(testData.length);
+        
+        expect(this.testElement.find('.item img').eq(0)).toHaveAttr('src', 'testsrc-one');
+        expect(this.testElement.find('.item img').eq(1)).toHaveAttr('src', 'testsrc-two');
+        
+        expect(this.testElement.find('.item img').eq(0)).toHaveAttr('alt', 'First image');
+        expect(this.testElement.find('.item img').eq(1)).toHaveAttr('alt', 'Second image');
+
+        expect(this.testElement.find('.item')).toContainText('First caption');
+        expect(this.testElement.find('.item')).toContainText('Second caption');
+    });
+    
+    it('Should render carousel items with passed item template', function () {
+        var vm = {
+            value: {
+                content: { data: [{src: 'src', alt: 'alt', label: 'some text'}], name: 'test-template' },
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.item')).toHaveLength(1);
+
+        expect(this.testElement.find('.item')).toContainText('some text');
+    });
+    
+    it('Should render carousel items with using of "convertor" for passed items', function () {
+        var spy = jasmine.createSpy().and.callFake(function(item) {
+            return { src: 'src', alt: 'alt', content: item.label + ' converted' };
+        });
+
+        var vm = {
+            value: {
+                content: { data: [{ label: 'first label' }, { label: 'second label' }], converter: spy },
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.item')).toHaveLength(2);
+        expect(this.testElement.find('.item')).toContainText('first label converted');
+        expect(this.testElement.find('.item')).toContainText('second label converted');
+
+        expect(spy.calls.count()).toEqual(2);
     });
 });
