@@ -19,13 +19,13 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 
 [Download](https://github.com/faulknercs/Knockstrap/releases/download/v0.3.0/knockstrap-0.3.0.zip)
 
-[Examples](http://faulknercs.github.io/Knockstrap/examples.html)
+[Documentation/Examples](http://faulknercs.github.io/Knockstrap/examples.html)
 
 ### Dependencies
 
-- knockout
 - jQuery
-- bootstrap
+- Twitter Bootstrap 3
+- Knockout.js
 
 ### Packages
 
@@ -55,5 +55,13 @@ To build examples use:
 Also, you can specify custom examples directory:
 
 	grunt -examplesPath=D:/custom/examples
+
+To run unit-tests, use:
+
+	grunt jasmine
+
+To run building, tests and minification, use:
+
+	grunt release 
 
 ### License: [MIT License](http://www.opensource.org/licenses/mit-license.php)
