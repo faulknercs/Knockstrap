@@ -23,8 +23,8 @@
 
             ko.applyBindings(vm, this.testElement[0]);
 
-            expect(this.testElement.children().hasClass('active')).toBe(false);
-            expect(this.testElement.find('input:checked').length).toEqual(0);
+            expect(this.testElement.children()).not.toHaveClass('active');
+            expect(this.testElement.find('input')).not.toBeChecked();
         });
 
         it('Should check button corresponding to the values, which are in array at init', function () {
@@ -33,7 +33,7 @@
             ko.applyBindings(vm, this.testElement[0]);
 
             expect(getValuesArray(this.testElement.find('.active input:checked'))).toEqual(['A', 'B']);
-            expect(this.testElement.find('input:checked').length).toEqual(2);
+            expect(this.testElement.find('input:checked')).toHaveLength(2);
         });
 
         it('Should check buttons according to adding/removing values from array', function () {
@@ -120,8 +120,8 @@
 
             ko.applyBindings(vm, this.testElement[0]);
 
-            expect(this.testElement.children().hasClass('active')).toBe(true);
-            expect(this.testElement.find('input:checked').length).toEqual(1);
+            expect(this.testElement.children()).toHaveClass('active');
+            expect(this.testElement.find('input')).toBeChecked();
         });
 
         it('Should check button according to value changes', function () {
@@ -130,9 +130,10 @@
             ko.applyBindings(vm, this.testElement[0]);
 
             vm.value(false);
-            expect(this.testElement.find('.active input:checked').length).toEqual(0);
+            // checking 'active' class together with checked state of input
+            expect(this.testElement).not.toContainElement('.active input:checked');
             vm.value(true);
-            expect(this.testElement.find('.active input:checked').length).toEqual(1);
+            expect(this.testElement).toContainElement('.active input:checked');
         });
 
         it('Should change value according to button state', function () {
@@ -144,11 +145,11 @@
 
             this.testElement.children().eq(0).click();
             jasmine.clock().tick(1);
-            expect(vm.value()).toBe(true);
+            expect(vm.value()).toBeTruthy();
 
             this.testElement.children().eq(0).click();
             jasmine.clock().tick(1);
-            expect(vm.value()).toBe(false);
+            expect(vm.value()).toBeFalsy();
 
             jasmine.clock().uninstall();
         });
@@ -159,19 +160,19 @@
             ko.applyBindings(vm, this.testElement[0]);
 
             vm.value(0);
-            expect(this.testElement.find('.active input:checked').length).toEqual(0);
+            expect(this.testElement).not.toContainElement('.active input:checked');
 
             vm.value(true);
             vm.value('');
-            expect(this.testElement.find('.active input:checked').length).toEqual(0);
+            expect(this.testElement).not.toContainElement('.active input:checked');
 
             vm.value(true);
             vm.value(null);
-            expect(this.testElement.find('.active input:checked').length).toEqual(0);
+            expect(this.testElement).not.toContainElement('.active input:checked');
 
             vm.value(true);
             vm.value(undefined);
-            expect(this.testElement.find('.active input:checked').length).toEqual(0);
+            expect(this.testElement).not.toContainElement('.active input:checked');
         });
     });
 });

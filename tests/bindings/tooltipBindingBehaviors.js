@@ -1,29 +1,30 @@
 ﻿describe('Binding: tooltip', function () {
-    this.prepareTestElement('<div data-bind="tooltip: options"></div>');
+    this.prepareTestElement('<div data-bind="tooltip: options">Text</div>');
 
-    it('Should call tooltip method on creation and pass to it options', function() {
+    afterEach(function() {
+        $('.tooltip').remove();
+    });
+
+    it('Should add tooltip to element', function() {
         var vm = {
-            options: { title: 'test', position: 'left' }
+            options: { title: 'test' }
         };
 
-        spyOn($.fn, 'tooltip');
         ko.applyBindings(vm, this.testElement[0]);
+        this.testElement.mouseover();
 
-        expect($.fn.tooltip).toHaveBeenCalledWith(vm.options);
+        expect($('.tooltip')).toExist();
     });
-    
-    it('Should extend tooltip data after options update instead of calling tooltip', function () {
+
+    it('Should update tooltip according to changes of observables', function() {
         var vm = {
             options: { title: ko.observable('test') }
         };
-        
-        ko.applyBindings(vm, this.testElement[0]);
-        
-        spyOn($.fn, 'tooltip');
 
-        vm.options.title('changed text');
-        
-        expect($.fn.tooltip).not.toHaveBeenCalled();
-        expect(this.testElement.data('bs.tooltip').options.title).toEqual(vm.options.title());
+        ko.applyBindings(vm, this.testElement[0]);
+        vm.options.title('new text');
+        this.testElement.mouseover();
+
+        expect($('.tooltip')).toContainText('new text');
     });
 });

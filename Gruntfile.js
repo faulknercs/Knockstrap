@@ -147,13 +147,17 @@
             test: {
                 src: 'build/knockstrap.js',
                 options: {
-                    specs: ['tests/utilsBehaviours.js', 'tests/**/*.js'],
+                    specs: ['tests/utilsBehaviors.js', 'tests/bindings/*.js'],
                     vendor: [
                         'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                         'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
                         'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js'
                     ],
-                    helpers: 'tests/jasmineExtensions.js'
+                    helpers: [
+                        'tests/jasmineExtensions.js',
+                        'http://rawgithub.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js'
+                    ],
+                    styles: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
                 }
             }
         }
