@@ -81,4 +81,18 @@
         
         $('#test-template-2').remove();
     });
+    
+    it('Should creates alert for virtual elements', function () {
+        var vm = {
+            value: { message: 'test text' }
+        };
+
+        // change test element to ko virtual elements for this spec
+        this.testElement = this.testElement.removeAttr('data-bind').html('<!-- ko alert: value --><!-- /ko -->');
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.alert');
+        expect(this.testElement).toContainText('test text');
+    });
 });
