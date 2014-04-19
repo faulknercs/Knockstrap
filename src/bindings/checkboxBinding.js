@@ -26,8 +26,18 @@ ko.bindingHandlers.checkbox = {
         };
 
         if ($element.attr('data-toggle') === 'buttons' && $element.find('input:checkbox').length) {
+
+            if (!(ko.unwrap(valueAccessor()) instanceof Array)) {
+                throw new Error('checkbox binding should be used only with array or observableArray values in this case');
+            }
+
             $element.on('change', 'input:checkbox', handler);
         } else if ($element.attr('type') === 'checkbox') {
+
+            if (!ko.isObservable(valueAccessor())) {
+                throw new Error('checkbox binding should be used only with observable values in this case');
+            }
+
             $element.on('change', handler);
         } else {
             throw new Error('checkbox binding should be used only with bootstrap checkboxes');
@@ -36,18 +46,25 @@ ko.bindingHandlers.checkbox = {
 
     update: function (element, valueAccessor) {
         var $element = $(element),
-            value = ko.unwrap(valueAccessor());
+            value = ko.unwrap(valueAccessor()),
+            isChecked;
 
         if (value instanceof Array) {
             if ($element.attr('data-toggle') === 'buttons') {
                 $element.find('input:checkbox').each(function (index, el) {
-                    $(el).parent().toggleClass('active', value.indexOf(el.value) !== -1);
+                    isChecked = value.indexOf(el.value) !== -1;
+                    $(el).parent().toggleClass('active', isChecked);
+                    el.checked = isChecked;
                 });
             } else {
-                $element.toggleClass('active', value.indexOf($element.val()) !== -1);
+                isChecked = value.indexOf($element.val()) !== -1;
+                $element.toggleClass('active', isChecked);
+                $element.find('input').prop('checked', isChecked);
             }
         } else {
-            $element.parent().toggleClass('active', !!value);
+            isChecked = !!value;
+            $element.prop('checked', isChecked);
+            $element.parent().toggleClass('active', isChecked);
         }
     }
 };
