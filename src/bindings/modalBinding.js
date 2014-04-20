@@ -23,14 +23,14 @@
             defaults = ko.bindingHandlers.modal.defaults,
             options = ko.utils.extend({ show: false }, ko.utils.unwrapProperties(value.options));
 
-        if (!value.header || !value.body || !value.footer) {
-            throw new Error('header, body and footer options are required for modal binding.');
+        if (!value.header || !value.body) {
+            throw new Error('header and body options are required for modal binding.');
         }
 
         var model = {
             headerTemplate: $.extend(true, { templateEngine: !value.header.name ? ko.stringTemplateEngine.instance : null }, defaults.headerTemplate, value.header),
             bodyTemplate: $.extend(true, { templateEngine: !value.body.name ? ko.stringTemplateEngine.instance : null }, defaults.bodyTemplate, value.body),
-            footerTemplate: $.extend(true, { templateEngine: !value.footer.name ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer)
+            footerTemplate: $.extend(true, { templateEngine: !(value.footer && value.footer.name) ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer)
         };
         
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
