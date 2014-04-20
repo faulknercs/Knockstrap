@@ -159,7 +159,7 @@ function ModalExampleViewModel() {
             <li class="list-group-item">
                 <p><strong>footerTemplate</strong></p>
                 <p>Type: object</p>
-                <p>Template binding for modal footer, uses options from Knockout template binding.</p>
+                <p>Template binding for modal footer, uses options from Knockout template binding, can be omitted, if you only need 'Close' button.</p>
                 <p>Default values of <code>footerTemplate</code> object:</p>
                 
                 <ul class="list-group">
@@ -168,7 +168,9 @@ function ModalExampleViewModel() {
                         <p>Type: string, can be observable (default: <code>'modalFooter'</code>)</p>
                         <p>Name of template for modal footer. Default template:</p>
                         <pre class="prettyprint linenums">
+&lt;!-- ko if: $data.action --&gt;
 &lt;a href="#" class="btn btn-primary" data-bind="click: action, html: primaryLabel"&gt;&lt;/a&gt;
+&lt;!-- /ko --&gt;
 &lt;a href="#" class="btn btn-default" data-bind="html: closeLabel" data-dismiss="modal"&gt;&lt;/a&gt;
 </pre>
                     </li>
@@ -184,7 +186,7 @@ function ModalExampleViewModel() {
                                 <p>Type: function</p>
                                 <p>
                                     Function, which will be called, when user clicks on primary button. 
-                                    This property has no default value, so, if you are using default template, you need provide <code>action</code> property in data object.
+                                    If this property is omitted for default template, primary button wouldn't render.
                                 </p>
 
                             </li>
