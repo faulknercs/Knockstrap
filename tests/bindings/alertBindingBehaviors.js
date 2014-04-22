@@ -9,6 +9,16 @@
         $('#test-template').remove();
     });
 
+    it('Should add "alert" class to target element', function () {
+        var vm = {
+            value: { message: '' }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toHaveClass('alert');
+    });
+
     it('Should render alert with given message text', function() {
         var vm = {
             value: { message: 'test text' }  
@@ -17,7 +27,6 @@
         ko.applyBindings(vm, this.testElement[0]);
 
         expect(this.testElement).toContainText('test text');
-        expect(this.testElement).toHaveClass('alert');
     });
     
     it('Should render alert with class according to given type', function () {
