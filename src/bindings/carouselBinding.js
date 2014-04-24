@@ -61,11 +61,15 @@
             throw new Error('content option is required for carousel binding');
         }
 
-        element.id = element.id || ko.unwrap(value.id) || ko.utils.uniqueId('ks-carousel-');
-        if (!value.id) {
+        // get carousel id from 'id' attribute, or from binding options, or generate it
+        if (element.id) {
             value.id = element.id;
+        } else if (value.id) {
+            element.id = ko.unwrap(value.id);
+        } else {
+            element.id = value.id = ko.utils.uniqueId('ks-carousel-');
         }
-        
+
         var model = {
             id: value.id,
             controlsTemplate: extendDefaults(defaults.controlsTemplate, 'controls'),
