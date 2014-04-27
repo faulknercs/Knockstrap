@@ -44,9 +44,7 @@
             extendDefaults = function(defs, type) {
                 var extended = {
                     name: defs.name,
-                    data: value.data || (value[type] && value[type].dataConverter && value[type].dataConverter(value)) || defs.dataConverter(value),
-
-                    templateEngine: ko.stringTemplateEngine.instance
+                    data: (value[type] && (value[type].data || value[type].dataConverter && value[type].dataConverter(value))) || defs.dataConverter(value),
                 };
 
                 $.extend(true, extended, value[type]);

@@ -76,7 +76,11 @@
     });
 
     it('Should use "dataConverter" and pass binding value to it for controls template, when "data" was not specified', function () {
-        var spy = jasmine.createSpy();
+        var spy = jasmine.createSpy().and.callFake(function() {
+            return {
+                label: 'test'
+            };
+        });
         
         var vm = {
             value: {
@@ -119,7 +123,11 @@
     });
     
     it('Should use "dataConverter" and pass binding value to it for indicators template, when "data" was not specified', function () {
-        var spy = jasmine.createSpy();
+        var spy = jasmine.createSpy().and.callFake(function () {
+            return {
+                label: 'test'
+            };
+        });
 
         var vm = {
             value: {
