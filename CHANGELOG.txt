@@ -1,0 +1,30 @@
+v0.4.0
+-Added unit tests via jasmine for all bindings and utility functions
+-Added throwing exception, when binding is used with incompatible values
+-Added unchecking of buttons for radio binding, when no buttons have passed value
+-Fixed checkboxes don't have 'checked' property set to true, when they are clicked for checkbox binding
+-Made 'footer' property optional for modal binding
+-Fixed carousel binding bugs
+-Removed close callback from alert binding ('close.bs.alert' event from bootstrap can be used instead)
+-Updated alert binding default template: now it require only 'message' property, 'type' property doesn't depend on template data
+-Updated unwrapPoperties function: now if you pass not objects, it returns them without transformation into objects.
+-Added nuget package manager support
+
+v0.3.0
+-Added checkbox binding
+-Added carousel binding
+-Changed bindings documentation
+-Updated uniqueId function: now it will generate separate sequences for different prefixes
+-Updated radio binding: now it will support dynamically added buttons
+-Added short notation for popover binding
+-Added bower and jam package managers support
+
+v0.2.0
+-Added radio binding
+-Added toggle binding
+-Dividing examples into separate files
+-Added sources for examples
+-Small fixes
+
+v0.1.0
+-First version
