@@ -284,16 +284,14 @@ function PopoverExampleViewModel() {
         <div class="panel-body">
             <div data-bind="alert: { message: message, type: type }"></div>
 
-            <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"></div>
+            <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate', type: 'danger' }"></div>
 
             <!-- ko alert: { message: 'Using virtual root element', type: 'success' } -->
             <!-- /ko -->
 
             <script type="text/html" id="alertExampleTemplate">
-                <div class="alert alert-block alert-danger">
-                    <span data-bind="text: message"></span>
-                    <button class="btn btn-primary" data-bind="click: close">Close</button>
-                </div>
+                <p data-bind="text: message"></p>
+                <p><button class="btn btn-primary" data-dismiss="alert">Close</button></p>
             </script>
         </div>
     </div>
@@ -302,16 +300,14 @@ function PopoverExampleViewModel() {
     <pre class="prettyprint linenums">
 &lt;div data-bind="alert: { message: message, type: type }"&gt;&lt;/div&gt;
 
-&lt;div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate' }"&gt;&lt;/div&gt;
+&lt;div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate', type: 'danger' }"&gt;&lt;/div&gt;
 
 &lt;!-- ko alert: { message: 'Using virtual root element', type: 'success' } --&gt;
 &lt;!-- /ko --&gt;
 
 &lt;script type="text/html" id="alertExampleTemplate"&gt;
-    &lt;div class="alert alert-block alert-danger"&gt;
-        &lt;span data-bind="text: message"&gt;&lt;/span&gt;
-        &lt;button class="btn btn-primary" data-bind="click: close"&gt;Close&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;p data-bind="text: message"&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button class="btn btn-primary" data-dismiss="alert"&gt;Close&lt;/button&gt;&lt;/p&gt;
 &lt;/script&gt;</pre>
     
     <h4>View model</h4>
@@ -327,14 +323,14 @@ function AlertExampleViewModel() {
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <code>data-bind="alert: { message: alertMessage, type: alertType, template: templateName, data: data, close: closeCallback }"</code>
+            <code>data-bind="alert: { message: alertMessage, type: alertType, template: templateName, data: data }"</code>
         </div>
         
         <ul class="list-group">
             <li class="list-group-item">
                 <p><strong>alertMessage</strong></p>
                 <p>Type: string, can be observable</p>
-                <p>Text of alert message.</p>
+                <p>Text of alert message. Doesn't used if <code>data</code> property is specified.</p>
             </li>
             <li class="list-group-item">
                 <p><strong>alertType</strong></p>
@@ -349,48 +345,18 @@ function AlertExampleViewModel() {
                 <p><strong>templateName</strong></p>
                 <p>Type: string, can be observable (default: <code>'alertTemplate'</code>)</p>
                 <p>
-                    Name of template for alert content.
+                    Name of template for alert content. Default template:
                 </p>
+                <pre class="prettyprint linenums">
+&lt;button class="close" data-dismiss="alert" aria-hidden="true"&gt;&times;&lt;/button&gt;
+&lt;p data-bind="text: message"&gt;&lt;/p&gt;
+</pre>
             </li>
             <li class="list-group-item">
                 <p><strong>data</strong></p>
                 <p>Type: object, can be observable</p>
-                <p>
-                    Data for template. If this option is specified, <code>message</code>, <code>type</code> and <code>close</code> options will be ignored.
-                </p>
-                
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <p><strong>message</strong></p>
-                        <p>Type: string, can be observable</p>
-                        <p>
-                            Text, which will be displayed in alert. For default data object, its value gets from <code>message</code> option of binding.
-                        </p>       
-                    </li>    
-                    <li class="list-group-item">
-                        <p><strong>type</strong></p>
-                        <p>Type: string, can be observable</p>
-                        <p>
-                            CSS class name, which will be added to alert to specifie its type. For default data object, it is 'alert' + value of <code>type</code> option from binding.
-                        </p>       
-                    </li>
-                    <li class="list-group-item">
-                        <p><strong>close</strong></p>
-                        <p>Type: string, can be observable</p>
-                        <p>
-                            Function, which removes alert widget. For default template, this function is called, when user clicks to close button. 
-                            You can specify your own function via <code>close</code> option.
-                        </p>       
-                    </li>       
-                </ul>
-
-            </li>
-            <li class="list-group-item">
-                <p><strong>closeCallback</strong></p>
-                <p>Type: function</p>
-                <p>
-                    Function, which removes alert.
-                </p>
+                <p>Data for template. If this option is specified, <code>message</code> option will be ignored.</p>
+                <p>For default template, you should provide <code>message</code> property (or, if it will not provided via <code>data</code>, <code>message</code> option of binding will be used).</p>
             </li>
         </ul>
     </div>
@@ -558,7 +524,7 @@ function ModalExampleViewModel() {
             <li class="list-group-item">
                 <p><strong>footerTemplate</strong></p>
                 <p>Type: object</p>
-                <p>Template binding for modal footer, uses options from Knockout template binding.</p>
+                <p>Template binding for modal footer, uses options from Knockout template binding, can be omitted, if you only need 'Close' button.</p>
                 <p>Default values of <code>footerTemplate</code> object:</p>
                 
                 <ul class="list-group">
@@ -567,7 +533,9 @@ function ModalExampleViewModel() {
                         <p>Type: string, can be observable (default: <code>'modalFooter'</code>)</p>
                         <p>Name of template for modal footer. Default template:</p>
                         <pre class="prettyprint linenums">
+&lt;!-- ko if: $data.action --&gt;
 &lt;a href="#" class="btn btn-primary" data-bind="click: action, html: primaryLabel"&gt;&lt;/a&gt;
+&lt;!-- /ko --&gt;
 &lt;a href="#" class="btn btn-default" data-bind="html: closeLabel" data-dismiss="modal"&gt;&lt;/a&gt;
 </pre>
                     </li>
@@ -583,7 +551,7 @@ function ModalExampleViewModel() {
                                 <p>Type: function</p>
                                 <p>
                                     Function, which will be called, when user clicks on primary button. 
-                                    This property has no default value, so, if you are using default template, you need provide <code>action</code> property in data object.
+                                    If this property is omitted for default template, primary button wouldn't render.
                                 </p>
 
                             </li>
