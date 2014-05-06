@@ -36,6 +36,14 @@ ko.bindingHandlers.popover = {
 
             var renderPopoverTemplate = function () {
                 ko.renderTemplate(template, bindingContext.createChildContext(data), {}, document.getElementById(id));
+                
+                // bootstrap's popover calculates position before template renders,
+                // so we recalculate position, using bootstrap methods
+                var $popover = $('#' + id).parents('.popover'),
+                    popoverMethods = $element.data('bs.popover'),
+                    offset = popoverMethods.getCalculatedOffset(options.placement || 'right', popoverMethods.getPosition(), $popover.outerWidth(), $popover.outerHeight());
+
+                popoverMethods.applyPlacement(offset, options.placement || 'right');
             };
             
             // place template rendering after popover is shown, because we don't have root element for template before that
