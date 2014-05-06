@@ -1,5 +1,4 @@
-﻿var popoverDomDataTemplateKey = '__popoverTemplateKey__',
-    popoverDomDataEventHandlerKey = '__popoverEventHandlerKey__';
+﻿var popoverDomDataTemplateKey = '__popoverTemplateKey__';
 
 ko.bindingHandlers.popover = {
 
@@ -26,17 +25,9 @@ ko.bindingHandlers.popover = {
                 id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
                 data = ko.unwrap(value.data);
                 
-            if (!id) {
-                id = ko.utils.uniqueId('ks-popover-');
-                ko.utils.domData.set(element, popoverDomDataTemplateKey, id);
-            }
-
-            // remove old handler, to use updated values
-            $element.off('shown.bs.popover', ko.utils.domData.get(element, popoverDomDataEventHandlerKey));
-
             var renderPopoverTemplate = function () {
                 ko.renderTemplate(template, bindingContext.createChildContext(data), {}, document.getElementById(id));
-                
+
                 // bootstrap's popover calculates position before template renders,
                 // so we recalculate position, using bootstrap methods
                 var $popover = $('#' + id).parents('.popover'),
@@ -46,15 +37,20 @@ ko.bindingHandlers.popover = {
                 popoverMethods.applyPlacement(offset, options.placement || 'right');
             };
             
-            // place template rendering after popover is shown, because we don't have root element for template before that
-            $element.on('shown.bs.popover', renderPopoverTemplate);
-            ko.utils.domData.set(element, popoverDomDataEventHandlerKey, renderPopoverTemplate);
+            // if there is no generated id - popover executes first time for this element
+            if (!id) {
+                id = ko.utils.uniqueId('ks-popover-');
+                ko.utils.domData.set(element, popoverDomDataTemplateKey, id);
+                
+                // place template rendering after popover is shown, because we don't have root element for template before that
+                $element.on('shown.bs.popover', renderPopoverTemplate);
+            }
 
             options.content = '<div id="' + id + '" ></div>';
             options.html = true;
             
             // support rerendering of template, if observable changes, when popover is opened
-            if ($(id).is(':visible')) {
+            if ($('#' + id).is(':visible')) {
                 renderPopoverTemplate();
             }
         }
