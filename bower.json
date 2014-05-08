@@ -13,6 +13,7 @@
 	".gitignore",
 	".npmignore",
 	".jamignore",
+	".travis.yml",
 	"knockstrap.nuspec",
 	"Gruntfile.js"
   ],

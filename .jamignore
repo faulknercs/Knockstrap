@@ -7,5 +7,6 @@ tests
 Gruntfile.js
 .gitignore
 .npmignore
+.travis.yml
 knockstrap.nuspec
 bower.json
