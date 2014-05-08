@@ -46,5 +46,8 @@
     },
     "main": "build/knockstrap.js"
   },
-  "github": "https://github.com/faulknercs/Knockstrap/"
+  "github": "https://github.com/faulknercs/Knockstrap/",
+  "scripts": {
+    "test": "grunt travis --verbose"
+  }
 }

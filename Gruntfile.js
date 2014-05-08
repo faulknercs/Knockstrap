@@ -180,4 +180,5 @@
     grunt.registerTask('examples-release', ['release', 'clean:examples', 'preprocess:examplesRelease', 'copy:examples']);
     
     grunt.registerTask('nuget', ['release', 'nugetpack']);
+    grunt.registerTask('travis', ['default', 'jasmine']);
 }
