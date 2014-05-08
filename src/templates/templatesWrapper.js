@@ -1,16 +1,17 @@
 ﻿// inspired by http://www.knockmeout.net/2011/10/ko-13-preview-part-3-template-sources.html
-(function() {
+(function () {
+    // storage of string templates for all instances of stringTemplateEngine
     var templates = {};
 
     // @include compiledTemplates.js
 
-    // create new template source to provide storing templates in strings
+    // create new template source to provide storing string templates in storage
     ko.templateSources.stringTemplate = function (template) {
         this.templateName = template;
 
         this.data = function (key, value) {
-            templates.data = this.templates.data || {};
-            templates.data[this.templateName] = this.templates.data[this.templateName] || {};
+            templates.data = templates.data || {};
+            templates.data[this.templateName] = templates.data[this.templateName] || {};
 
             if (arguments.length === 1) {
                 return templates.data[this.templateName][key];
@@ -38,6 +39,14 @@
     
     ko.stringTemplateEngine.prototype.makeTemplateSource = function (template) {
         return new ko.templateSources.stringTemplate(template);
+    };
+
+    ko.stringTemplateEngine.prototype.addTemplate = function (name, template) {
+        if (!name) {
+            throw new Error('template name is not provided');
+        }
+
+        templates[name] = template;
     };
 })();
 
