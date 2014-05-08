@@ -155,7 +155,7 @@
                     ],
                     helpers: [
                         'tests/jasmineExtensions.js',
-                        'http://rawgithub.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js'
+                        'http://cdn.rawgit.com/velesin/jasmine-jquery/2.0.3/lib/jasmine-jquery.js'
                     ],
                     styles: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
                 }
