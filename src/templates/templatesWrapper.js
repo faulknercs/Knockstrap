@@ -42,12 +42,24 @@
     };
 
     ko.stringTemplateEngine.prototype.addTemplate = function (name, template) {
+        if (arguments.length < 2) {
+            throw new Error('template is not provided');
+        }
+        
+        templates[name] = template;
+    };
+    
+    ko.stringTemplateEngine.prototype.removeTemplate = function (name) {
         if (!name) {
             throw new Error('template name is not provided');
         }
 
-        templates[name] = template;
+        delete templates[name];
     };
+    
+    ko.stringTemplateEngine.prototype.isTemplateExist = function (name) {
+        return !!templates[name];
+    };
+    
+    ko.stringTemplateEngine.instance = new ko.stringTemplateEngine();
 })();
-
-ko.stringTemplateEngine.instance = new ko.stringTemplateEngine();
