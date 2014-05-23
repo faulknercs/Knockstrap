@@ -147,7 +147,7 @@
             test: {
                 src: 'build/knockstrap.js',
                 options: {
-                    specs: ['tests/utilsBehaviors.js', 'tests/bindings/*.js'],
+                    specs: ['tests/utilsBehaviors.js', 'tests/stringTemplateEngineBehaviors.js', 'tests/bindings/*.js'],
                     vendor: [
                         'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                         'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
