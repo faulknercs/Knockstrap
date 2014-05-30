@@ -20,13 +20,16 @@ ko.bindingHandlers.popover = {
             options = (!value.options && !value.template ? ko.utils.unwrapProperties(value) : ko.utils.unwrapProperties(value.options)) || {};
 
         if (value.template) {
-            // use unwrap to local var to track dependency from template, if it is observable
-            var template = ko.unwrap(value.template),
-                id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
+            // use unwrap to track dependency from template, if it is observable
+            ko.unwrap(value.template);
+
+            var id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
                 data = ko.unwrap(value.data);
                 
             var renderPopoverTemplate = function () {
-                ko.renderTemplate(template, bindingContext.createChildContext(data), value.templateOptions, document.getElementById(id));
+                // use unwrap again to get correct template value instead of old value from closure
+                // this works for observable template property
+                ko.renderTemplate(ko.unwrap(value.template), bindingContext.createChildContext(data), value.templateOptions, document.getElementById(id));
 
                 // bootstrap's popover calculates position before template renders,
                 // so we recalculate position, using bootstrap methods
