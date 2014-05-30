@@ -26,7 +26,7 @@ ko.bindingHandlers.popover = {
                 data = ko.unwrap(value.data);
                 
             var renderPopoverTemplate = function () {
-                ko.renderTemplate(template, bindingContext.createChildContext(data), {}, document.getElementById(id));
+                ko.renderTemplate(template, bindingContext.createChildContext(data), value.templateOptions, document.getElementById(id));
 
                 // bootstrap's popover calculates position before template renders,
                 // so we recalculate position, using bootstrap methods

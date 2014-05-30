@@ -87,10 +87,9 @@
     },
 
     update: function (element, valueAccessor) {
-        var $element = $(element),
-            value = valueAccessor(),
+        var value = valueAccessor(),
             options = ko.unwrap(value.options);
 
-        $element.carousel(options);
+        $(element).carousel(options);
     }
 };
