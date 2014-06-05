@@ -1,12 +1,13 @@
-﻿<div class="modal-dialog">
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header" data-bind="template: headerTemplate">
         </div>
 
         <div class="modal-body" data-bind="template: bodyTemplate">
         </div>
-
+        <!-- ko if: footerTemplate -->
         <div class="modal-footer" data-bind="template: footerTemplate">
         </div>
+        <!-- /ko -->
     </div>
 </div>

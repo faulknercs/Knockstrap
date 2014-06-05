@@ -30,9 +30,13 @@
         var model = {
             headerTemplate: $.extend(true, { templateEngine: !value.header.name ? ko.stringTemplateEngine.instance : null }, defaults.headerTemplate, value.header),
             bodyTemplate: $.extend(true, { templateEngine: !value.body.name ? ko.stringTemplateEngine.instance : null }, defaults.bodyTemplate, value.body),
-            footerTemplate: $.extend(true, { templateEngine: !(value.footer && value.footer.name) ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer)
+            footerTemplate: null
         };
-        
+
+        if (value.footer) {
+            model.footerTemplate = $.extend(true, { templateEngine: !value.footer.name ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer);
+        }
+
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
         $element.addClass('modal fade').attr('role', 'dialog');
