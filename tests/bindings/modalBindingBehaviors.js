@@ -65,7 +65,7 @@
         }).toThrow();
     });
     
-    it('Should not throw exception, if there is no "footer" property in options', function () {
+    it('Should not render footer, if there is no "footer" property in options', function () {
         var vm = {
             value: {
                 header: { data: { label: 'test' } },
@@ -73,11 +73,9 @@
             }
         };
 
-        var el = this.testElement[0];
+        ko.applyBindings(vm, this.testElement[0]);
 
-        expect(function () {
-            ko.applyBindings(vm, el);
-        }).not.toThrow();
+        expect(this.testElement).not.toContainElement('.modal-footer');
     });
 
     it('Should render default header with passed text', function () {
@@ -144,6 +142,7 @@
             value: {
                 header: { data: { label: 'test' } },
                 body: { name: 'test-template' },
+                footer: {}
             }
         };
 
