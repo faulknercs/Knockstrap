@@ -115,7 +115,6 @@
                 },
                 files: {
                     '<%= examplesPath %>/index.html': 'examples-src/index.html',
-                    '<%= examplesPath %>/examples.html': 'examples-src/examples.html'
                 }
             },
             
@@ -127,7 +126,6 @@
                 },
                 files: {
                     '<%= examplesPath %>/index.html': 'examples-src/index.html',
-                    '<%= examplesPath %>/examples.html': 'examples-src/examples.html'
                 }
             }
         },
