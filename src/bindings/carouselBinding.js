@@ -49,7 +49,7 @@
 
                 $.extend(true, extended, value[type]);
                 if (!value[type] || !value[type].name) {
-                    extended.templateEngine = ko.stringTemplateEngine.instance;
+                    extended.templateEngine = defs.templateEngine;
                 }
 
                 return extended;
@@ -76,7 +76,10 @@
             items: value.content.data,
             converter: value.content.converter ||defaults.itemTemplate.converter,
             itemTemplateName: value.content.name || defaults.itemTemplate.name,
-            templateEngine: !value.content.name ? ko.stringTemplateEngine.instance : null
+            templateEngine: !value.content.name ? defaults.itemTemplate.templateEngine : null,
+            afterRender: value.content.afterRender,
+            afterAdd: value.content.afterAdd,
+            beforeRemove: value.content.beforeRemove
         };
 
         ko.renderTemplate('carousel', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);

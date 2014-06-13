@@ -6,7 +6,8 @@
         <img data-bind="attr: { src: src, alt: alt }">
         <div class="container">
             <div class="carousel-caption">
-                <!-- ko template: { name: $parents[1].itemTemplateName, data: $data, templateEngine: $parents[1].templateEngine } -->
+                <!-- ko template: { name: $parents[1].itemTemplateName, data: $data, templateEngine: $parents[1].templateEngine,
+                    afterRender: $parents[1].afterRender, afterAdd: $parents[1].afterAdd, beforeRemove: $parents[1].beforeRemove } -->
                 <!-- /ko -->
             </div>
         </div>
