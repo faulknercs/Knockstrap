@@ -1,15 +1,18 @@
 ﻿ko.bindingHandlers.modal = {
     defaults: {
         headerTemplate: {
-            name: 'modalHeader'
+            name: 'modalHeader',
+            templateEngine: ko.stringTemplateEngine.instance
         },
 
         bodyTemplate: {
-            name: 'modalBody'
+            name: 'modalBody',
+            templateEngine: ko.stringTemplateEngine.instance
         },
 
         footerTemplate: {
             name: 'modalFooter',
+            templateEngine: ko.stringTemplateEngine.instance,
             data: {
                 closeLabel: 'Close',
                 primaryLabel: 'Ok'
@@ -21,7 +24,21 @@
         var $element = $(element),
             value = ko.unwrap(valueAccessor()),
             defaults = ko.bindingHandlers.modal.defaults,
-            options = ko.utils.extend({ show: $element.data().show }, ko.utils.unwrapProperties(value.options));
+            options = ko.utils.extend({ show: $element.data().show || false }, ko.utils.unwrapProperties(value.options)),
+            extendDefaults = function (defs, val) {
+                var extended = {
+                    name: defs.name,
+                    data: defs.data,
+                };
+
+                // reassign to not overwrite default content of data property
+                extended = $.extend(true, {}, extended, val);
+                if (!val || !val.name) {
+                    extended.templateEngine = defs.templateEngine;
+                }
+
+                return extended;
+            };
 
         if (!value.header || !value.body) {
             throw new Error('header and body options are required for modal binding.');
@@ -33,13 +50,13 @@
         }
 
         var model = {
-            headerTemplate: $.extend(true, { templateEngine: !value.header.name ? ko.stringTemplateEngine.instance : null }, defaults.headerTemplate, value.header),
-            bodyTemplate: $.extend(true, { templateEngine: !value.body.name ? ko.stringTemplateEngine.instance : null }, defaults.bodyTemplate, value.body),
+            headerTemplate: extendDefaults(defaults.headerTemplate, value.header),
+            bodyTemplate: extendDefaults(defaults.bodyTemplate, value.body),
             footerTemplate: null
         };
 
         if (value.footer) {
-            model.footerTemplate = $.extend(true, { templateEngine: !value.footer.name ? ko.stringTemplateEngine.instance : null }, defaults.footerTemplate, value.footer);
+            model.footerTemplate = extendDefaults(defaults.footerTemplate, value.footer);
         }
 
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);

@@ -47,7 +47,7 @@
                     data: (value[type] && (value[type].data || value[type].dataConverter && value[type].dataConverter(value))) || defs.dataConverter(value),
                 };
 
-                $.extend(true, extended, value[type]);
+                extended = $.extend(true, {}, extended, value[type]);
                 if (!value[type] || !value[type].name) {
                     extended.templateEngine = defs.templateEngine;
                 }
