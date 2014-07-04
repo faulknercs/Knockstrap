@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="page-header">
+        <h1 id="ste">String Template Engine</h1>
+    </div>
+    <p>Knockstrap provides implementation of Knockout-compatible <code>stringTemplateEngine</code>, which can use strings as html templates.</p>
+    <p>
+        For developers, constructor of engine available via <code>ko.stringTemplateEngine</code>. 
+        Also it contains <code>instance</code>property, so it isn't necessary to create your own.
+        It can be used everywhere, where Knockout's nativeTemplateEngine is acceptable.
+    </p>
+    <p>Template engine contains storage of templates, which is shared between all instances.</p>
+    
+    <h2>API</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>addTemplate(name, template)</code>
+        </div>
+        <div class="panel-body">
+            <div>Adds new template with given name to engine storage</div>
+        </div>
+          
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>name</strong></p>
+                <p>Type: string</p>
+                <p>
+                    Name of new template. If template already exists - it will be overwritten.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>template</strong></p>
+                <p>Type: string</p>
+                <p>
+                    Body of template. May contain any html.
+                </p>
+            </li>
+        </ul>
+
+        <div class="panel-heading">
+            <code>removeTemplate(name)</code>
+        </div>
+        <div class="panel-body">
+            <div>Removes template with given name from engine storage</div>
+        </div>
+          
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>name</strong></p>
+                <p>Type: string</p>
+                <p>
+                    Name of template for deleting. If template doesn't exist - nothing happens.
+                </p>
+            </li>
+        </ul>
+        
+        <div class="panel-heading">
+            <code>isTemplateExist(name)</code>
+        </div>
+        <div class="panel-body">
+            <div>Return true, if template with given name was saved in engine storage. Otherwise - false.</div>
+        </div>
+          
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>name</strong></p>
+                <p>Type: string</p>
+                <p>
+                    Name of template.
+                </p>
+            </li>
+        </ul>
+        
+        <div class="panel-heading">
+            <code>instance</code>
+        </div>
+        <div class="panel-body">
+            <div>Instance of stringTemplateEngine.</div>
+        </div>
+    </div>
+
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: alertExample">
+        <div class="panel-body">
+            
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+</pre>
+    
+</div>
