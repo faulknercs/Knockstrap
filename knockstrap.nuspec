@@ -2,7 +2,7 @@
 <package >
     <metadata>
         <id>Knockstrap</id>
-        <version>0.4.0</version>
+        <version>1.0.0</version>
         <authors>Artyom Stepanyuk</authors>
         <owners>Artyom Stepanyuk</owners>
         <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>

@@ -1,3 +1,15 @@
+v1.0.0
+-Fixed popover positioning, when template is used
+-Fixed not changing template, when popover is opened
+-Added possibility to add new string-based templates dynamically
+-Added possibility to change default template engine for default templates of Knockstrap bindings
+-Rewrote stringTemplateEngine implementation
+-Added tests for stringTemplateEngine
+-Added possibility to change default template engine for header, footer and body in modal binding
+-Added possibility to pass modal options via data-attributes
+-Reorganized and updated documentation
+-Added travis-ci support
+
 v0.4.0
 -Added unit tests via jasmine for all bindings and utility functions
 -Added throwing exception, when binding is used with incompatible values
