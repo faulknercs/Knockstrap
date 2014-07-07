@@ -10,13 +10,13 @@
             userTemplate = ko.unwrap(value.template) || 'alertInner',
             template, data;
 
-        // for compatibility with ie8, use '1' instead of Node.ELEMENT_NODE
-        if (element.nodeType === 1) {
+        // for compatibility with ie8, use '1' and '8' values for node types
+        if (element.nodeType === (Node.ELEMENT_NODE || 1)) {
             template = userTemplate;
             data = value.data || { message: value.message };
 
             $element.addClass('alert fade in').addClass('alert-' + (ko.unwrap(value.type) || 'info'));
-        } else if (element.nodeType === 8) {
+        } else if (element.nodeType === (Node.COMMENT_NODE || 8)) {
             template = 'alert';
             data = {
                 innerTemplate: {
