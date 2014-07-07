@@ -66,6 +66,7 @@
 
         $element.on('shown.bs.modal', function () {
             value.visible(true);
+            $(this).find("[autofocus]:first").focus();
         });
 
         $element.on('hidden.bs.modal', function () {
