@@ -5,12 +5,14 @@
     <p>Knockstrap provides implementation of Knockout-compatible <code>stringTemplateEngine</code>, which can use strings as html templates.</p>
     <p>
         For developers, constructor of engine available via <code>ko.stringTemplateEngine</code>. 
-        Also it contains <code>instance</code>property, so it isn't necessary to create your own.
+        Also it contains <code>instance</code> property, so it isn't necessary to create your own.
         It can be used everywhere, where Knockout's nativeTemplateEngine is acceptable.
     </p>
     <p>Template engine contains storage of templates, which is shared between all instances.</p>
     
     <h2>API</h2>
+    <p>stringTemplateEngine contains:</p>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>addTemplate(name, template)</code>
@@ -79,18 +81,36 @@
     </div>
 
     <h2>Examples</h2>
-    <div class="panel panel-default" data-bind="with: alertExample">
+    <div class="panel panel-default" data-bind="">
         <div class="panel-body">
+            <p>String template engine:</p>
+            <p data-bind="template: { name: 'demo', templateEngine: ko.stringTemplateEngine.instance }"></p>
+            <p>Native template engine:</p>
+            <p data-bind="template: { name: 'demo' }"></p>
             
+            <script id="demo" type="text/html">
+                <span>It's a <strong>native template engine</strong>!</span>
+            </script>
         </div>
     </div>
     
     <h4>Html markup</h4>
     <pre class="prettyprint linenums">
+&lt;p&gt;String template engine:&lt;/p&gt;
+&lt;p data-bind="template: { name: 'demo', templateEngine: ko.stringTemplateEngine.instance }"&gt;&lt;/p&gt;
+&lt;p&gt;Native template engine:&lt;/p&gt;
+&lt;p data-bind="template: { name: 'demo' }"&gt;&lt;/p&gt;
+            
+&lt;script id="demo" type="text/html"&gt;
+    &lt;span&gt;It's a &lt;strong&gt;native template engine&lt;/strong&gt;!&lt;/span&gt;
+&lt;/script&gt;
 </pre>
     
     <h4>View model</h4>
     <pre class="prettyprint linenums lang-javascript">
+var ste = ko.stringTemplateEngine.instance;
+
+ste.addTemplate('demo', '&lt;span&gt;It\'s a &lt;strong&gtstring template engine&lt;/strong&gt;!&lt;/span&gt;');
 </pre>
     
 </div>

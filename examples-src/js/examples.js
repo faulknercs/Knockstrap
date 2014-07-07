@@ -123,6 +123,10 @@ function ExamplesViewModel() {
     self.buttonsExample = new ButtonsExampleViewModel();
 
     self.carouselExample = new CarouselExampleViewModel();
+    
+    var ste = ko.stringTemplateEngine.instance;
+    
+    ste.addTemplate('demo', '<span>It\'s a <strong>string template engine</strong>!</span>');
 }
 
 if (!ko.bindingHandlers.modal) {
