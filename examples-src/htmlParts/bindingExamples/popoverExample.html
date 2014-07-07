@@ -70,12 +70,12 @@ function PopoverExampleViewModel() {
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <code>data-bind="popover: { options: popoverOptions, template: templateName, data: templateData }"</code>
+            <code>data-bind="popover: { options: options, template: templateName, data: templateData, templateOptions: templateOptions }"</code>
         </div>
         
         <ul class="list-group">
             <li class="list-group-item">
-                <p><strong>popoverOptions</strong></p>
+                <p><strong>options</strong></p>
                 <p>Type: object, can be observable</p>
                 <p>
                     Bootstrap options for popover. If any option is not specified, uses default value. Please, see <a href="http://getbootstrap.com/javascript/#popovers-usage">Bootstrap documentation</a>
@@ -90,6 +90,15 @@ function PopoverExampleViewModel() {
                 <p><strong>templateData</strong></p>
                 <p>Type: object, can be observable</p>
                 <p>Data for template</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateOptions</strong></p>
+                <p>Type: object</p>
+                <p>Contains options for template.</p>
+                <p>
+                    They are: <code>templateEngine</code>, <code>afterRender</code>, <code>beforeRender</code> and <code>afterAdd</code>. 
+                    Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
+                </p>
             </li>
         </ul>
     </div>

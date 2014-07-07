@@ -100,22 +100,35 @@ function ModalExampleViewModel() {
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>
-                data-bind="modal: { visible: modalVisible, header: headerTemplate, body: bodyTemplate, footer: footerTemplate }"
+                data-bind="modal: { options: options, visible: visible, header: header, body: body, footer: footer }"
             </code>
         </div>
         
         <ul class="list-group">
             <li class="list-group-item">
-                <p><strong>modalVisible</strong></p>
+                <p><strong>options</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Bootstrap options for modal. If any option is not specified, it uses default values (except <code>show</code>, it default value is <code>false</code> in comparing with Bootstrap). 
+                    Also, can be specified via data-attributes.
+                    Please, see <a href="http://getbootstrap.com/javascript/#modals-usage">Bootstrap documentation</a> for details.
+                </p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>visible</strong></p>
                 <p>Type: boolean, should be observable (default: <code>false</code>)</p>
                 <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
             </li>
 
             <li class="list-group-item">
-                <p><strong>headerTemplate</strong></p>
+                <p><strong>header</strong></p>
                 <p>Type: object</p>
-                <p>Template binding for modal header, uses options from Knockout template binding.</p>
-                <p>Default values of <code>headerTemplate</code> object:</p>
+                <p>
+                    Template binding for modal header, uses options from Knockout template binding.
+                    Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
+                </p>
+                <p>Default values of <code>header</code> object:</p>
                 
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -136,10 +149,13 @@ function ModalExampleViewModel() {
             </li>
 
             <li class="list-group-item">
-                <p><strong>bodyTemplate</strong></p>
+                <p><strong>body</strong></p>
                 <p>Type: object</p>
-                <p>Template binding for modal body, uses options from Knockout template binding.</p>
-                <p>Default values of <code>bodyTemplate</code> object:</p>
+                <p>
+                    Template binding for modal body, uses options from Knockout template binding.
+                    Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
+                </p>
+                <p>Default values of <code>body</code> object:</p>
                 
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -157,13 +173,14 @@ function ModalExampleViewModel() {
             </li>
 
             <li class="list-group-item">
-                <p><strong>footerTemplate</strong></p>
+                <p><strong>footer</strong></p>
                 <p>Type: object</p>
                 <p>
                     Template binding for modal footer, uses options from Knockout template binding.
-                    If omitted, no footer will be rendered.
+                    Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
                 </p>
-                <p>Default values of <code>footerTemplate</code> object:</p>
+                <p>If omitted, no footer will be rendered.</p>
+                <p>Default values of <code>footer</code> object:</p>
                 
                 <ul class="list-group">
                     <li class="list-group-item">

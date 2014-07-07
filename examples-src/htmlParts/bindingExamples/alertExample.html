@@ -48,17 +48,17 @@ function AlertExampleViewModel() {
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <code>data-bind="alert: { message: alertMessage, type: alertType, template: templateName, data: data }"</code>
+            <code>data-bind="alert: { message: message, type: type, template: template, data: data, templateOptions: templateOptions }"</code>
         </div>
         
         <ul class="list-group">
             <li class="list-group-item">
-                <p><strong>alertMessage</strong></p>
+                <p><strong>message</strong></p>
                 <p>Type: string, can be observable</p>
                 <p>Text of alert message. Doesn't used if <code>data</code> property is specified.</p>
             </li>
             <li class="list-group-item">
-                <p><strong>alertType</strong></p>
+                <p><strong>type</strong></p>
                 <p>Type: string, can be observable (default: <code>'info'</code>)</p>
                 <p>
                     Type of alert message. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
@@ -67,7 +67,7 @@ function AlertExampleViewModel() {
                 </p>
             </li>
             <li class="list-group-item">
-                <p><strong>templateName</strong></p>
+                <p><strong>template</strong></p>
                 <p>Type: string, can be observable (default: <code>'alertTemplate'</code>)</p>
                 <p>
                     Name of template for alert content. Default template:
@@ -82,6 +82,15 @@ function AlertExampleViewModel() {
                 <p>Type: object, can be observable</p>
                 <p>Data for template. If this option is specified, <code>message</code> option will be ignored.</p>
                 <p>For default template, you should provide <code>message</code> property (or, if it will not provided via <code>data</code>, <code>message</code> option of binding will be used).</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>templateOptions</strong></p>
+                <p>Type: object</p>
+                <p>Contains options for template.</p>
+                <p>
+                    They are: <code>templateEngine</code>, <code>afterRender</code>, <code>beforeRender</code> and <code>afterAdd</code>. 
+                    Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
+                </p>
             </li>
         </ul>
     </div>
