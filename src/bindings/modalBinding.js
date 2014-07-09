@@ -1,5 +1,10 @@
 ﻿ko.bindingHandlers.modal = {
     defaults: {
+        css: 'modal fade',
+        attributes: {
+            role: 'dialog'  
+        },
+
         headerTemplate: {
             name: 'modalHeader',
             templateEngine: ko.stringTemplateEngine.instance
@@ -61,7 +66,7 @@
 
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
-        $element.addClass('modal fade').attr('role', 'dialog');
+        $element.addClass(defaults.css).attr(defaults.attributes);
         $element.modal(options);
 
         $element.on('shown.bs.modal', function () {
