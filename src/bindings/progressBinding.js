@@ -1,4 +1,8 @@
 ﻿ko.bindingHandlers.progress = {
+    defaults: {
+        css: 'progress'
+    },
+
     init: function (element, valueAccessor) {
         var $element = $(element),
             value = valueAccessor();
@@ -13,7 +17,7 @@
 
         ko.renderTemplate('progress', { value: value, barWidth: barWidth }, { templateEngine: ko.stringTemplateEngine.instance }, element);
 
-        $element.addClass('progress');
+        $element.addClass(ko.bindingHandlers.progress.defaults.css);
 
         return { controlsDescendantBindings: true };
     },

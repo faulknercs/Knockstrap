@@ -1,6 +1,8 @@
 ﻿ko.bindingHandlers.carousel = {
 
     defaults: {
+        css: 'carousel slide',
+
         controlsTemplate: {
             name: 'carouselControls',
             templateEngine: ko.stringTemplateEngine.instance,
@@ -74,7 +76,7 @@
             indicatorsTemplate: extendDefaults(defaults.indicatorsTemplate, 'indicators'),
 
             items: value.content.data,
-            converter: value.content.converter ||defaults.itemTemplate.converter,
+            converter: value.content.converter || defaults.itemTemplate.converter,
             itemTemplateName: value.content.name || defaults.itemTemplate.name,
             templateEngine: !value.content.name ? defaults.itemTemplate.templateEngine : null,
             afterRender: value.content.afterRender,
@@ -84,7 +86,7 @@
 
         ko.renderTemplate('carousel', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
-        $element.addClass('carousel slide');
+        $element.addClass(defaults.css);
 
         return { controlsDescendantBindings: true };
     },
