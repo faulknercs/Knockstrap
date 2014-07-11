@@ -1,4 +1,6 @@
-﻿<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
-    data-bind="style: { width: barWidth }, attr: { 'aria-valuenow' : value }">
-    <span class="sr-only"><span data-bind="text: value"></span>% Complete</span>
+<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+    data-bind="style: { width: barWidth }, attr: { 'aria-valuenow': value }, css: innerCss">
+    <span data-bind="css: { 'sr-only': textHidden }">
+        <span data-bind="text: value"></span>% <span data-bind="text: text"></span>
+    </span>
 </div>

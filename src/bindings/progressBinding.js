@@ -1,23 +1,56 @@
 ﻿ko.bindingHandlers.progress = {
     defaults: {
-        css: 'progress'
+        css: 'progress',
+        text: '',
+        textHidden: true,
+        striped: false,
+        type: '',
+        animated: false
     },
 
     init: function (element, valueAccessor) {
         var $element = $(element),
-            value = valueAccessor();
+            value = valueAccessor(),
+            unwrappedValue = ko.unwrap(value),
+            defs = ko.bindingHandlers.progress.defaults,
+            model = $.extend({}, defs, unwrappedValue);
 
-        if (typeof ko.unwrap(value) !== 'number') {
-            throw new Error('progress binding can accept only numbers');
+        if (typeof unwrappedValue === 'number') {
+            model.value = value;
+
+            model.barWidth = ko.computed(function() {
+                return ko.unwrap(value) + '%';
+            });
+        } else if (typeof ko.unwrap(unwrappedValue.value) === 'number') {
+            model.barWidth = ko.computed(function() {
+                return ko.unwrap(unwrappedValue.value) + '%';
+            });
+        } else {
+            throw new Error('progress binding can accept only numbers or objects with "value" number propertie');
         }
 
-        var barWidth = ko.computed(function () {
-            return ko.unwrap(value) + '%';
+        model.innerCss = ko.computed(function () {
+            var values = ko.utils.unwrapProperties(unwrappedValue),
+                css = '';
+
+            if (values.animated) {
+                css += 'active ';
+            }
+
+            if (values.striped) {
+                css += 'progress-bar-striped ';
+            }
+
+            if (values.type) {
+                css += 'progress-bar-' + values.type;
+            }
+
+            return css;
         });
 
-        ko.renderTemplate('progress', { value: value, barWidth: barWidth }, { templateEngine: ko.stringTemplateEngine.instance }, element);
+        ko.renderTemplate('progress', model, { templateEngine: ko.stringTemplateEngine.instance }, element);
 
-        $element.addClass(ko.bindingHandlers.progress.defaults.css);
+        $element.addClass(defs.css);
 
         return { controlsDescendantBindings: true };
     },
