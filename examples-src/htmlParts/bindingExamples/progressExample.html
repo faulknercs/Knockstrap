@@ -5,16 +5,69 @@
     <p>Binding to Bootatrap progress bar</p>
 
     <h2>Examples</h2>
-    <div class="panel panel-default">
-
+    <div class="panel panel-default" data-bind="with: progressExample">
         <div class="panel-body">
-            <div class="form-group form-fixed-width">
-                <label>Progress value</label>
-                <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: value, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Text</label>
+                    <input type="text" class="form-control" data-bind="value: text, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Appearance</label>
+                    <div>
+                        <input type="checkbox" data-bind="checked: striped" />
+                        Striped
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: animated" />
+                        Animated
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: textHidden" />
+                        Text hidden
+                    </div>
+                </div>
             </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress bar type</label>
+                    <div class="btn-toolbar tooltip-radios">
+                        <input type="radio" name="progressBarType" value="success" data-bind="checked: type" />
+                        Success
+                        <input type="radio" name="progressBarType" value="info" data-bind="checked: type" />
+                        Info
+                        <input type="radio" name="progressBarType" value="warning" data-bind="checked: type" />
+                        Warning
+                        <input type="radio" name="progressBarType" value="danger" data-bind="checked: type" />
+                        Danger
+                    </div>
+                </div>
+            </div>
+
+            <div data-bind="progress: { value: value, type: type, text: text, textHidden: textHidden, animated: animated, striped: striped }"></div>
+        </div>
+    </div>
+
+    <p>Also it is possible to use only number as modal for progress binding:</p>
+    <div class="panel panel-default" data-bind="with: progressExample">
+        <div class="panel-body">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+            
             <div data-bind="progress: progress"></div>
         </div>
     </div>
+
     <h4>Html markup</h4>
     <pre class="prettyprint linenums">
 &lt;div data-bind="progress: progress"&gt;&lt;/div&gt;
