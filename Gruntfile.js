@@ -148,14 +148,14 @@
                     specs: ['tests/utilsBehaviors.js', 'tests/stringTemplateEngineBehaviors.js', 'tests/bindings/*.js'],
                     vendor: [
                         'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                        'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+                        'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
                         'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js'
                     ],
                     helpers: [
                         'tests/jasmineExtensions.js',
                         'http://cdn.rawgit.com/velesin/jasmine-jquery/2.0.3/lib/jasmine-jquery.js'
                     ],
-                    styles: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
+                    styles: 'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
                 }
             }
         }
