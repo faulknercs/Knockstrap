@@ -108,22 +108,21 @@ function CarouselExampleViewModel() {
 }
 
 function ProgressExampleViewModel() {
-    var self = this;
 
-    self.value = ko.observable(50);
+    this.value = ko.observable(50);
 
-    self.animated = ko.observable();
+    this.animated = ko.observable();
 
-    self.striped = ko.observable();
+    this.striped = ko.observable();
 
-    self.type = ko.observable('info');
+    this.type = ko.observable('info');
 
-    self.text = ko.observable('Complete');
+    this.text = ko.observable('Complete');
 
-    self.textHidden = ko.observable(true);
+    this.textHidden = ko.observable(true);
     
     // for number as modal
-    self.progress = ko.observable(20);
+    this.progress = ko.observable(20);
 }
 
 function ExamplesViewModel() {

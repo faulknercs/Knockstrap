@@ -62,3 +62,7 @@ pre.prettyprint {
 .panel code {
     white-space: normal;
 }
+
+.panel-heading code {
+    padding: 2px;
+}
