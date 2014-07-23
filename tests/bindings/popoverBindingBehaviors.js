@@ -69,4 +69,33 @@
 
         this.testElement.click();
     });
+
+    it('Should close popover when template contains button with "data-dismiss" attribute and it was clicked', function (done) {
+        var vm = {
+            value: {
+                options: { title: 'test', content: 'test' },
+                template: 'test-template',
+                data: { }
+            }
+        };
+
+        this.testElement.after('<script id="test-template" type="text/html"><button class="close pull-right" data-dismiss="popover">×</button><div>test</div></script>');
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        var spyEvent = spyOnEvent(this.testElement, 'hide.bs.popover');
+
+        // content renders only after popover shown fully
+        this.testElement.on('shown.bs.popover', function () {
+            expect($('.popover')).toExist();
+            $('.popover [data-dismiss="popover"]').click();
+            expect(spyEvent).toHaveBeenTriggered();
+
+            done();
+
+            $('#test-template').remove();
+        });
+
+        this.testElement.click();
+    });
 });

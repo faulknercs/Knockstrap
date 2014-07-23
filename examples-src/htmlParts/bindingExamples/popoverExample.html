@@ -8,7 +8,7 @@
     <div class="panel panel-default" data-bind="with: popoverExample">
         <div class="panel-body">
             <script type="text/html" id="firstPopoverTemplate">
-                <button class="close pull-right" type="button" data-dismiss="popover">×</button>
+                <button class="close pull-right" type="button" data-dismiss="popover">&times;</button>
                 <p data-bind="text: text"></p>
             </script>
 
@@ -45,11 +45,12 @@
         options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } 
     }"&gt;Hover&lt;/button&gt;
         
-&lt;script type="text/html" id="Script1"&gt;
+&lt;script type="text/html" id="firstPopoverTemplate"&gt;
+    &lt;button class="close pull-right" type="button" data-dismiss="popover"&gt;&times;&lt;/button&gt;
     &lt;p data-bind="text: text"&gt;&lt;/p&gt;
 &lt;/script&gt;
 
-&lt;script type="text/html" id="Script2"&gt;
+&lt;script type="text/html" id="secondPopoverTemplate"&gt;
     &lt;p&gt;Second template&lt;/p&gt;
 &lt;/script&gt;</pre>
     
