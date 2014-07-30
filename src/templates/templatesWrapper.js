@@ -41,6 +41,10 @@
         return new ko.templateSources.stringTemplate(template);
     };
 
+    ko.stringTemplateEngine.prototype.getTemplate = function (name) {
+        return templates[name];
+    };
+
     ko.stringTemplateEngine.prototype.addTemplate = function (name, template) {
         if (arguments.length < 2) {
             throw new Error('template is not provided');
