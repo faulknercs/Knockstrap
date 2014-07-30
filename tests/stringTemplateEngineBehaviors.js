@@ -16,6 +16,12 @@
         expect(this.engine.isTemplateExist('test')).toBeTruthy();
     });
     
+    it('Should get added template from string template engine', function () {
+        this.engine.addTemplate('test', '<span>text<span>');
+
+        expect(this.engine.getTemplate('test')).toEqual('<span>text<span>');
+    });
+
     it('Should remove template from template engine', function () {
         this.engine.addTemplate('test', '<span>text<span>');
 
