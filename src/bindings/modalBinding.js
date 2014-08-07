@@ -27,7 +27,7 @@
 
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
-            value = ko.unwrap(valueAccessor()),
+            value = valueAccessor(),
             defaults = ko.bindingHandlers.modal.defaults,
             options = ko.utils.extend({ show: $element.data().show || false }, ko.utils.unwrapProperties(value.options)),
             extendDefaults = function (defs, val) {
@@ -55,14 +55,10 @@
         }
 
         var model = {
-            headerTemplate: extendDefaults(defaults.headerTemplate, value.header),
-            bodyTemplate: extendDefaults(defaults.bodyTemplate, value.body),
-            footerTemplate: null
+            headerTemplate: extendDefaults(defaults.headerTemplate, ko.unwrap(value.header)),
+            bodyTemplate: extendDefaults(defaults.bodyTemplate, ko.unwrap(value.body)),
+            footerTemplate: value.footer ? extendDefaults(defaults.footerTemplate, ko.unwrap(value.footer)) : null
         };
-
-        if (value.footer) {
-            model.footerTemplate = extendDefaults(defaults.footerTemplate, value.footer);
-        }
 
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
@@ -87,7 +83,7 @@
     },
 
     update: function (element, valueAccessor) {
-        var value = ko.unwrap(valueAccessor());
+        var value = valueAccessor();
 
         $(element).modal(!ko.unwrap(value.visible) ? 'hide' : 'show');
     }
