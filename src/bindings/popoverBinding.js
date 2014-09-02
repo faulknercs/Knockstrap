@@ -10,8 +10,6 @@ ko.bindingHandlers.popover = {
                 $element.popover('destroy');
             }
         });
-
-        return { controlsDescendantBindings: true };
     },
 
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
