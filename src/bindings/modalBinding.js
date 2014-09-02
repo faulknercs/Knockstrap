@@ -66,17 +66,22 @@
         $element.modal(options);
 
         $element.on('shown.bs.modal', function () {
-            value.visible(true);
+            if (typeof value.visible !== 'undefined') {
+                value.visible(true);
+            }
+
             $(this).find("[autofocus]:first").focus();
         });
 
-        $element.on('hidden.bs.modal', function () {
-            value.visible(false);
-        });
+        if (typeof value.visible !== 'undefined') {
+            $element.on('hidden.bs.modal', function() {
+                value.visible(false);
+            });
 
-        // if we need to show modal after initialization, we need also set visible property to true
-        if (options.show) {
-            value.visible(true);
+            // if we need to show modal after initialization, we need also set visible property to true
+            if (options.show) {
+                value.visible(true);
+            }
         }
 
         return { controlsDescendantBindings: true };
@@ -85,6 +90,8 @@
     update: function (element, valueAccessor) {
         var value = valueAccessor();
 
-        $(element).modal(!ko.unwrap(value.visible) ? 'hide' : 'show');
+        if (typeof value.visible !== 'undefined') {
+            $(element).modal(!ko.unwrap(value.visible) ? 'hide' : 'show');
+        }
     }
 };
