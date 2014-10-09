@@ -119,11 +119,12 @@ function ModalExampleViewModel() {
                 <p><strong>visible</strong></p>
                 <p>Type: boolean, should be observable (default: <code>false</code>)</p>
                 <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
+                <p>Can be omitted in order to use Bootstrap's attributes for showing or closing modal.</p>
             </li>
 
             <li class="list-group-item">
                 <p><strong>header</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal header, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -150,7 +151,7 @@ function ModalExampleViewModel() {
 
             <li class="list-group-item">
                 <p><strong>body</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal body, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -174,7 +175,7 @@ function ModalExampleViewModel() {
 
             <li class="list-group-item">
                 <p><strong>footer</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal footer, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -228,4 +229,38 @@ function ModalExampleViewModel() {
             </li>
         </ul>
     </div>
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for modal binding located in <code>ko.bindingHandlers.modal.defaults</code> object. 
+        It contains default css and attributes for root element of modal and default values for header, body and footer.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'modal fade',
+    attributes: {
+        role: 'dialog'  
+    },
+
+    headerTemplate: {
+        name: 'modalHeader',
+        templateEngine: ko.stringTemplateEngine.instance
+    },
+
+    bodyTemplate: {
+        name: 'modalBody',
+        templateEngine: ko.stringTemplateEngine.instance
+    },
+
+    footerTemplate: {
+        name: 'modalFooter',
+        templateEngine: ko.stringTemplateEngine.instance,
+        data: {
+            closeLabel: 'Close',
+            primaryLabel: 'Ok'
+        }
+    }
+}
+</pre>
 </div>

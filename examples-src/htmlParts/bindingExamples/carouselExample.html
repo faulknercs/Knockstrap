@@ -240,4 +240,51 @@ function(value) {
             </li>
         </ul>
     </div>
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for carousel binding located in <code>ko.bindingHandlers.carousel.defaults</code> object. 
+        It contains default css for root element of carousel and default values for controls, indicators and item templtates.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'carousel slide',
+
+    controlsTemplate: {
+        name: 'carouselControls',
+        templateEngine: ko.stringTemplateEngine.instance,
+        dataConverter: function(value) {
+            return {
+                id: ko.computed(function() {
+                    return '#' + ko.unwrap(value.id);
+                })
+            };
+        }
+    },
+        
+    indicatorsTemplate: {
+        name: 'carouselIndicators',
+        templateEngine: ko.stringTemplateEngine.instance,
+        dataConverter: function(value) {
+            return {
+                id: ko.computed(function() {
+                    return '#' + ko.unwrap(value.id);
+                }),
+                    
+                items: value.content.data
+            };
+        }
+    }, 
+        
+    itemTemplate: {
+        name: 'carouselContent',
+        templateEngine: ko.stringTemplateEngine.instance,
+
+        converter: function (item) {
+            return item;
+        }
+    }
+}
+</pre>
 </div>

@@ -150,7 +150,7 @@ function ProgressExampleViewModel() {
             <li class="list-group-item">
                 <p><strong>animated</strong></p>
                 <p>Type: boolean, can be observable (default: <code>false</code>)</p>
-                <p>Animates stipes on progress bar, if true. Work only in Bootstrap >= 3.2.0</p>
+                <p>Animates stripes on progress bar, if true. Work only in Bootstrap >= 3.2.0</p>
             </li>
         </ul>
     </div>
@@ -170,5 +170,21 @@ function ProgressExampleViewModel() {
             </li>
         </ul>
     </div>
-
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for progress binding located in <code>ko.bindingHandlers.progress.defaults</code> object. 
+        It contains default css for root element of progress-bar and default values for its options.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'progress',
+    text: '',
+    textHidden: true,
+    striped: false,
+    type: '',
+    animated: false
+}
+</pre>
 </div>
