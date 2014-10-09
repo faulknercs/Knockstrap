@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Knockstrap - Knockout bindings for Bootstrap - Examples</title>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/examples.css" rel="stylesheet" />
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min.js"></script>
     <script src="js/knockstrap.min.js"></script>
@@ -209,6 +209,7 @@ function TooltipExampleViewModel() {
     <div class="panel panel-default" data-bind="with: popoverExample">
         <div class="panel-body">
             <script type="text/html" id="firstPopoverTemplate">
+                <button class="close pull-right" type="button" data-dismiss="popover">&times;</button>
                 <p data-bind="text: text"></p>
             </script>
 
@@ -245,11 +246,12 @@ function TooltipExampleViewModel() {
         options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } 
     }"&gt;Hover&lt;/button&gt;
         
-&lt;script type="text/html" id="Script1"&gt;
+&lt;script type="text/html" id="firstPopoverTemplate"&gt;
+    &lt;button class="close pull-right" type="button" data-dismiss="popover"&gt;&times;&lt;/button&gt;
     &lt;p data-bind="text: text"&gt;&lt;/p&gt;
 &lt;/script&gt;
 
-&lt;script type="text/html" id="Script2"&gt;
+&lt;script type="text/html" id="secondPopoverTemplate"&gt;
     &lt;p&gt;Second template&lt;/p&gt;
 &lt;/script&gt;</pre>
     
@@ -544,11 +546,12 @@ function ModalExampleViewModel() {
                 <p><strong>visible</strong></p>
                 <p>Type: boolean, should be observable (default: <code>false</code>)</p>
                 <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
+                <p>Can be omitted in order to use Bootstrap's attributes for showing or closing modal.</p>
             </li>
 
             <li class="list-group-item">
                 <p><strong>header</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal header, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -575,7 +578,7 @@ function ModalExampleViewModel() {
 
             <li class="list-group-item">
                 <p><strong>body</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal body, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -599,7 +602,7 @@ function ModalExampleViewModel() {
 
             <li class="list-group-item">
                 <p><strong>footer</strong></p>
-                <p>Type: object</p>
+                <p>Type: object, can be observable</p>
                 <p>
                     Template binding for modal footer, uses options from Knockout template binding.
                     Please, see <a href="http://knockoutjs.com/documentation/template-binding.html">Knockout documentation</a> for details.
@@ -653,6 +656,40 @@ function ModalExampleViewModel() {
             </li>
         </ul>
     </div>
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for modal binding located in <code>ko.bindingHandlers.modal.defaults</code> object. 
+        It contains default css and attributes for root element of modal and default values for header, body and footer.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'modal fade',
+    attributes: {
+        role: 'dialog'  
+    },
+
+    headerTemplate: {
+        name: 'modalHeader',
+        templateEngine: ko.stringTemplateEngine.instance
+    },
+
+    bodyTemplate: {
+        name: 'modalBody',
+        templateEngine: ko.stringTemplateEngine.instance
+    },
+
+    footerTemplate: {
+        name: 'modalFooter',
+        templateEngine: ko.stringTemplateEngine.instance,
+        data: {
+            closeLabel: 'Close',
+            primaryLabel: 'Ok'
+        }
+    }
+}
+</pre>
 </div>
 
 
@@ -663,16 +700,91 @@ function ModalExampleViewModel() {
     <p>Binding to Bootatrap progress bar</p>
 
     <h2>Examples</h2>
-    <div class="panel panel-default">
-
+    <div class="panel panel-default" data-bind="with: progressExample">
         <div class="panel-body">
-            <div class="form-group form-fixed-width">
-                <label>Progress value</label>
-                <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: value, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Text</label>
+                    <input type="text" class="form-control" data-bind="value: text, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Appearance</label>
+                    <div>
+                        <input type="checkbox" data-bind="checked: striped" />
+                        Striped
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: animated" />
+                        Animated
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: textHidden" />
+                        Text hidden
+                    </div>
+                </div>
             </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress bar type</label>
+                    <div class="btn-toolbar tooltip-radios">
+                        <input type="radio" name="progressBarType" value="success" data-bind="checked: type" />
+                        Success
+                        <input type="radio" name="progressBarType" value="info" data-bind="checked: type" />
+                        Info
+                        <input type="radio" name="progressBarType" value="warning" data-bind="checked: type" />
+                        Warning
+                        <input type="radio" name="progressBarType" value="danger" data-bind="checked: type" />
+                        Danger
+                    </div>
+                </div>
+            </div>
+
+            <div data-bind="progress: { value: value, type: type, text: text, textHidden: textHidden, animated: animated, striped: striped }"></div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="progress: { value: value, type: type, text: text, textHidden: textHidden, animated: animated, striped: striped }"&gt;&lt;/div&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ProgressExampleViewModel() {
+    this.value = ko.observable(50);
+
+    this.animated = ko.observable();
+
+    this.striped = ko.observable();
+
+    this.type = ko.observable('info');
+
+    this.text = ko.observable('Complete');
+
+    this.textHidden = ko.observable(true);
+}
+</pre>
+
+    <p>Also it is possible to use only number as model for progress binding:</p>
+    <div class="panel panel-default" data-bind="with: progressExample">
+        <div class="panel-body">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+            
             <div data-bind="progress: progress"></div>
         </div>
     </div>
+
     <h4>Html markup</h4>
     <pre class="prettyprint linenums">
 &lt;div data-bind="progress: progress"&gt;&lt;/div&gt;
@@ -692,6 +804,56 @@ function ProgressExampleViewModel() {
  
     <div class="panel panel-default">
         <div class="panel-heading">
+            <code>data-bind="progress: { value: value, type: type, text: text, textHidden: hidden, animated: animated, striped: striped }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>value</strong></p>
+                <p>Type: number, can be observable</p>
+                <p>Progress value in percents. Values greater than 100, assumed equal to 100</p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>type</strong></p>
+                <p>Type: string, can be observable (default: none)</p>
+                <p>
+                    Type of progress bar. Possible values are <code>'info'</code>, <code>'warning'</code>, <code>'danger'</code>, <code>'success'</code>. 
+                    To specify your own type you should define css-styles for it.
+                    For exmaple, for type <code>'my-custom-type'</code>, you shoud provide css class <code>'progress-bar-custom-type'</code>.
+                </p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>text</strong></p>
+                <p>Type: string, can be observable (default: empty string)</p>
+                <p>Text on progress bar after percents</p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>textHidden</strong></p>
+                <p>Type: boolean, can be observable (default: <code>true</code>)</p>
+                <p>Hides percents of progress and text on progress bar, if true, otherwise hides.</p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>striped</strong></p>
+                <p>Type: boolean, can be observable (default: <code>false</code>)</p>
+                <p>Adds stripes to progress bar, if true. Work only in Bootstrap >= 3.2.0</p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>animated</strong></p>
+                <p>Type: boolean, can be observable (default: <code>false</code>)</p>
+                <p>Animates stripes on progress bar, if true. Work only in Bootstrap >= 3.2.0</p>
+            </li>
+        </ul>
+    </div>
+    
+    <h4>Short notation</h4>
+    <p>If you only need use progress value, you can use short notation of binding, which uses only number as model.</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <code>data-bind="progress: progressValue"</code>
         </div>
         
@@ -703,7 +865,23 @@ function ProgressExampleViewModel() {
             </li>
         </ul>
     </div>
-
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for progress binding located in <code>ko.bindingHandlers.progress.defaults</code> object. 
+        It contains default css for root element of progress-bar and default values for its options.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'progress',
+    text: '',
+    textHidden: true,
+    striped: false,
+    type: '',
+    animated: false
+}
+</pre>
 </div>
 
 
@@ -1179,6 +1357,53 @@ function(value) {
             </li>
         </ul>
     </div>
+    
+    <h3>Default values</h3>
+    <p>
+        Default values for carousel binding located in <code>ko.bindingHandlers.carousel.defaults</code> object. 
+        It contains default css for root element of carousel and default values for controls, indicators and item templtates.
+        Can be changed before <code>ko.applyBindigs()</code> is called.
+    </p>
+    <pre class="prettyprint linenums lang-javascript">
+defaults: {
+    css: 'carousel slide',
+
+    controlsTemplate: {
+        name: 'carouselControls',
+        templateEngine: ko.stringTemplateEngine.instance,
+        dataConverter: function(value) {
+            return {
+                id: ko.computed(function() {
+                    return '#' + ko.unwrap(value.id);
+                })
+            };
+        }
+    },
+        
+    indicatorsTemplate: {
+        name: 'carouselIndicators',
+        templateEngine: ko.stringTemplateEngine.instance,
+        dataConverter: function(value) {
+            return {
+                id: ko.computed(function() {
+                    return '#' + ko.unwrap(value.id);
+                }),
+                    
+                items: value.content.data
+            };
+        }
+    }, 
+        
+    itemTemplate: {
+        name: 'carouselContent',
+        templateEngine: ko.stringTemplateEngine.instance,
+
+        converter: function (item) {
+            return item;
+        }
+    }
+}
+</pre>
 </div>
 
             
@@ -1239,6 +1464,23 @@ function(value) {
             </li>
         </ul>
         
+        <div class="panel-heading">
+            <code>getTemplate(name)</code>
+        </div>
+        <div class="panel-body">
+            <div>Returns template with given name from engine storage or returns undefined, if there is no template</div>
+        </div>
+          
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>name</strong></p>
+                <p>Type: string</p>
+                <p>
+                    Name of template.
+                </p>
+            </li>
+        </ul>
+
         <div class="panel-heading">
             <code>isTemplateExist(name)</code>
         </div>

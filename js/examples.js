@@ -107,12 +107,30 @@ function CarouselExampleViewModel() {
     ]);
 }
 
+function ProgressExampleViewModel() {
+
+    this.value = ko.observable(50);
+
+    this.animated = ko.observable();
+
+    this.striped = ko.observable();
+
+    this.type = ko.observable('info');
+
+    this.text = ko.observable('Complete');
+
+    this.textHidden = ko.observable(true);
+    
+    // for number as modal
+    this.progress = ko.observable(20);
+}
+
 function ExamplesViewModel() {
     var self = this;
     
     self.tooltipExample = new TooltipExampleViewModel();
 
-    self.progress = ko.observable(20);
+    self.progressExample = new ProgressExampleViewModel();
 
     self.modalExample = new ModalExampleViewModel();
 
