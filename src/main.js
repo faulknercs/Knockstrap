@@ -7,7 +7,7 @@
         factory(require('knockout'), require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
         // AMD
-        define(moduleName, ['knockout', 'jQuery'], factory);
+        define(moduleName, ['knockout', 'jquery'], factory);
     } else {
         factory(ko, $);
     }
