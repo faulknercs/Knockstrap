@@ -454,7 +454,7 @@ function AlertExampleViewModel() {
 
             <div data-bind="modal: {
                                 visible: modalVisible,
-                                size: modalSize,
+                                dialogCss: modalSize,
                                 header: { data: { label: headerLabel } },
                                 body: { name: bodyTemplate, data: bodyData },
                                 footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
@@ -495,7 +495,7 @@ function AlertExampleViewModel() {
 
 &lt;div data-bind="modal: {
     visible: modalVisible,
-    size: modalSize,
+    dialogCss: modalSize,
     header: { data: { label: headerLabel } },
     body: { name: bodyTemplate, data: bodyData },
     footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
@@ -561,7 +561,7 @@ function ModalExampleViewModel() {
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>
-                data-bind="modal: { options: options, visible: visible, size: size, header: header, body: body, footer: footer }"
+                data-bind="modal: { options: options, visible: visible, dialogCss: dialogCss, header: header, body: body, footer: footer }"
             </code>
         </div>
         
@@ -584,9 +584,9 @@ function ModalExampleViewModel() {
             </li>
             
             <li class="list-group-item">
-                <p><strong>size</strong></p>
+                <p><strong>dialogCss</strong></p>
                 <p>Type: string, can be observable (default: <code>undefined</code>)</p>
-                <p>Used to add size classes to modal. Can accept <code>modal-lg</code> value for large modal and <code>modal-sm</code> for small.</p>
+                <p>Used to add classes to modal-dialog element. For example, it can accept <code>modal-lg</code> value for large modal or <code>modal-sm</code> for small.</p>
                 <p>Please, see <a href="http://getbootstrap.com/javascript/#modals-sizes">Bootstrap documentation</a> for more details.</p>
             </li>
 
