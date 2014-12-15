@@ -66,3 +66,7 @@ pre.prettyprint {
 .panel-heading code {
     padding: 2px;
 }
+
+.btn-group {
+    vertical-align: top;
+}

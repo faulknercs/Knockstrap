@@ -436,9 +436,25 @@ function AlertExampleViewModel() {
     <div class="panel panel-default" data-bind="with: modalExample">
         <div class="panel-body">
             <button class="btn btn-primary" data-bind="click: show">Show modal</button>
+            
+            <div class="btn-group form-group" data-toggle="buttons" data-bind="radio: modalSize">
+                <label class="btn btn-default">
+                    <input type="radio" name="modalSizing" value="" />
+                    None
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="modalSizing" value="modal-lg" />
+                    Large
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="modalSizing" value="modal-sm" />
+                    Small
+                </label>
+            </div>
 
             <div data-bind="modal: {
                                 visible: modalVisible,
+                                size: modalSize,
                                 header: { data: { label: headerLabel } },
                                 body: { name: bodyTemplate, data: bodyData },
                                 footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
@@ -462,8 +478,24 @@ function AlertExampleViewModel() {
     <pre class="prettyprint linenums">
 &lt;button class="btn btn-primary" data-bind="click: show"&gt;Show modal&lt;/button&gt;
 
+&lt;div class="btn-group form-group" data-toggle="buttons" data-bind="radio: modalSize"&gt;
+    &lt;label class="btn btn-default"&gt;
+        &lt;input type="radio" name="modalSizing" value="" /&gt;
+        None
+    &lt;/label&gt;
+    &lt;label class="btn btn-default"&gt;
+        &lt;input type="radio" name="modalSizing" value="modal-lg" /&gt;
+        Large
+    &lt;/label&gt;
+    &lt;label class="btn btn-default"&gt;
+        &lt;input type="radio" name="modalSizing" value="modal-sm" /&gt;
+        Small
+    &lt;/label&gt;
+&lt;/div&gt;
+
 &lt;div data-bind="modal: {
     visible: modalVisible,
+    size: modalSize,
     header: { data: { label: headerLabel } },
     body: { name: bodyTemplate, data: bodyData },
     footer: { data: { action: switchTemplates, closeLabel: 'Custom text', primaryLabel: 'Change body template' } }
@@ -518,6 +550,8 @@ function ModalExampleViewModel() {
                             ? self.bodyTemplate('secondModalTemplate') 
                             : self.bodyTemplate('firstModalTemplate');
     };
+        
+    self.modalSize = ko.observable('modal-lg');
 }
 </pre>
 
@@ -527,7 +561,7 @@ function ModalExampleViewModel() {
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>
-                data-bind="modal: { options: options, visible: visible, header: header, body: body, footer: footer }"
+                data-bind="modal: { options: options, visible: visible, size: size, header: header, body: body, footer: footer }"
             </code>
         </div>
         
@@ -544,9 +578,16 @@ function ModalExampleViewModel() {
 
             <li class="list-group-item">
                 <p><strong>visible</strong></p>
-                <p>Type: boolean, should be observable (default: <code>false</code>)</p>
+                <p>Type: boolean, can be observable (default: <code>false</code>)</p>
                 <p>Shows modal, if true, otherwise hides modal. By default is false.</p>
                 <p>Can be omitted in order to use Bootstrap's attributes for showing or closing modal.</p>
+            </li>
+            
+            <li class="list-group-item">
+                <p><strong>size</strong></p>
+                <p>Type: string, can be observable (default: <code>undefined</code>)</p>
+                <p>Used to add size classes to modal. Can accept <code>modal-lg</code> value for large modal and <code>modal-sm</code> for small.</p>
+                <p>Please, see <a href="http://getbootstrap.com/javascript/#modals-sizes">Bootstrap documentation</a> for more details.</p>
             </li>
 
             <li class="list-group-item">

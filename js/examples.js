@@ -35,6 +35,7 @@ function ModalExampleViewModel() {
         self.bodyTemplate() === 'firstModalTemplate' ? self.bodyTemplate('secondModalTemplate') : self.bodyTemplate('firstModalTemplate');
     };
 
+    self.modalSize = ko.observable('modal-lg');
 }
 
 function PopoverExampleViewModel() {
