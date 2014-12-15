@@ -1,3 +1,7 @@
+v1.2.0
+-Changed dependency name from jQuery to official jquery
+-Added dialogCss property to modal binding
+
 v1.1.0
 -Added possibility to use popover binding with other bindings on same element and with other bindings on child elements
 -Added support of close button via 'data-dismiss="popover"' for popover binding
