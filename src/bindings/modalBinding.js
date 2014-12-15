@@ -1,6 +1,7 @@
 ﻿ko.bindingHandlers.modal = {
     defaults: {
         css: 'modal fade',
+        dialogCss: '',
         attributes: {
             role: 'dialog'  
         },
@@ -55,7 +56,7 @@
         }
 
         var model = {
-            modalSizeClass: value.size || '',
+            dialogCss: value.dialogCss || defaults.dialogCss,
             headerTemplate: extendDefaults(defaults.headerTemplate, ko.unwrap(value.header)),
             bodyTemplate: extendDefaults(defaults.bodyTemplate, ko.unwrap(value.body)),
             footerTemplate: value.footer ? extendDefaults(defaults.footerTemplate, ko.unwrap(value.footer)) : null

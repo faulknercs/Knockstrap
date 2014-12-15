@@ -179,4 +179,18 @@
         
         expect(this.testElement).toContainElement('.modal-header #test');
     });
+    
+    it('Should render modal-dialog element with passed css classes', function () {
+        var vm = {
+            value: {
+                dialogCss: 'test-class',
+                header: { name: 'test-template' },
+                body: { name: 'test-template' },
+            }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.modal-dialog.test-class');
+    });
 });
