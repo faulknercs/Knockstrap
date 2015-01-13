@@ -23,9 +23,9 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 
 ### Dependencies
 
-- jQuery
-- Twitter Bootstrap 3
-- Knockout.js
+- jQuery (Any compatible with Bootstrap 3 version)
+- Twitter Bootstrap 3 (CSS and JavaScript)
+- Knockout.js (>=2.3.0)
 
 ### Packages
 
