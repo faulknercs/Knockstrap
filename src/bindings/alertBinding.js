@@ -14,7 +14,10 @@
         if (element.nodeType === (Node.ELEMENT_NODE || 1)) {
             template = userTemplate;
             data = value.data || { message: value.message };
-
+            $element.hasClass('alert-info')
+            {
+                $element.removeClass('alert-info');
+            }
             $element.addClass('alert fade in').addClass('alert-' + (ko.unwrap(value.type) || 'info'));
         } else if (element.nodeType === (Node.COMMENT_NODE || 8)) {
             template = 'alert';
