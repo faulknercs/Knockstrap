@@ -68,14 +68,14 @@
         $element.modal(options);
 
         $element.on('shown.bs.modal', function () {
-            if (typeof value.visible !== 'undefined' && typeof value.visible === "function" && !ko.isComputed(value.visible)) {
+            if (typeof value.visible !== 'undefined' && typeof value.visible === 'function' && !ko.isComputed(value.visible)) {
                 value.visible(true);
             }
 
             $(this).find("[autofocus]:first").focus();
         });
 
-        if (typeof value.visible !== 'undefined' && typeof value.visible === "function" && !ko.isComputed(value.visible)) {
+        if (typeof value.visible !== 'undefined' && typeof value.visible === 'function' && !ko.isComputed(value.visible)) {
             $element.on('hidden.bs.modal', function() {
                 value.visible(false);
             });
