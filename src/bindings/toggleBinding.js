@@ -6,7 +6,9 @@
             throw new Error('toggle binding should be used only with observable values');
         }
 
-        $(element).on('click', function () {
+        $(element).on('click', function (event) {
+            event.preventDefault();
+
             var previousValue = ko.unwrap(value);
             value(!previousValue);
         });
