@@ -1,0 +1,17 @@
+<ul class="pagination">
+    <li data-bind="if: previous">
+        <a href="#">
+            <span>&laquo;</span>
+        </a>
+    </li>
+    
+    <li data-bind="foreach: pages">
+        <a href="#" data-bind="text: $index + 1"></a>
+    </li>
+
+    <li data-bind="if: next">
+      <a href="#">
+        <span>&raquo;</span>
+      </a>
+    </li>
+</ul>
