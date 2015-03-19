@@ -17,7 +17,7 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 - Checkbox button
 - Carousel
 
-[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.2.0/knockstrap-1.2.0.zip)
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.2.1/knockstrap-1.2.1.zip)
 
 [Documentation/Examples](http://faulknercs.github.io/Knockstrap/)
 

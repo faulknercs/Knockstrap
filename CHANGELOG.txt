@@ -1,3 +1,8 @@
+v1.2.1
+-Fixed issue with submitting forms with toggle buttons
+-Fixed attemting to set visible property for computed value for modal binding
+-Updated docs to work via https
+
 v1.2.0
 -Changed dependency name from jQuery to official jquery
 -Added dialogCss property to modal binding
