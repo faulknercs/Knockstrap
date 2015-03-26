@@ -1,19 +1,23 @@
 ﻿ko.bindingHandlers.pagination = {
     defaults: {
         maxPages: 5,
-        boundaryText: {
-            first: 'First',
-            lasr: 'Last'
-        },
 
-        directionsText: {
+        pageSize: 10,
+
+        directions: true,
+
+        boundary: true,
+
+        text: {
+            first: 'First',
+            last: 'Last',
             back: '&laquo;',
             forward: '&raquo;'
         }
     },
 
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var value = valueAccessor();
+        var value = $.extend({}, ko.bindingHandlers.pagination.defaults, valueAccessor());
 
         var model = new Pagination(value);
 
@@ -23,53 +27,106 @@
     },
 
     //update: function (element, valueAccessor) {
-        
+
     //}
 };
 
-function Pagination(data, options) {
+function Pagination(data) {
     var self = this;
 
-    var startPage = function() {
-        
+    var getStartPage = function () {
+        var maxPages = ko.unwrap(self.maxPages);
+
+        return ((Math.ceil(self.currentPage() / maxPages) - 1) * maxPages) + 1;
     };
 
-    var lastPage = function() {
+    var getLastPage = function (startPage) {
+        var maxPages = ko.unwrap(self.maxPages);
 
+        return Math.min(startPage + maxPages - 1, self.pagesCount());
     };
 
-    self.current = ko.observable();
+    self.currentPage = data.currentPage;
 
-    self.totalCount = ko.observable();
+    self.totalCount = data.totalCount;
 
-    self.pageSize = ko.observable();
+    self.pageSize = data.pageSize;
 
-    self.maxPages = ko.observable();
+    self.maxPages = data.maxPages;
 
-    self.pagesCount = ko.computed(function() {
-        return Math.ceil(self.totalCount() / self.pageSize());
+    self.boundary = data.boundary;
+
+    self.directions = data.directions;
+
+    self.text = data.text;
+
+    self.pagesCount = ko.computed(function () {
+        var total = ko.unwrap(self.totalCount),
+            pageSize = ko.unwrap(self.pageSize);
+
+        return Math.ceil(total / pageSize);
     });
 
-    self.pages = ko.computed(function() {
-        var count = Math.min(self.maxPages(), self.pagesCount()),
-            pages = [];
+    self.pages = ko.computed(function () {
+        var pages = [];
 
-        for (var i = 0; i < count; i++) {
-            
+        var startPage = getStartPage(),
+            endPage = getLastPage(startPage);
+
+        for (var pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
+            pages.push({
+                number: pageNumber,
+                text: pageNumber,
+                isActive: pageNumber === self.currentPage()
+            });
         }
-
+        
         return pages;
     });
 
-    self.boundary = false;
-
-    self.directions = false;
-
-    self.isBackDisabled = ko.computed(function() {
-
+    self.isBackDisabled = ko.computed(function () {
+        return self.currentPage() === 1;
     });
 
-    self.isEnabledDisabled = ko.computed(function () {
-
+    self.isForwardDisabled = ko.computed(function () {
+        return self.currentPage() === self.pagesCount();
     });
+
+    self.selectPage = function (page) {
+        self.currentPage(page.number);
+    };
+
+    self.back = function () {
+        if (self.isBackDisabled()) {
+            return;
+        }
+
+        var current = self.currentPage();
+        self.currentPage(current - 1);
+    };
+
+    self.forward = function () {
+        if (self.isForwardDisabled()) {
+            return;
+        }
+
+        var current = self.currentPage();
+        self.currentPage(current + 1);
+    };
+
+    self.selectFirst = function() {
+        if (self.isBackDisabled()) {
+            return;
+        }
+
+        self.currentPage(1);
+    };
+    
+    self.selectLast = function () {
+        if (self.isForwardDisabled()) {
+            return;
+        }
+
+        self.currentPage(self.pagesCount());
+    };
 }

@@ -1,38 +1,38 @@
 <ul class="pagination">
     <!-- ko if: boundary -->
-    <li data-bind="with: boundary, css: { disabled: isBackDisabled }">
-        <a href="#">
-            <span data-bind="text: first">First</span>
+    <li data-bind="css: { disabled: isBackDisabled }">
+        <a href="#" data-bind="with: text, click: selectFirst">
+            <span data-bind="html: first">First</span>
         </a>
     </li>
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li data-bind="with: directions, css: { disabled: isBackDisabled }">
-        <a href="#">
-            <span data-bind="text: back">&laquo;</span>
+    <li data-bind="css: { disabled: isBackDisabled }">
+        <a href="#" data-bind="with: text, click: back">
+            <span data-bind="html: back">&laquo;</span>
         </a>
     </li>
     <!-- /ko -->
 
-    <!-- ko foreach: pages"-->
+    <!-- ko foreach: pages -->
     <li data-bind="css: { active: isActive }">
-        <a href="#" data-bind="text: text"></a>
+        <a href="#" data-bind="text: text, click: $parent.selectPage"></a>
     </li>
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li data-bind="with: directions, css: { disabled: isForwardDisabled }">
-        <a href="#">
-            <span data-bind="text: forward">&raquo;</span>
+    <li data-bind="css: { disabled: isForwardDisabled }">
+        <a href="#" data-bind="with: text, click: forward">
+            <span data-bind="html: forward">&raquo;</span>
         </a>
     </li>
     <!-- /ko -->
 
     <!-- ko if: boundary -->
-    <li data-bind="with: boundary, css: { disabled: isForwardDisabled }">
-        <a href="#">
-            <span data-bind="text: last">Last</span>
+    <li data-bind="css: { disabled: isForwardDisabled }">
+        <a href="#" data-bind="with: text, click: selectLast">
+            <span data-bind="html: last">Last</span>
         </a>
     </li>
     <!-- /ko -->
