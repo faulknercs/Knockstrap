@@ -1,17 +1,39 @@
 <ul class="pagination">
-    <li data-bind="if: previous">
+    <!-- ko if: boundary -->
+    <li data-bind="with: boundary, css: { disabled: isBackDisabled }">
         <a href="#">
-            <span>&laquo;</span>
+            <span data-bind="text: first">First</span>
         </a>
     </li>
+    <!-- /ko -->
     
-    <li data-bind="foreach: pages">
-        <a href="#" data-bind="text: $index + 1"></a>
+    <!-- ko if: directions -->
+    <li data-bind="with: directions, css: { disabled: isBackDisabled }">
+        <a href="#">
+            <span data-bind="text: back">&laquo;</span>
+        </a>
     </li>
+    <!-- /ko -->
 
-    <li data-bind="if: next">
-      <a href="#">
-        <span>&raquo;</span>
-      </a>
+    <!-- ko foreach: pages"-->
+    <li data-bind="css: { active: isActive }">
+        <a href="#" data-bind="text: text"></a>
     </li>
+    <!-- /ko -->
+    
+    <!-- ko if: directions -->
+    <li data-bind="with: directions, css: { disabled: isForwardDisabled }">
+        <a href="#">
+            <span data-bind="text: forward">&raquo;</span>
+        </a>
+    </li>
+    <!-- /ko -->
+
+    <!-- ko if: boundary -->
+    <li data-bind="with: boundary, css: { disabled: isForwardDisabled }">
+        <a href="#">
+            <span data-bind="text: last">Last</span>
+        </a>
+    </li>
+    <!-- /ko -->
 </ul>
