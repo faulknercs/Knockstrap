@@ -24,11 +24,7 @@
         ko.renderTemplate('pagination', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
         return { controlsDescendantBindings: true };
-    },
-
-    //update: function (element, valueAccessor) {
-
-    //}
+    }
 };
 
 function Pagination(data) {
@@ -74,13 +70,17 @@ function Pagination(data) {
             endPage = getLastPage(startPage);
 
         for (var pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
-            pages.push({
-                number: pageNumber,
-                text: pageNumber,
-                isActive: pageNumber === self.currentPage()
-            });
+            pages.push(new Page(pageNumber, pageNumber, pageNumber === self.currentPage()));
         }
-        
+
+        if (startPage > 1) {
+            pages.unshift(new Page(startPage - 1, '...'));
+        }
+
+        if (endPage < self.pagesCount()) {
+            pages.push(new Page(endPage + 1, '...'));
+        }
+
         return pages;
     });
 
@@ -129,4 +129,13 @@ function Pagination(data) {
 
         self.currentPage(self.pagesCount());
     };
+}
+
+// page model
+function Page(number, text, isActive) {
+    this.number = number;
+
+    this.text = text || number;
+
+    this.isActive = !!isActive;
 }
