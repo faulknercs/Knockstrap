@@ -17,7 +17,15 @@
     },
 
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var value = $.extend({}, ko.bindingHandlers.pagination.defaults, valueAccessor());
+        var value = $.extend(true, {}, ko.bindingHandlers.pagination.defaults, valueAccessor());
+
+        if (!ko.isObservable(value.currentPage)) {
+            throw new TypeError('currentPage should be observable');
+        }
+        
+        if (!$.isNumeric(value.currentPage())) {
+            value.currentPage(1);
+        }
 
         var model = new Pagination(value);
 
