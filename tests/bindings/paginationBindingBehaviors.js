@@ -56,4 +56,36 @@
         this.testElement.find('.active + li > a').click();
         expect(vm.value.currentPage()).toEqual(2);
     });
+
+    it('Should remove boundary links after property changes', function () {
+        var vm = {
+            value: { currentPage: ko.observable(1), totalCount: ko.observable(20), boundary: ko.observable(true) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.ks-boundary-first');
+        expect(this.testElement).toContainElement('.ks-boundary-last');
+
+        vm.value.boundary(false);
+
+        expect(this.testElement).not.toContainElement('.ks-boundary-first');
+        expect(this.testElement).not.toContainElement('.ks-boundary-last');
+    });
+
+    it('Should remove directions links after property changes', function () {
+        var vm = {
+            value: { currentPage: ko.observable(1), totalCount: ko.observable(20), directions: ko.observable(true) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement).toContainElement('.ks-direction-back');
+        expect(this.testElement).toContainElement('.ks-direction-forward');
+
+        vm.value.directions(false);
+
+        expect(this.testElement).not.toContainElement('.ks-direction-back');
+        expect(this.testElement).not.toContainElement('.ks-direction-forward');
+    });
 });

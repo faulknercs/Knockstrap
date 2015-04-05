@@ -1,6 +1,6 @@
 <ul class="pagination">
     <!-- ko if: boundary -->
-    <li data-bind="css: { disabled: isBackDisabled }">
+    <li class="ks-boundary-first" data-bind="css: { disabled: isBackDisabled }">
         <a href="#" data-bind="with: text, click: selectFirst">
             <span data-bind="html: first">First</span>
         </a>
@@ -8,7 +8,7 @@
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li data-bind="css: { disabled: isBackDisabled }">
+    <li class="ks-direction-back" data-bind="css: { disabled: isBackDisabled }">
         <a href="#" data-bind="with: text, click: back">
             <span data-bind="html: back">&laquo;</span>
         </a>
@@ -22,7 +22,7 @@
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li data-bind="css: { disabled: isForwardDisabled }">
+    <li class="ks-direction-forward" data-bind="css: { disabled: isForwardDisabled }">
         <a href="#" data-bind="with: text, click: forward">
             <span data-bind="html: forward">&raquo;</span>
         </a>
@@ -30,7 +30,7 @@
     <!-- /ko -->
 
     <!-- ko if: boundary -->
-    <li data-bind="css: { disabled: isForwardDisabled }">
+    <li class="ks-boundary-last" data-bind="css: { disabled: isForwardDisabled }">
         <a href="#" data-bind="with: text, click: selectLast">
             <span data-bind="html: last">Last</span>
         </a>
