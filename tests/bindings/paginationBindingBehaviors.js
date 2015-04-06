@@ -88,4 +88,52 @@
         expect(this.testElement).not.toContainElement('.ks-direction-back');
         expect(this.testElement).not.toContainElement('.ks-direction-forward');
     });
+    
+    it('Should go to first page after first button click', function () {
+        var vm = {
+            value: { currentPage: ko.observable(3), totalCount: ko.observable(200) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        this.testElement.find('.ks-boundary-first > a').click();
+
+        expect(vm.value.currentPage()).toEqual(1);
+    });
+    
+    it('Should go to last page after last button click', function () {
+        var vm = {
+            value: { currentPage: ko.observable(1), totalCount: ko.observable(30) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        this.testElement.find('.ks-boundary-last > a').click();
+
+        expect(vm.value.currentPage()).toEqual(3);
+    });
+    
+    it('Should go to next page after next button click', function () {
+        var vm = {
+            value: { currentPage: ko.observable(1), totalCount: ko.observable(200) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        this.testElement.find('.ks-direction-forward > a').click();
+
+        expect(vm.value.currentPage()).toEqual(2);
+    });
+    
+    it('Should go to previous page after back button click', function () {
+        var vm = {
+            value: { currentPage: ko.observable(3), totalCount: ko.observable(200) }
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        this.testElement.find('.ks-direction-back > a').click();
+
+        expect(vm.value.currentPage()).toEqual(2);
+    });
 });
