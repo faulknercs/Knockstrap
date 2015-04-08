@@ -29,23 +29,10 @@
             throw new Error('progress binding can accept only numbers or objects with "value" number propertie');
         }
 
-        model.innerCss = ko.computed(function () {
-            var values = ko.utils.unwrapProperties(unwrappedValue),
-                css = '';
-
-            if (values.animated) {
-                css += 'active ';
-            }
-
-            if (values.striped) {
-                css += 'progress-bar-striped ';
-            }
-
-            if (values.type) {
-                css += 'progress-bar-' + values.type;
-            }
-
-            return css;
+        model.barType = ko.computed(function () {
+            var type = ko.unwrap(model.type);
+            
+            return type ? 'progress-bar-' + type : '';
         });
 
         ko.renderTemplate('progress', model, { templateEngine: ko.stringTemplateEngine.instance }, element);
