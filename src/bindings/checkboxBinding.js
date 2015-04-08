@@ -12,7 +12,7 @@ ko.bindingHandlers.checkbox = {
                     isChecked = $checkbox.parent().hasClass('active');
 
                 if (ko.unwrap(value) instanceof Array) {
-                    var index = ko.unwrap(value).indexOf(data);
+                    var index = ko.utils.arrayIndexOf(ko.unwrap(value), (data));
 
                     if (isChecked && (index === -1)) {
                         value.push(data);
@@ -52,12 +52,12 @@ ko.bindingHandlers.checkbox = {
         if (value instanceof Array) {
             if ($element.attr('data-toggle') === 'buttons') {
                 $element.find('input:checkbox').each(function (index, el) {
-                    isChecked = value.indexOf(el.value) !== -1;
+                    isChecked = ko.utils.arrayIndexOf(value, el.value) !== -1;
                     $(el).parent().toggleClass('active', isChecked);
                     el.checked = isChecked;
                 });
             } else {
-                isChecked = value.indexOf($element.val()) !== -1;
+                isChecked = ko.utils.arrayIndexOf(value, $element.val()) !== -1;
                 $element.toggleClass('active', isChecked);
                 $element.find('input').prop('checked', isChecked);
             }
