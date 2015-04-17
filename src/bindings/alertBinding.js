@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.alert = {
+ko.bindingHandlers.alert = {
     init: function () {
         return { controlsDescendantBindings: true };
     },
@@ -14,7 +14,9 @@
         if (element.nodeType === (typeof Node !== 'undefined' && Node.ELEMENT_NODE || 1)) {
             template = userTemplate;
             data = value.data || { message: value.message };
-
+            if ($element.hasClass('alert-info')) {
+                $element.removeClass('alert-info');
+            }
             $element.addClass('alert fade in').addClass('alert-' + (ko.unwrap(value.type) || 'info'));
         } else if (element.nodeType === (typeof Node !== 'undefined' && Node.COMMENT_NODE || 8)) {
             template = 'alert';
