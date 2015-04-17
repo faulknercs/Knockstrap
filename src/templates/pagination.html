@@ -1,16 +1,16 @@
 <ul class="pagination">
     <!-- ko if: boundary -->
     <li class="ks-boundary-first" data-bind="css: { disabled: isBackDisabled }">
-        <a href="#" data-bind="with: text, click: selectFirst">
-            <span data-bind="html: first">First</span>
+        <a href="#" data-bind="with: text, click: goFirst">
+            <span data-bind="html: first"></span>
         </a>
     </li>
     <!-- /ko -->
     
     <!-- ko if: directions -->
     <li class="ks-direction-back" data-bind="css: { disabled: isBackDisabled }">
-        <a href="#" data-bind="with: text, click: back">
-            <span data-bind="html: back">&laquo;</span>
+        <a href="#" data-bind="with: text, click: goBack">
+            <span data-bind="html: back"></span>
         </a>
     </li>
     <!-- /ko -->
@@ -23,16 +23,16 @@
     
     <!-- ko if: directions -->
     <li class="ks-direction-forward" data-bind="css: { disabled: isForwardDisabled }">
-        <a href="#" data-bind="with: text, click: forward">
-            <span data-bind="html: forward">&raquo;</span>
+        <a href="#" data-bind="with: text, click: goForward">
+            <span data-bind="html: forward"></span>
         </a>
     </li>
     <!-- /ko -->
 
     <!-- ko if: boundary -->
     <li class="ks-boundary-last" data-bind="css: { disabled: isForwardDisabled }">
-        <a href="#" data-bind="with: text, click: selectLast">
-            <span data-bind="html: last">Last</span>
+        <a href="#" data-bind="with: text, click: goLast">
+            <span data-bind="html: last"></span>
         </a>
     </li>
     <!-- /ko -->

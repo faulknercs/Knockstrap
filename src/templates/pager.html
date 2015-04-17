@@ -1,0 +1,12 @@
+<ul class="pager">
+    <li data-bind="css: { previous: isAligned }">
+        <a href="#" data-bind="with: text, click: goBack">
+            <span data-bind="html: back"></span>
+        </a>
+    </li>
+    <li data-bind="css: { next: isAligned }">
+        <a href="#" data-bind="with: text, click: goForward">
+            <span data-bind="html: forward"></span>
+        </a>
+    </li>
+</ul>

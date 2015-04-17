@@ -35,8 +35,84 @@
     }
 };
 
+ko.bindingHandlers.pager = {
+    defaults: {
+        text: {
+            back: '&larr;',
+            forward: '&rarr;'
+        }
+    },
+
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = $.extend(true, {}, ko.bindingHandlers.pager.defaults, valueAccessor());
+
+        if (!ko.isObservable(value.currentPage)) {
+            throw new TypeError('currentPage should be observable');
+        }
+
+        if (!$.isNumeric(value.currentPage())) {
+            value.currentPage(1);
+        }
+
+        var model = new Pager(value);
+
+        ko.renderTemplate('pager', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
+
+        return { controlsDescendantBindings: true };
+    }
+};
+
+function Pager(data) {
+    var self = this;
+    
+    self.isAligned = data.isAligned;
+    
+    self.currentPage = data.currentPage;
+
+    self.totalCount = data.totalCount;
+
+    self.pageSize = data.pageSize;
+
+    self.text = data.text;
+
+    self.pagesCount = ko.computed(function () {
+        var total = ko.unwrap(self.totalCount),
+            pageSize = ko.unwrap(self.pageSize);
+
+        return Math.ceil(total / pageSize);
+    });
+
+    self.isBackDisabled = ko.computed(function () {
+        return self.currentPage() === 1;
+    });
+
+    self.isForwardDisabled = ko.computed(function () {
+        return self.currentPage() === self.pagesCount();
+    });
+
+    self.goBack = function() {
+        if (self.isBackDisabled()) {
+            return;
+        }
+
+        var current = self.currentPage();
+        self.currentPage(current - 1);
+    };
+
+    self.goForward = function() {
+        if (self.isForwardDisabled()) {
+            return;
+        }
+
+        var current = self.currentPage();
+        self.currentPage(current + 1);
+    };
+}
+
 function Pagination(data) {
     var self = this;
+
+    Pager.call(self, data);
 
     var getStartPage = function () {
         var maxPages = ko.unwrap(self.maxPages);
@@ -50,12 +126,6 @@ function Pagination(data) {
         return Math.min(startPage + maxPages - 1, self.pagesCount());
     };
 
-    self.currentPage = data.currentPage;
-
-    self.totalCount = data.totalCount;
-
-    self.pageSize = data.pageSize;
-
     self.maxPages = data.maxPages;
 
     self.boundary = data.boundary;
@@ -63,13 +133,6 @@ function Pagination(data) {
     self.directions = data.directions;
 
     self.text = data.text;
-
-    self.pagesCount = ko.computed(function () {
-        var total = ko.unwrap(self.totalCount),
-            pageSize = ko.unwrap(self.pageSize);
-
-        return Math.ceil(total / pageSize);
-    });
 
     self.pages = ko.computed(function () {
         var pages = [];
@@ -92,37 +155,11 @@ function Pagination(data) {
         return pages;
     });
 
-    self.isBackDisabled = ko.computed(function () {
-        return self.currentPage() === 1;
-    });
-
-    self.isForwardDisabled = ko.computed(function () {
-        return self.currentPage() === self.pagesCount();
-    });
-
     self.selectPage = function (page) {
         self.currentPage(page.number);
     };
 
-    self.back = function () {
-        if (self.isBackDisabled()) {
-            return;
-        }
-
-        var current = self.currentPage();
-        self.currentPage(current - 1);
-    };
-
-    self.forward = function () {
-        if (self.isForwardDisabled()) {
-            return;
-        }
-
-        var current = self.currentPage();
-        self.currentPage(current + 1);
-    };
-
-    self.selectFirst = function() {
+    self.goFirst = function() {
         if (self.isBackDisabled()) {
             return;
         }
@@ -130,7 +167,7 @@ function Pagination(data) {
         self.currentPage(1);
     };
     
-    self.selectLast = function () {
+    self.goLast = function () {
         if (self.isForwardDisabled()) {
             return;
         }
