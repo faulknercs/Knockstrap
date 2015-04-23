@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.modal = {
+﻿ko.bindingHandlers['knockstrap.modal'] = {
     defaults: {
         css: 'modal fade',
         dialogCss: '',
@@ -29,7 +29,7 @@
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
             value = valueAccessor(),
-            defaults = ko.bindingHandlers.modal.defaults,
+            defaults = ko.bindingHandlers['knockstrap.modal'].defaults,
             options = ko.utils.extend({ show: $element.data().show || false }, ko.utils.unwrapProperties(value.options)),
             extendDefaults = function (defs, val) {
                 var extended = {

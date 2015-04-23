@@ -1,5 +1,5 @@
 ﻿describe('Binding: modal', function () {
-    this.prepareTestElement('<div data-bind="modal: value"></div>');
+    this.prepareTestElement('<div data-bind="knockstrap.modal: value"></div>');
 
     beforeEach(function() {
         this.testElement.after('<script id="test-template" type="text/html"><div id="test">Text</div></script>');

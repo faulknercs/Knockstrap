@@ -1,5 +1,5 @@
 ﻿describe('Binding: progress', function() {
-    this.prepareTestElement('<div data-bind="progress: value"></div>');
+    this.prepareTestElement('<div data-bind="knockstrap.progress: value"></div>');
 
     it('Should add "progress" class to target element', function() {
         ko.applyBindings({ value: 1 }, this.testElement[0]);

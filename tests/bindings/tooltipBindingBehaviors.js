@@ -1,5 +1,5 @@
 ﻿describe('Binding: tooltip', function () {
-    this.prepareTestElement('<div data-bind="tooltip: options">Text</div>');
+    this.prepareTestElement('<div data-bind="knockstrap.tooltip: options">Text</div>');
 
     afterEach(function() {
         $('.tooltip').remove();

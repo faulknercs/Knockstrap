@@ -1,5 +1,5 @@
 ﻿// Knockout checked binding doesn't work with Bootstrap checkboxes
-ko.bindingHandlers.checkbox = {
+ko.bindingHandlers['knockstrap.checkbox'] = {
     init: function (element, valueAccessor) {
         var $element = $(element),
             handler = function (e) {

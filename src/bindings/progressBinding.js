@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.progress = {
+﻿ko.bindingHandlers['knockstrap.progress'] = {
     defaults: {
         css: 'progress',
         text: '',
@@ -12,7 +12,7 @@
         var $element = $(element),
             value = valueAccessor(),
             unwrappedValue = ko.unwrap(value),
-            defs = ko.bindingHandlers.progress.defaults,
+            defs = ko.bindingHandlers['knockstrap.progress'].defaults,
             model = $.extend({}, defs, unwrappedValue);
 
         if (typeof unwrappedValue === 'number') {

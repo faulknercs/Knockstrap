@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.carousel = {
+﻿ko.bindingHandlers['knockstrap.carousel'] = {
 
     defaults: {
         css: 'carousel slide',
@@ -42,7 +42,7 @@
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
             value = valueAccessor(),
-            defaults = ko.bindingHandlers.carousel.defaults,
+            defaults = ko.bindingHandlers['knockstrap.carousel'].defaults,
             extendDefaults = function(defs, type) {
                 var extended = {
                     name: defs.name,

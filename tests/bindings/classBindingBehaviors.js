@@ -1,5 +1,5 @@
 ﻿describe('Binding: class', function () {
-    this.prepareTestElement('<div data-bind="class: value"></div>');
+    this.prepareTestElement('<div data-bind="knockstrap.class: value"></div>');
     
     it('Should add class to element', function () {
         var vm = {

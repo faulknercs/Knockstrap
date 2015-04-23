@@ -1,5 +1,5 @@
 ﻿describe('Binding: radio', function () {
-    this.prepareTestElement('<div class="btn-group form-group" data-toggle="buttons" data-bind="radio: value">'
+    this.prepareTestElement('<div class="btn-group form-group" data-toggle="buttons" data-bind="knockstrap.radio: value">'
         + '<label class="btn btn-primary"><input type="radio" name="options" value="A" />A</label>'
         + '<label class="btn btn-primary"><input type="radio" name="options" value="B" />B</label>'
         + '</div>');

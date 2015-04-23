@@ -1,5 +1,5 @@
 ﻿// Knockout checked binding doesn't work with Bootstrap radio-buttons
-ko.bindingHandlers.radio = {
+ko.bindingHandlers['knockstrap.radio'] = {
     init: function (element, valueAccessor) {
 
         if (!ko.isObservable(valueAccessor())) {

@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.tooltip = {
+﻿ko.bindingHandlers['knockstrap.tooltip'] = {
     init: function (element) {
         var $element = $(element);
 

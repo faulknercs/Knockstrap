@@ -1,6 +1,6 @@
 ﻿var popoverDomDataTemplateKey = '__popoverTemplateKey__';
 
-ko.bindingHandlers.popover = {
+ko.bindingHandlers['knockstrap.popover'] = {
 
     init: function (element) {
         var $element = $(element);

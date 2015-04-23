@@ -1,6 +1,6 @@
 ﻿describe('Binding: checkbox', function () {
     describe('Array case', function () {
-        this.prepareTestElement('<div class="btn-group form-group" data-toggle="buttons" data-bind="checkbox: value">'
+        this.prepareTestElement('<div class="btn-group form-group" data-toggle="buttons" data-bind="knockstrap.checkbox: value">'
             + '<label class="btn btn-primary"><input type="checkbox" value="A" />A</label>'
             + '<label class="btn btn-primary"><input type="checkbox" value="B" />B</label>'
             + '<label class="btn btn-primary"><input type="checkbox" value="C" />C</label>'
@@ -105,7 +105,7 @@
 
     describe('Boolean case', function () {
         this.prepareTestElement('<div class="btn-group form-group" data-toggle="buttons">'
-        + '<label class="btn btn-primary"><input type="checkbox" data-bind="checkbox: value" />A</label>'
+        + '<label class="btn btn-primary"><input type="checkbox" data-bind="knockstrap.checkbox: value" />A</label>'
         + '</div>');
 
         it('Should throw exception for non-observable value', function () {

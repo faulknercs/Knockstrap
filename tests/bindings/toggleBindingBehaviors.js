@@ -1,5 +1,5 @@
 ﻿describe('Binding: toggle', function () {
-    this.prepareTestElement('<button data-toggle="button" data-bind="toggle: value">toggle</button>');
+    this.prepareTestElement('<button data-toggle="button" data-bind="knockstrap.toggle: value">toggle</button>');
 
     it('Shoud throw exception for non-observable value', function() {
         var el = this.testElement[0];
