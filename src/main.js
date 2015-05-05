@@ -1,5 +1,5 @@
 ﻿// @echo header
-(function (moduleName, factory) {
+(function (factory) {
     'use strict';
 
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
@@ -7,12 +7,12 @@
         factory(require('knockout'), require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
         // AMD
-        define(moduleName, ['knockout', 'jquery'], factory);
+        define(['knockout', 'jquery'], factory);
     } else {
         factory(ko, $);
     }
 
-})('knockstrap', function (ko, $) {
+})(function (ko, $) {
     'use strict';
     
     // @include utils.js
