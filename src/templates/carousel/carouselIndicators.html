@@ -1,3 +1,3 @@
 <ol class="carousel-indicators" data-bind="foreach: items">
-    <li data-bind="attr: { 'data-target': $parent.id, 'data-slide-to': $index }"></li>
+    <li data-bind="attr: { 'data-target': $parent.id, 'data-slide-to': $index }, css: { active: $index() == 0 }"></li>
 </ol>
