@@ -147,7 +147,7 @@
                 options: {
                     specs: ['tests/utilsBehaviors.js', 'tests/stringTemplateEngineBehaviors.js', 'tests/bindings/*.js'],
                     vendor: [
-                        'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                        'http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
                         'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
                         'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js'
                     ],
