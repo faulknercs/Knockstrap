@@ -24,7 +24,7 @@ ko.bindingHandlers.popover = {
             var id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
                 data = ko.unwrap(value.data);
 
-            var renderPopoverTemplate = function () {
+            var renderPopoverTemplate = function (eventObject) {
 
                 if (eventObject && eventObject.type === 'inserted') {
                        $element.off('shown.bs.popover');
