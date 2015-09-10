@@ -23,8 +23,12 @@ ko.bindingHandlers.popover = {
 
             var id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
                 data = ko.unwrap(value.data);
-                
+
             var renderPopoverTemplate = function () {
+
+                if (eventObject && eventObject.type === 'inserted') {
+                       $element.off('shown.bs.popover');
+                }
                 // use unwrap again to get correct template value instead of old value from closure
                 // this works for observable template property
                 ko.renderTemplate(ko.unwrap(value.template), bindingContext.createChildContext(data), value.templateOptions, document.getElementById(id));
@@ -37,19 +41,19 @@ ko.bindingHandlers.popover = {
 
                 popoverMethods.applyPlacement(offset, options.placement || 'right');
             };
-            
+
             // if there is no generated id - popover executes first time for this element
             if (!id) {
                 id = ko.utils.uniqueId('ks-popover-');
                 ko.utils.domData.set(element, popoverDomDataTemplateKey, id);
-                
+
                 // place template rendering after popover is shown, because we don't have root element for template before that
-                $element.on('shown.bs.popover', renderPopoverTemplate);
+                $element.on('shown.bs.popover inserted.bs.popover', renderPopoverTemplate);
             }
 
             options.content = '<div id="' + id + '" ></div>';
             options.html = true;
-            
+
             // support rerendering of template, if observable changes, when popover is opened
             if ($('#' + id).is(':visible')) {
                 renderPopoverTemplate();
