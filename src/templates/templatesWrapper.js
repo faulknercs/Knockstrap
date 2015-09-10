@@ -1,8 +1,6 @@
 ﻿// inspired by http://www.knockmeout.net/2011/10/ko-13-preview-part-3-template-sources.html
 (function () {
     // storage of string templates for all instances of stringTemplateEngine
-    var templates = {};
-
     // @include compiledTemplates.js
 
     // create new template source to provide storing string templates in storage

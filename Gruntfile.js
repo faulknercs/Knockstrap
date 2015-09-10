@@ -1,4 +1,6 @@
-﻿module.exports = function(grunt) {
+﻿var path = require('path');
+
+module.exports = function (grunt) {
     
     var buildPath = grunt.option('buildPath') || './build',
 		tempPath = grunt.option('tempPath') || './temp',
@@ -23,6 +25,7 @@
                 undef: true,
                 unused: true,
                 browser: true,
+                sub: true,
                 globals: {
                     $: false,
                     ko: false,
@@ -47,14 +50,17 @@
             }
         },
 
-        templates_concat: {
+        htmlConvert: {
             options: {
-                namespace: 'templates'
+                quoteChar: '\'',
+                rename: function (name) {
+                    return path.basename(name, '.html');
+                }
             },
-            dist: {
-                'src': ['src/templates/**/*.html'],
-                'dest': '<%= tempPath %>/compiledTemplates.js'
-            }
+            templates: {
+                src: ['src/templates/**/*.html'],
+                dest: '<%= tempPath %>/compiledTemplates.js'
+            },
         },
 
         copy: {
@@ -167,11 +173,11 @@
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-templates-concat');
+    grunt.loadNpmTasks('grunt-html-convert');
     grunt.loadNpmTasks('grunt-preprocess');
     grunt.loadNpmTasks('grunt-nuget');
     
-    grunt.registerTask('default', ['clean:build', 'templates_concat', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
+    grunt.registerTask('default', ['clean:build', 'htmlConvert', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
     grunt.registerTask('release', ['default', 'jasmine', 'uglify']);
     
     grunt.registerTask('examples', ['default', 'clean:examples', 'preprocess:examples', 'copy:examples']);
