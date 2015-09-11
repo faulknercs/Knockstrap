@@ -1,0 +1,164 @@
+<div class="row">
+    <div class="page-header">
+        <h1 id="pagination">Pagination</h1>
+    </div>
+    <p>Binding to Bootstrap pagination component. This binding can be used with virtual elements.</p>
+
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: paginationExample">
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Current page: </label>
+                <span data-bind="text: page"></span>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-4">
+                    <label>Maximum pages:</label>
+                    <input type="number" class="form-control" data-bind="value: maxPages, valueUpdate: 'afterkeydown'"/>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Total items:</label>
+                    <input type="number" class="form-control" data-bind="value: total, valueUpdate: 'afterkeydown'"/>
+                </div>
+            </div>
+
+            <div class="row form-group" data-bind="with: text">
+                <div class="col-md-3">
+                    <label>First button:</label>
+                    <input type="text" class="form-control" data-bind="value: first, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-3">
+                    <label>Last button:</label>
+                    <input type="text" class="form-control" data-bind="value: last, valueUpdate: 'afterkeydown'"/>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Back button:</label>
+                    <input type="text" class="form-control" data-bind="value: back, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-3">
+                    <label>Forward button:</label>
+                    <input type="text" class="form-control" data-bind="value: forward, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-info" data-bind="toggle: directions">Directions</button>
+                <button class="btn btn-info" data-bind="toggle: boundary">Boundary</button>
+            </div>
+
+            <div data-bind="pagination: { currentPage: page, totalCount: total, maxPages: maxPages, directions: directions, boundary: boundary, text: text }"></div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="pagination: { currentPage: page, totalCount: total, maxPages: maxPages, directions: directions, boundary: boundary, text: text }"&gt;&lt;/div&gt;
+</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function PaginationExampleViewModel() {
+    this.page = ko.observable(1);
+    this.total = 100;
+    this.maxPages = ko.observable(5);
+    this.directions = ko.observable(true);
+    this.boundary = ko.observable(true);
+    this.text = {
+        first: ko.observable('First'),
+        last: ko.observable('Last'),
+        back: ko.observable('&laquo;'),
+        forward: ko.observable('&raquo;')
+    };
+}
+</pre>
+
+    <h2>Options</h2>
+    <p>All of the options can be observables.</p>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="pagination: { currentPage: page, totalCount: count, pageSize: size, maxPages: maxPages, directions: directions, boundary: boundary, text: textObj }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>currentPage</strong></p>
+                <p>Type: number, should be observable (default: <code>1</code>)</p>
+                <p>Contains selected page.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>totalCount</strong></p>
+                <p>Type: number, can be observable</p>
+                <p>Contains total count of items, for which paging is used. Used to determine pages amount.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>pageSizes</strong></p>
+                <p>Type: number, can be observable (default: <code>10</code>)</p>
+                <p>Specifies amount of items per page. Used to determine pages amount.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>maxPages</strong></p>
+                <p>Type: number, can be observable (default: <code>5</code>)</p>
+                <p>Specifies maximum amount of pages, which will be displayed in pagaination control.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>directions</strong></p>
+                <p>Type: boolean, can be observable (default: <code>true</code>)</p>
+                <p>Specifies, should back and forward buttons be displayed.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>boundary</strong></p>
+                <p>Type: boolean, can be observable (default: <code>true</code>)</p>
+                <p>Specifies, should last and first buttons be displayed.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>text</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Contains text for first, last, back and forward buttons.</p>
+                <p>Default values of <code>text</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>first</strong></p>
+                        <p>Type: string, can be observable (default: <code>'First'</code>)</p>
+                        <p>Contains text for "First" button</p>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>last</strong>
+                        </p>
+                        <p>Type: string, can be observable (default: <code>'Last'</code>)
+                        </p>
+                        <p>Contains text for "Last" button</p>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>back</strong>
+                        </p>
+                        <p>Type: string, can be observable (default: <code>'&laquo;'</code>)
+                        </p>
+                        <p>Contains text for "Back" button</p>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>forward</strong></p>
+                        <p>Type: string, can be observable (default: <code>'&raquo;'</code>)</p>
+                        <p>Contains text for "Forward" button</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
