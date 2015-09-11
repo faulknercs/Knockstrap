@@ -115,13 +115,13 @@ function Pagination(data) {
     Pager.call(self, data);
 
     var getStartPage = function () {
-        var maxPages = ko.unwrap(self.maxPages);
+        var maxPages = +ko.unwrap(self.maxPages);
 
         return ((Math.ceil(self.currentPage() / maxPages) - 1) * maxPages) + 1;
     };
 
     var getLastPage = function (startPage) {
-        var maxPages = ko.unwrap(self.maxPages);
+        var maxPages = +ko.unwrap(self.maxPages);
 
         return Math.min(startPage + maxPages - 1, self.pagesCount());
     };

@@ -64,7 +64,7 @@
     <pre class="prettyprint linenums lang-javascript">
 function PaginationExampleViewModel() {
     this.page = ko.observable(1);
-    this.total = 100;
+    this.total = ko.observable(100);
     this.maxPages = ko.observable(5);
     this.directions = ko.observable(true);
     this.boundary = ko.observable(true);

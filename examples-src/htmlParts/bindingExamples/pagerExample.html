@@ -41,7 +41,7 @@
     <pre class="prettyprint linenums lang-javascript">
 function PagerExampleViewModel() {
     this.page = ko.observable(1);
-    this.total = 100;
+    this.total = ko.observable(100);
     this.aligned = ko.observable(false);
     this.text = {
         back: ko.observable('&larr;'),

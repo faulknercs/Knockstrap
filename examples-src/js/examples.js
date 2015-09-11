@@ -129,7 +129,7 @@ function ProgressExampleViewModel() {
 function PaginationExampleViewModel() {
     this.page = ko.observable(1);
 
-    this.total = 100;
+    this.total = ko.observable(100);
 
     this.maxPages = ko.observable(5);
 
@@ -148,7 +148,7 @@ function PaginationExampleViewModel() {
 function PagerExampleViewModel() {
     this.page = ko.observable(1);
 
-    this.total = 100;
+    this.total = ko.observable(100);
 
     this.aligned = ko.observable(false);
 
