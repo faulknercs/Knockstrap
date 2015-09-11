@@ -145,6 +145,19 @@ function PaginationExampleViewModel() {
     };
 }
 
+function PagerExampleViewModel() {
+    this.page = ko.observable(1);
+
+    this.total = 100;
+
+    this.aligned = ko.observable(false);
+
+    this.text = {
+        back: ko.observable('&larr;'),
+        forward: ko.observable('&rarr;')
+    };
+}
+
 function ExamplesViewModel() {
     var self = this;
     
@@ -163,6 +176,8 @@ function ExamplesViewModel() {
     self.carouselExample = new CarouselExampleViewModel();
 
     self.paginationExample = new PaginationExampleViewModel();
+
+    self.pagerExample = new PagerExampleViewModel();
 
     var ste = ko.stringTemplateEngine.instance;
     
