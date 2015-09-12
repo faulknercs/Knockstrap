@@ -126,6 +126,38 @@ function ProgressExampleViewModel() {
     this.progress = ko.observable(20);
 }
 
+function PaginationExampleViewModel() {
+    this.page = ko.observable(1);
+
+    this.total = ko.observable(100);
+
+    this.maxPages = ko.observable(5);
+
+    this.directions = ko.observable(true);
+
+    this.boundary = ko.observable(true);
+
+    this.text = {
+        first: ko.observable('First'),
+        last: ko.observable('Last'),
+        back: ko.observable('&laquo;'),
+        forward: ko.observable('&raquo;')
+    };
+}
+
+function PagerExampleViewModel() {
+    this.page = ko.observable(1);
+
+    this.total = ko.observable(100);
+
+    this.aligned = ko.observable(false);
+
+    this.text = {
+        back: ko.observable('&larr;'),
+        forward: ko.observable('&rarr;')
+    };
+}
+
 function ExamplesViewModel() {
     var self = this;
     
@@ -142,7 +174,11 @@ function ExamplesViewModel() {
     self.buttonsExample = new ButtonsExampleViewModel();
 
     self.carouselExample = new CarouselExampleViewModel();
-    
+
+    self.paginationExample = new PaginationExampleViewModel();
+
+    self.pagerExample = new PagerExampleViewModel();
+
     var ste = ko.stringTemplateEngine.instance;
     
     ste.addTemplate('demo', '<span>It\'s a <strong>string template engine</strong>!</span>');

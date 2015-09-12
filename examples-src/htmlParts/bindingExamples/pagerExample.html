@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="page-header">
+        <h1 id="pager">Pager</h1>
+    </div>
+    <p>Binding to Bootstrap pager component.</p>
+
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: pagerExample">
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Current page: </label>
+                <span data-bind="text: page"></span>
+            </div>
+
+            <div class="row form-group" data-bind="with: text">
+                <div class="col-md-3">
+                    <label>Back button:</label>
+                    <input type="text" class="form-control" data-bind="value: back, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-3">
+                    <label>Forward button:</label>
+                    <input type="text" class="form-control" data-bind="value: forward, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-info" data-bind="toggle: aligned">Aligned</button>
+            </div>
+
+            <div data-bind="pager: { currentPage: page, totalCount: total, isAligned: aligned, text: text }"></div>
+        </div>
+    </div>
+    
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="pager: { currentPage: page, totalCount: total, isAligned: aligned, text: text }"&gt;&lt;/div&gt;
+</pre>
+    
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function PagerExampleViewModel() {
+    this.page = ko.observable(1);
+    this.total = ko.observable(100);
+    this.aligned = ko.observable(false);
+    this.text = {
+        back: ko.observable('&larr;'),
+        forward: ko.observable('&rarr;')
+    };
+}
+</pre>
+
+    <h2>Options</h2>
+    <p>All of the options can be observables.</p>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="pager: { currentPage: page, totalCount: count, pageSize: size, isAligned: aligned, text: textObj }"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>currentPage</strong></p>
+                <p>Type: number, should be observable (default: <code>1</code>)</p>
+                <p>Contains selected page.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>totalCount</strong></p>
+                <p>Type: number, can be observable</p>
+                <p>Contains total count of items, for which paging is used. Used to determine pages amount.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>pageSizes</strong></p>
+                <p>Type: number, can be observable (default: <code>10</code>)</p>
+                <p>Specifies amount of items per page. Used to determine pages amount.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>isAligned</strong></p>
+                <p>Type: boolean, can be observable (default: <code>false</code>)</p>
+                <p>If true, adds <code>next</code> and <code>previous</code> css classes to buttons.</p>
+            </li>
+
+            <li class="list-group-item">
+                <p><strong>text</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>Contains text for back and forward buttons.</p>
+                <p>Default values of <code>text</code> object:</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>back</strong></p>
+                        <p>Type: string, can be observable (default: <code>'&larr;'</code>)</p>
+                        <p>Contains text for "Back" button</p>
+                    </li>
+
+                    <li class="list-group-item">
+                        <p><strong>forward</strong></p>
+                        <p>Type: string, can be observable (default: <code>'&rarr;'</code>)</p>
+                        <p>Contains text for "Forward" button</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
