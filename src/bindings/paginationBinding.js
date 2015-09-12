@@ -37,6 +37,8 @@
 
 ko.bindingHandlers.pager = {
     defaults: {
+        pageSize: 10,
+
         text: {
             back: '&larr;',
             forward: '&rarr;'
