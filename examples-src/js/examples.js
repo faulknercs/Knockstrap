@@ -158,6 +158,10 @@ function PagerExampleViewModel() {
     };
 }
 
+function ClassExampleViewModel() {
+    this.className = ko.observable('bg-primary');
+}
+
 function ExamplesViewModel() {
     var self = this;
     
@@ -178,6 +182,8 @@ function ExamplesViewModel() {
     self.paginationExample = new PaginationExampleViewModel();
 
     self.pagerExample = new PagerExampleViewModel();
+
+    self.classExample = new ClassExampleViewModel();
 
     var ste = ko.stringTemplateEngine.instance;
     

@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="page-header">
+        <h1 id="class">Class</h1>
+    </div>
+    <p>
+        This binding adds or removes one or more CSS classes to the associated DOM element.
+        Can be used, when you need to use Knockout css binding with static and dynamic classes simultaneously.
+        In this case, you may use css binding for static classes and class binding for dynamic classes.
+    </p>
+
+    <h2>Examples</h2>
+    <div class="panel panel-default" data-bind="with: classExample">
+        <div class="panel-body">
+            <p class="class-example-text" data-bind="class: className">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec pharetra eros.
+                Sed luctus vitae ligula viverra porttitor. Vestibulum porttitor egestas lacus.
+            </p>
+
+            <div class="btn-group form-group" data-toggle="buttons" data-bind="radio: className">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" value="bg-primary" />
+                    bg-primary
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" value="bg-success" />
+                    bg-success
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" value="bg-danger" />
+                    bg-danger
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;p class="class-example-text" data-bind="class: className"&gt;
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec pharetra eros.
+    Sed luctus vitae ligula viverra porttitor. Vestibulum porttitor egestas lacus.
+&lt;/p&gt;
+&lt;div class="btn-group form-group" data-toggle="buttons" data-bind="radio: className"&gt;
+    &lt;label class="btn btn-primary"&gt;
+    &lt;input type="radio" name="options" value="bg-primary" /&gt;
+        bg-primary
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+    &lt;input type="radio" name="options" value="bg-success" /&gt;
+        bg-success
+    &lt;/label&gt;
+    &lt;label class="btn btn-primary"&gt;
+    &lt;input type="radio" name="options" value="bg-danger" /&gt;
+        bg-danger
+    &lt;/label&gt;
+&lt;/div&gt;</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ClassExampleViewModel() {
+    this.className = ko.observable('bg-primary');
+}</pre>
+
+    <h2>Options</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="class: className"</code>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>className</strong></p>
+                <p>Type: string, can be observable</p>
+                <p>
+                    Contains class name or list of class names, separated by space.
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
