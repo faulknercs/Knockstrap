@@ -1,3 +1,16 @@
+v1.3.0
+-Added pagination binding
+-Added pager binding
+-Added class binding
+-Updated bower dependencies with official knockout package
+-Updated to use anonymous module when exporting via AMD
+-Fixed alert and checkbox binding to work in ie8
+-Fixed carousel binding to add "active" class to first indicator after loading
+-Fixed radioBinding using value with quote
+-Fixed the previous css class is not removed from alert element
+-Popover now subscribes to the bootstrap 3.3.5 event inserted.bs.popover if available
+-Changed grunt-templates-concat to grunt-html-convert in build process, because grunt-templates-concat was removed from npm repo for unknown reasons.
+
 v1.2.1
 -Fixed issue with submitting forms with toggle buttons
 -Fixed attemting to set visible property for computed value for modal binding
