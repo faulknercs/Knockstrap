@@ -70,3 +70,7 @@ pre.prettyprint {
 .btn-group {
     vertical-align: top;
 }
+
+.class-example-text {
+    padding: 15px;
+}
