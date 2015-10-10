@@ -65,7 +65,7 @@ ko.bindingHandlers.popover = {
         if (!popoverData) {
             $element.popover(options);
 
-            $element.on('shown.bs.popover', function () {
+            $element.on('shown.bs.popover inserted.bs.popover', function () {
                 (options.container ? $(options.container) : $element.parent()).one('click', '[data-dismiss="popover"]', function () {
                     $element.popover('hide');
                 });
