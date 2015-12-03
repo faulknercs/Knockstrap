@@ -2,7 +2,7 @@
 (function (factory) {
     'use strict';
     
-    if (ko && jQuery) {
+    if (typeof ko !== undefined && typeof jQuery !== undefined) {
         //global knockout and jQuery references already present, so use these regardless of whether this module has been included in CommonJS/AMD
         factory(ko, jQuery);
     } else if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
