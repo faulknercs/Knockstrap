@@ -5,8 +5,7 @@
     if (ko && jQuery) {
         //global knockout and jQuery references already present, so use these regardless of whether this module has been included in CommonJS/AMD
         factory(ko, jQuery);
-    }
-    if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+    } else if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         // CommonJS/Node.js
         factory(require('knockout'), require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
