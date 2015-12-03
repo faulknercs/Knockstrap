@@ -19,7 +19,7 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 - Pagination
 - Pager
 
-[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.3.0/knockstrap-1.3.0.zip)
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.3.1/knockstrap-1.3.1.zip)
 
 [Documentation/Examples](http://faulknercs.github.io/Knockstrap/)
 

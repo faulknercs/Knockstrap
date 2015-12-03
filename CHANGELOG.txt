@@ -1,3 +1,8 @@
+v1.3.1
+-Fixed not working close button in popover, when  bootstrap 3.3.5 used
+-Removed unwrapProperties implementation as ko.toJS do the same. ko.utils.unwrapProperties still available as alias for ko.toJS
+-Prioritised loading reference to knockout and jQuery from global context. It fixes cases, when knockout and jQuery are loaded from cdn and knockstarp is loaded via 'require'
+
 v1.3.0
 -Added pagination binding
 -Added pager binding
