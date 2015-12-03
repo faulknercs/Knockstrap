@@ -12,7 +12,7 @@
         // AMD
         define(['knockout', 'jquery'], factory);
     } else {
-        console.error('Could not locate current context reference to knockout and jQuery in order to load Knockstrap');
+        throw new Error('Could not locate current context reference to knockout and jQuery in order to load Knockstrap');
     }
 
 })(function (ko, $) {
