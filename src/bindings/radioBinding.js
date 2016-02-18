@@ -14,7 +14,10 @@ ko.bindingHandlers.radio = {
                     value = valueAccessor(),
                     newValue = radio.val();
 
-                value(newValue);
+                // we shouldn't change value for disables buttons
+                if (!radio.prop('disabled')) {
+                    value(newValue);
+                }
             }, 0);
         });
     },
