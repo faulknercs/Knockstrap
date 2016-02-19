@@ -10,17 +10,19 @@ ko.bindingHandlers.checkbox = {
                     value = valueAccessor(),
                     data = $checkbox.val(),
                     isChecked = $checkbox.parent().hasClass('active');
+                
+                if(!$checkbox.prop('disbled')) {
+                    if (ko.unwrap(value) instanceof Array) {
+                        var index = ko.utils.arrayIndexOf(ko.unwrap(value), (data));
 
-                if (ko.unwrap(value) instanceof Array) {
-                    var index = ko.utils.arrayIndexOf(ko.unwrap(value), (data));
-
-                    if (isChecked && (index === -1)) {
-                        value.push(data);
-                    } else if (!isChecked && (index !== -1)) {
-                        value.splice(index, 1);
+                        if (isChecked && (index === -1)) {
+                            value.push(data);
+                        } else if (!isChecked && (index !== -1)) {
+                            value.splice(index, 1);
+                        }
+                    } else {
+                        value(isChecked);
                     }
-                } else {
-                    value(isChecked);
                 }
             }, 0);
         };
