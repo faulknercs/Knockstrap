@@ -1,3 +1,7 @@
+v1.3.2
+-Fixed changing of selected radio button, when it is disabled 
+-Fixed changing of selected checkbox, when it is disabled
+
 v1.3.1
 -Fixed not working close button in popover, when  bootstrap 3.3.5 used
 -Removed unwrapProperties implementation as ko.toJS do the same. ko.utils.unwrapProperties still available as alias for ko.toJS
