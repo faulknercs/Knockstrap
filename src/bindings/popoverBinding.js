@@ -72,6 +72,11 @@ ko.bindingHandlers.popover = {
             });
         } else {
             ko.utils.extend(popoverData.options, options);
+            if(popoverData.options.content) {
+                $element.popover('show');
+            } else {
+                $element.popover('hide');
+            }
         }
     }
 };
