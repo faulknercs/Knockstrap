@@ -81,7 +81,7 @@ function Pager(data) {
         var total = ko.unwrap(self.totalCount),
             pageSize = ko.unwrap(self.pageSize);
 
-        return Math.ceil(total / pageSize);
+        return Math.max(Math.ceil(total / pageSize), 1);
     });
 
     self.isBackDisabled = ko.computed(function () {
