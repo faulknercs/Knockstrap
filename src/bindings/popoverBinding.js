@@ -29,9 +29,19 @@ ko.bindingHandlers.popover = {
                 if (eventObject && eventObject.type === 'inserted') {
                        $element.off('shown.bs.popover');
                 }
-                // use unwrap again to get correct template value instead of old value from closure
-                // this works for observable template property
-                ko.renderTemplate(ko.unwrap(value.template), bindingContext.createChildContext(data), value.templateOptions, document.getElementById(id));
+                
+                var internalModel = { 
+                    $$popoverTemplate: $.extend({
+                        name: value.template,
+                        data: data
+                    }, value.templateOptions) 
+                };  
+                
+                var childContext = bindingContext.createChildContext(bindingContext.$rawData, null, function(context) {
+                    ko.utils.extend(context, internalModel);
+                });
+                
+                ko.applyBindingsToDescendants(childContext, document.getElementById(id));
 
                 // bootstrap's popover calculates position before template renders,
                 // so we recalculate position, using bootstrap methods
@@ -51,13 +61,8 @@ ko.bindingHandlers.popover = {
                 $element.on('shown.bs.popover inserted.bs.popover', renderPopoverTemplate);
             }
 
-            options.content = '<div id="' + id + '" ></div>';
+            options.content = '<div id="' + id + '" ><div data-bind="template: $$popoverTemplate"></div></div>';
             options.html = true;
-
-            // support rerendering of template, if observable changes, when popover is opened
-            if ($('#' + id).is(':visible')) {
-                renderPopoverTemplate();
-            }
         }
 
         var popoverData = $element.data('bs.popover');
