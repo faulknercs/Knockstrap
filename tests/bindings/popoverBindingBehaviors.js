@@ -98,4 +98,29 @@
 
         this.testElement.click();
     });
+
+    it('Should render template with passed template id and data via object', function(done) {
+        var vm = {
+            value: {
+                options: { title: 'test', content: 'test' },
+                template: { name: 'test-template', data: { testText: 'test data' } }
+            }
+        };
+
+        this.testElement.after('<script id="test-template" type="text/html"><div id="test" data-bind="text: testText"></div></script>');
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        // content renders only after popover shown fully
+        this.testElement.on('shown.bs.popover', function () {
+            expect($('.popover')).toContainElement('#test');
+            expect($('.popover')).toContainText('test data');
+
+            done();
+
+            $('#test-template').remove();
+        });
+
+        this.testElement.click();
+    });
 });
