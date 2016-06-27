@@ -21,8 +21,7 @@ ko.bindingHandlers.popover = {
             // use unwrap to track dependency from template, if it is observable
             ko.unwrap(value.template);
 
-            var id = ko.utils.domData.get(element, popoverDomDataTemplateKey),
-                data = ko.unwrap(value.data);
+            var id = ko.utils.domData.get(element, popoverDomDataTemplateKey);
 
             var renderPopoverTemplate = function (eventObject) {
 
@@ -30,17 +29,27 @@ ko.bindingHandlers.popover = {
                        $element.off('shown.bs.popover');
                 }
                 
-                var internalModel = { 
-                    $$popoverTemplate: $.extend({
-                        name: value.template,
-                        data: data
-                    }, value.templateOptions) 
-                };  
+                var template = ko.unwrap(value.template),
+                    internalModel;
+
+                if(typeof template === 'string') {
+                    internalModel = { 
+                        $$popoverTemplate: $.extend({
+                            name: value.template,
+                            data: value.data
+                        }, value.templateOptions) 
+                    };
+
+                } else {
+                    internalModel = {
+                        $$popoverTemplate: value.template 
+                    };
+                }
                 
                 var childContext = bindingContext.createChildContext(bindingContext.$rawData, null, function(context) {
                     ko.utils.extend(context, internalModel);
                 });
-                
+
                 ko.applyBindingsToDescendants(childContext, document.getElementById(id));
 
                 // bootstrap's popover calculates position before template renders,
