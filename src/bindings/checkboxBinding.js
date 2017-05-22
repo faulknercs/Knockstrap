@@ -3,7 +3,7 @@ ko.bindingHandlers.checkbox = {
     init: function (element, valueAccessor) {
         var $element = $(element),
             handler = function (e) {
-            // we need to handle change event after bootsrap will handle its event
+            // we need to handle change event after bootstrap will handle its event
             // to prevent incorrect changing of checkbox state
             setTimeout(function() {
                 var $checkbox = $(e.target),
@@ -11,7 +11,7 @@ ko.bindingHandlers.checkbox = {
                     data = $checkbox.val(),
                     isChecked = $checkbox.parent().hasClass('active');
                 
-                if(!$checkbox.prop('disbled')) {
+                if(!$checkbox.prop('disabled')) {
                     if (ko.unwrap(value) instanceof Array) {
                         var index = ko.utils.arrayIndexOf(ko.unwrap(value), (data));
 
