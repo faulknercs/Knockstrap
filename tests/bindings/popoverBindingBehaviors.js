@@ -1,5 +1,5 @@
 ﻿describe('Binding: popover', function () {
-    this.prepareTestElement('<div data-bind="popover: value">Test</div>');
+    this.prepareTestElement('<div data-bind="knockstrap.popover: value">Test</div>');
 
     afterEach(function() {
         $('.popover').remove();

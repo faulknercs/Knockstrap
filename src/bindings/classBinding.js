@@ -3,7 +3,7 @@
 // Inspired by https://github.com/knockout/knockout/wiki/Bindings---class
 var previousClassKey = '__ko__previousClassValue__';
 
-ko.bindingHandlers['class'] = {
+ko.bindingHandlers['knockstrap.class'] = {
     update: function (element, valueAccessor) {
         if (element[previousClassKey]) {
             ko.utils.toggleDomNodeCssClass(element, element[previousClassKey], false);

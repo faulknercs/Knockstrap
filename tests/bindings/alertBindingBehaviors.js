@@ -1,5 +1,5 @@
 ﻿describe('Binding: alert', function () {
-    this.prepareTestElement('<div data-bind="alert: value"></div>');
+    this.prepareTestElement('<div data-bind="knockstrap.alert: value"></div>');
 
     beforeEach(function () {
         this.testElement.after('<script id="test-template" type="text/html"><div class="test-template" data-bind="text: label">Text</div></script>');
@@ -97,7 +97,7 @@
         };
 
         // change test element to ko virtual elements for this spec
-        this.testElement = this.testElement.removeAttr('data-bind').html('<!-- ko alert: value --><!-- /ko -->');
+        this.testElement = this.testElement.removeAttr('data-bind').html('<!-- ko knockstrap.alert: value --><!-- /ko -->');
 
         ko.applyBindings(vm, this.testElement[0]);
 

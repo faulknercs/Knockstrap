@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.toggle = {
+﻿ko.bindingHandlers['knockstrap.toggle'] = {
     init: function (element, valueAccessor) {
         var value = valueAccessor();
 

@@ -1,5 +1,5 @@
 ﻿describe('Binding: carousel', function () {
-    this.prepareTestElement('<div data-bind="carousel: value"></div>');
+    this.prepareTestElement('<div data-bind="knockstrap.carousel: value"></div>');
 
     beforeEach(function() {
         this.testElement.after('<script id="test-template" type="text/html"><div class="test-template" data-bind="text: label">Text</div></script>');

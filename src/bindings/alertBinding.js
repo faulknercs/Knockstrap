@@ -1,4 +1,4 @@
-ko.bindingHandlers.alert = {
+ko.bindingHandlers['knockstrap.alert'] = {
     init: function () {
         return { controlsDescendantBindings: true };
     },
@@ -37,4 +37,4 @@ ko.bindingHandlers.alert = {
     }
 };
 
-ko.virtualElements.allowedBindings.alert = true;
+ko.virtualElements.allowedBindings['knockstrap.alert'] = true;
