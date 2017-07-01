@@ -24,7 +24,7 @@ ko.bindingHandlers.radio = {
 
     update: function (element, valueAccessor) {
         var value = ko.unwrap(valueAccessor()) || '',
-            $radioButton = $(element).find('input[value="' + value.replace(/"/g, '\\"') + '"]'),
+            $radioButton = $(element).find('input[value="' + value.toString().replace(/"/g, '\\"') + '"]'),
             $radioButtonWrapper;
 
         if ($radioButton.length) {
