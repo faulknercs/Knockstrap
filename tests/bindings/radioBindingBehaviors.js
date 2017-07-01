@@ -3,6 +3,7 @@
         + '<label class="btn btn-primary"><input type="radio" name="options" value="A" />A</label>'
         + '<label class="btn btn-primary"><input type="radio" name="options" value="B" />B</label>'
         + '<label class="btn btn-primary"><input type="radio" name="options" value="X&quot;" />X&quot;</label>'
+        + '<label class="btn btn-primary"><input type="radio" name="options" value="1" />1</label>'
         + '</div>');
 
     it('Should throw exception for non-observable value', function() {
@@ -42,6 +43,8 @@
         expect(this.testElement.find('.active input:checked')).toHaveValue('A');
         vm.value('X"');
         expect(this.testElement.find('.active input:checked')).toHaveValue('X"');
+        vm.value(1);
+        expect(this.testElement.find('.active input:checked')).toHaveValue('1');
     });
     
     it('Should change value according to clicked button', function () {
@@ -83,7 +86,7 @@
 
         ko.applyBindings(vm, this.testElement[0]);
 
-        this.testElement.children().eq(3).click();
+        this.testElement.children().last().click();
         jasmine.clock().tick(1);
         expect(vm.value()).toEqual('C');
         
