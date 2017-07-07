@@ -130,4 +130,20 @@
         vm.value.type('custom');
         expect(this.testElement.find('.progress-bar')).toHaveClass('progress-bar-custom');
     });
+
+    it('Should add multiple stacked progress bars if array passed', function() {
+        var vm = {
+            value: [{
+                value: ko.observable(20),
+                type: ko.observable('info')
+            }, {
+                value: ko.observable(40),
+                type: ko.observable('danger')
+            }]
+        };
+
+        ko.applyBindings(vm, this.testElement[0]);
+
+        expect(this.testElement.find('.progress-bar')).toHaveLength(2);
+    });
 });
