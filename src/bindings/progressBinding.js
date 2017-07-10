@@ -17,14 +17,10 @@
 
         if(unwrappedValue instanceof Array) {
             model = unwrappedValue.map(function(val) {
-                return new ProgressBar(val);
+                return normalize(val);
             });
-        } else if (typeof unwrappedValue === 'number') {
-            model = [new ProgressBar({ value: value })];
-        } else if (typeof ko.unwrap(unwrappedValue.value) === 'number') {
-            model = [new ProgressBar(unwrappedValue)];
         } else {
-            throw new Error('progress binding can accept only numbers or objects with "value" number propertie');
+            model = [normalize(value)];
         }
 
         ko.renderTemplate('progress', model, { templateEngine: ko.stringTemplateEngine.instance }, element);
@@ -34,6 +30,18 @@
         return { controlsDescendantBindings: true };
     },
 };
+
+function normalize(value) {
+    var unwrappedValue = ko.unwrap(value);
+    
+    if (typeof unwrappedValue === 'number') {
+        return new ProgressBar({ value: value });
+    } else if (typeof ko.unwrap(unwrappedValue.value) === 'number') {
+        return new ProgressBar(unwrappedValue);
+    } else {
+        throw new Error('progress binding can accept only numbers or objects with "value" number property');
+    }
+}
 
 function ProgressBar(data) {
     var self = this;
