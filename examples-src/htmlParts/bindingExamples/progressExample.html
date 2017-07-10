@@ -4,7 +4,7 @@
     </div>
     <p>Binding to Bootatrap progress bar</p>
 
-    <h2>Examples</h2>
+    <h3>Examples</h3>
     <div class="panel panel-default" data-bind="with: progressExample">
         <div class="panel-body">
             <div class="form-group row">
@@ -76,35 +76,7 @@ function ProgressExampleViewModel() {
 }
 </pre>
 
-    <p>Also it is possible to use only number as model for progress binding:</p>
-    <div class="panel panel-default" data-bind="with: progressExample">
-        <div class="panel-body">
-            <div class="form-group row">
-                <div class="col-md-4">
-                    <label>Progress value</label>
-                    <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
-                </div>
-            </div>
-            
-            <div data-bind="progress: progress"></div>
-        </div>
-    </div>
-
-    <h4>Html markup</h4>
-    <pre class="prettyprint linenums">
-&lt;div data-bind="progress: progress"&gt;&lt;/div&gt;
-</pre>
-
-    <h4>View model</h4>
-    <pre class="prettyprint linenums lang-javascript">
-function ProgressExampleViewModel() {
-    //...
-
-    this.progress = ko.observable(20);
-}
-</pre>
-
-    <h2>Options</h2>
+    <h4>Options</h4>
     <p>All of the options can be observables.</p>
  
     <div class="panel panel-default">
@@ -155,8 +127,37 @@ function ProgressExampleViewModel() {
         </ul>
     </div>
     
-    <h4>Short notation</h4>
+    <h2>Short notation</h2>
+    <h3>Examples</h3>
     <p>If you only need use progress value, you can use short notation of binding, which uses only number as model.</p>
+    <div class="panel panel-default" data-bind="with: progressExample">
+        <div class="panel-body">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: progress, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+            
+            <div data-bind="progress: progress"></div>
+        </div>
+    </div>
+
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="progress: progress"&gt;&lt;/div&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ProgressExampleViewModel() {
+    //...
+
+    this.progress = ko.observable(20);
+}
+</pre>
+
+    <h4>Options</h4>
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>data-bind="progress: progressValue"</code>
@@ -171,6 +172,120 @@ function ProgressExampleViewModel() {
         </ul>
     </div>
     
+    <h2>Stacked progress bars</h2>
+    <h3>Examples</h3>
+    <p>If you need use multiple bars into the same <code>.progress</code> to stack them, you can pass array of options objects to binding:</p>
+    <div class="panel panel-default" data-bind="with: stackedProgressExample">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>First progress bar:</label>
+                </div>
+            </div>
+
+            <!-- ko with: firstBar -->
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: value, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Text</label>
+                    <input type="text" class="form-control" data-bind="value: text, valueUpdate: 'afterkeydown'" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Appearance</label>
+                    <div>
+                        <input type="checkbox" data-bind="checked: striped" />
+                        Striped
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: animated" />
+                        Animated
+                    </div>
+                    <div>
+                        <input type="checkbox" data-bind="checked: textHidden" />
+                        Text hidden
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress bar type</label>
+                    <div class="btn-toolbar tooltip-radios">
+                        <input type="radio" name="progressBarType" value="success" data-bind="checked: type" />
+                        Success
+                        <input type="radio" name="progressBarType" value="info" data-bind="checked: type" />
+                        Info
+                        <input type="radio" name="progressBarType" value="warning" data-bind="checked: type" />
+                        Warning
+                        <input type="radio" name="progressBarType" value="danger" data-bind="checked: type" />
+                        Danger
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Second progress bar:</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Progress value</label>
+                    <input type="number" class="form-control" data-bind="value: secondBar, valueUpdate: 'afterkeydown'" />
+                </div>
+            </div>
+
+            <div data-bind="progress: progressBars"></div>
+        </div>
+    </div>
+
+    <h4>Html markup</h4>
+    <pre class="prettyprint linenums">
+&lt;div data-bind="progress: progressBars"&gt;&lt;/div&gt;
+</pre>
+
+    <h4>View model</h4>
+    <pre class="prettyprint linenums lang-javascript">
+function ProgressExampleViewModel() {
+    this.firstBar = {
+        value: ko.observable(50),
+        animated: ko.observable(),
+        striped: ko.observable(),
+        type: ko.observable('warning'),
+        text: ko.observable('Complete'),
+        textHidden: ko.observable(true)
+    };
+
+    this.secondBar = ko.observable(20);
+
+    this.progressBars = ko.observableArray([
+        this.firstBar,
+        this.secondBar
+    ]);
+}
+</pre>
+
+    <h4>Options</h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <code>data-bind="progress: progressBarsArray"</code>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <p><strong>progressBarsArray</strong></p>
+                <p>Type: array, can be observable</p>
+                <p>Array of data-objects for progress bar. Each element in array should contain options for progress bar in full or short notation</p>
+            </li>
+        </ul>
+    </div>
+
     <h3>Default values</h3>
     <p>
         Default values for progress binding located in <code>ko.bindingHandlers.progress.defaults</code> object. 
