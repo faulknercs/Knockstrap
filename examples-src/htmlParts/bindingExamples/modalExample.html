@@ -134,7 +134,7 @@ function ModalExampleViewModel() {
     <div class="panel panel-default">
         <div class="panel-heading">
             <code>
-                data-bind="modal: { options: options, visible: visible, dialogCss: dialogCss, header: header, body: body, footer: footer }"
+                data-bind="modal: { options: options, visible: visible, dialogCss: dialogCss, header: header, body: body, footer: footer, events: events }"
             </code>
         </div>
         
@@ -268,6 +268,29 @@ function ModalExampleViewModel() {
                     </li>
                 </ul>
             </li>
+
+            <li class="list-group-item">
+                <p><strong>events</strong></p>
+                <p>Type: object, can be observable</p>
+                <p>
+                    Names of Bootstrap events, which are used by binding.
+                    Some bootstrap plugins change them, so you can pass new events to binding.
+                </p>
+                <p>Default values of <code>events</code> object:</p>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p><strong>shown</strong></p>
+                        <p>Type: string, can be observable (default: <code>'shown.bs.modal'</code>)</p>
+                        <p>Name of Bootstrap event, which fired when the modal has been made visible to the user</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><strong>hidden</strong></p>
+                        <p>Type: string, can be observable (default: <code>'hidden.bs.modal'</code>)</p>
+                        <p>Name of Bootstrap event, which fired when the modal has finished being hidden from the user</p>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
     
@@ -282,6 +305,11 @@ defaults: {
     css: 'modal fade',
     attributes: {
         role: 'dialog'  
+    },
+
+    events: {
+        shown: 'shown.bs.modal',
+        hidden: 'hidden.bs.modal'
     },
 
     headerTemplate: {
