@@ -6,6 +6,11 @@
             role: 'dialog'  
         },
 
+        events: {
+            shown: 'shown.bs.modal',
+            hidden: 'hidden.bs.modal'
+        },
+
         headerTemplate: {
             name: 'modalHeader',
             templateEngine: ko.stringTemplateEngine.instance
@@ -30,7 +35,8 @@
         var $element = $(element),
             value = valueAccessor(),
             defaults = ko.bindingHandlers.modal.defaults,
-            options = ko.utils.extend({ show: $element.data().show || false }, ko.utils.unwrapProperties(value.options)),
+            events = $.extend({}, defaults.events, ko.toJS(value.events)),
+            options = ko.utils.extend({ show: $element.data().show || false }, ko.toJS(value.options)),
             extendDefaults = function (defs, val) {
                 var extended = {
                     name: defs.name,
@@ -67,7 +73,7 @@
         $element.addClass(defaults.css).attr(defaults.attributes);
         $element.modal(options);
 
-        $element.on('shown.bs.modal', function () {
+        $element.on(events.shown, function () {
             if (typeof value.visible !== 'undefined' && typeof value.visible === 'function' && !ko.isComputed(value.visible)) {
                 value.visible(true);
             }
@@ -76,7 +82,7 @@
         });
 
         if (typeof value.visible !== 'undefined' && typeof value.visible === 'function' && !ko.isComputed(value.visible)) {
-            $element.on('hidden.bs.modal', function() {
+            $element.on(events.hidden, function() {
                 value.visible(false);
             });
 
