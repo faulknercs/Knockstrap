@@ -31,7 +31,7 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 
 ### Packages
 
-[NuGet](http://www.nuget.org/packages/Knockstrap/) | [Bower](http://bower.io/search/?q=knockstrap) | [Jam](http://jamjs.org/packages/#/details/knockstrap) | [npm](https://www.npmjs.org/package/knockstrap)
+[NuGet](http://www.nuget.org/packages/Knockstrap/) | [Bower](http://bower.io/search/?q=knockstrap) | [npm](https://www.npmjs.org/package/knockstrap)
 
 ### Building
 #### Building using grunt:
