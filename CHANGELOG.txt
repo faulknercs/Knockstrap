@@ -1,3 +1,15 @@
+v1.4.0
+-Added support of stacked progress-bars for progress binding
+-Added support of custom event names for modal binding (so if you override events of modal, you still would be able to use modal binding)
+-Added support of usage of all template options with popover binding
+-Added possibility to use object with template options for popover binding's template property
+-Fixed issue with clickable disabled checkboxes in checkbox binding
+-Fixed not updating popover when its data was dynamically changed while popover is opened
+-Fixed issue with not disabled controls in pagination binding for cases, when pagesCount is zero
+-Fixed issue with numeric values in radio binding
+-Removed Bootstrap dependency from nuspec, since there is a lot of different packages with Bootstrap
+-Removed jamjs repository link since it is closed now
+
 v1.3.2
 -Fixed changing of selected radio button, when it is disabled 
 -Fixed changing of selected checkbox, when it is disabled
