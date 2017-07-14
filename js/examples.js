@@ -126,6 +126,24 @@ function ProgressExampleViewModel() {
     this.progress = ko.observable(20);
 }
 
+function StackedProgressExampleViewModel() {
+    this.firstBar = {
+        value: ko.observable(50),
+        animated: ko.observable(),
+        striped: ko.observable(),
+        type: ko.observable('warning'),
+        text: ko.observable('Complete'),
+        textHidden: ko.observable(true)
+    };
+
+    this.secondBar = ko.observable(20);
+
+    this.progressBars = ko.observableArray([
+        this.firstBar,
+        this.secondBar
+    ]);
+}
+
 function PaginationExampleViewModel() {
     this.page = ko.observable(1);
 
@@ -168,6 +186,8 @@ function ExamplesViewModel() {
     self.tooltipExample = new TooltipExampleViewModel();
 
     self.progressExample = new ProgressExampleViewModel();
+
+    self.stackedProgressExample = new StackedProgressExampleViewModel();
 
     self.modalExample = new ModalExampleViewModel();
 
