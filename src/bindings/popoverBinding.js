@@ -7,7 +7,7 @@ ko.bindingHandlers.popover = {
 
         ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
             if ($element.data('bs.popover')) {
-                $element.popover('destroy');
+                $element.popover('dispose');
             }
         });
     },
@@ -85,8 +85,8 @@ ko.bindingHandlers.popover = {
                 });
             });
         } else {
-            ko.utils.extend(popoverData.options, options);
-            if(popoverData.options.content) {
+            ko.utils.extend(popoverData.config, options);
+            if(popoverData.options.config) {
                 $element.popover('show');
             } else {
                 $element.popover('hide');
