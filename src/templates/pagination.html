@@ -1,37 +1,37 @@
 <ul class="pagination">
     <!-- ko if: boundary -->
-    <li class="ks-boundary-first" data-bind="css: { disabled: isBackDisabled }">
-        <a href="#" data-bind="with: text, click: goFirst">
+    <li class="ks-boundary-first page-item" data-bind="css: { disabled: isBackDisabled }">
+        <a href="#" class="page-link" data-bind="with: text, click: goFirst">
             <span data-bind="html: first"></span>
         </a>
     </li>
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li class="ks-direction-back" data-bind="css: { disabled: isBackDisabled }">
-        <a href="#" data-bind="with: text, click: goBack">
+    <li class="ks-direction-back page-item" data-bind="css: { disabled: isBackDisabled }">
+        <a href="#" class="page-link" data-bind="with: text, click: goBack">
             <span data-bind="html: back"></span>
         </a>
     </li>
     <!-- /ko -->
 
     <!-- ko foreach: pages -->
-    <li data-bind="css: { active: isActive }">
-        <a href="#" data-bind="text: text, click: $parent.selectPage"></a>
+    <li class="page-item" data-bind="css: { active: isActive }">
+        <a href="#" class="page-link" data-bind="text: text, click: $parent.selectPage"></a>
     </li>
     <!-- /ko -->
     
     <!-- ko if: directions -->
-    <li class="ks-direction-forward" data-bind="css: { disabled: isForwardDisabled }">
-        <a href="#" data-bind="with: text, click: goForward">
+    <li class="ks-direction-forward page-item" data-bind="css: { disabled: isForwardDisabled }">
+        <a href="#" class="page-link" data-bind="with: text, click: goForward">
             <span data-bind="html: forward"></span>
         </a>
     </li>
     <!-- /ko -->
 
     <!-- ko if: boundary -->
-    <li class="ks-boundary-last" data-bind="css: { disabled: isForwardDisabled }">
-        <a href="#" data-bind="with: text, click: goLast">
+    <li class="ks-boundary-last page-item" data-bind="css: { disabled: isForwardDisabled }">
+        <a href="#" class="page-link" data-bind="with: text, click: goLast">
             <span data-bind="html: last"></span>
         </a>
     </li>
