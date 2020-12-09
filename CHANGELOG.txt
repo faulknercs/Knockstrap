@@ -1,3 +1,6 @@
+v1.4.1
+-Fixed issue with appearing popover when binding is dynamically changed when popover is hidden
+
 v1.4.0
 -Added support of stacked progress-bars for progress binding
 -Added support of custom event names for modal binding (so if you override events of modal, you still would be able to use modal binding)
