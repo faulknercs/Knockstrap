@@ -1,5 +1,6 @@
 v1.4.1
 -Fixed issue with appearing popover when binding is dynamically changed when popover is hidden
+-Fixed issue with numeric 0 value for radio buttons
 
 v1.4.0
 -Added support of stacked progress-bars for progress binding
