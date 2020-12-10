@@ -56,9 +56,10 @@ ko.bindingHandlers.popover = {
                 // so we recalculate position, using bootstrap methods
                 var $popover = $('#' + id).parents('.popover'),
                     popoverMethods = $element.data('bs.popover'),
-                    offset = popoverMethods.getCalculatedOffset(options.placement || 'right', popoverMethods.getPosition(), $popover.outerWidth(), $popover.outerHeight());
+                    position = (popoverMethods.options && popoverMethods.options.placement) || 'right',
+                    offset = popoverMethods.getCalculatedOffset(position, popoverMethods.getPosition(), $popover.outerWidth(), $popover.outerHeight());
 
-                popoverMethods.applyPlacement(offset, options.placement || 'right');
+                popoverMethods.applyPlacement(offset, position);
             };
 
             // if there is no generated id - popover executes first time for this element
