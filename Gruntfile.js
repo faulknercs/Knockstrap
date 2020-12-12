@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         buildPath: buildPath,
         tempPath: tempPath,
         examplesPath: examplesPath,
-        fileHeader: '/*! <%= pkg.name %> <%= pkg.version %> <%= pkg.homepage %> | (c) 2013-2017 <%= pkg.author %> |  http://www.opensource.org/licenses/mit-license */\n',
+        fileHeader: '/*! <%= pkg.name %> <%= pkg.version %> <%= pkg.homepage %> | (c) 2013-2020 <%= pkg.author %> |  http://www.opensource.org/licenses/mit-license */\n',
 
         pkg: grunt.file.readJSON('package.json'),
         

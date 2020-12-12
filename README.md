@@ -1,9 +1,16 @@
 Knockstrap [![Build Status](https://travis-ci.org/faulknercs/Knockstrap.svg?branch=master)](https://travis-ci.org/faulknercs/Knockstrap)
 ==========
 
+## ⚠️ Bootstrap versions support ⚠️
+
+__If you need Bootstrap 4 support, you may use [KnockstrapPlus](https://github.com/CloudNimble/KnockstrapPlus) fork. Also, you can try to search for more forks [here](https://github.com/faulknercs/Knockstrap/network).__
+
+I highly appreciate all contributions and feedback, but I don't use Bootstrap nor Knockout anymore, so I don't have any plans to continue development of this project.
+This repository is not going to be updated for Bootstrap 4 (and further) and will continue work only with Bootstrap 3. But I continue merging patches with bugfixes for Bootstrap 3 if any appears.
+
 ### Description
 
-Knockstrap is binding library for Knockout.js, which provides bindings to Twitter Bootstrap widgets
+Knockstrap is binding library for Knockout.js, which provides bindings to Twitter Bootstrap 3 widgets
 
 #### Supported widgets:
 
@@ -19,7 +26,7 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 - Pagination
 - Pager
 
-[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.4.0/knockstrap-1.4.0.zip)
+[Download](https://github.com/faulknercs/Knockstrap/releases/download/v1.4.1/knockstrap-1.4.1.zip)
 
 [Documentation/Examples](http://faulknercs.github.io/Knockstrap/)
 
@@ -35,7 +42,7 @@ Knockstrap is binding library for Knockout.js, which provides bindings to Twitte
 
 ### CDN
 
-[jsDelivr](https://cdn.jsdelivr.net/gh/faulknercs/Knockstrap@v1.4.0/build/knockstrap.min.js)
+[jsDelivr](https://cdn.jsdelivr.net/npm/knockstrap@1.4.1/build/knockstrap.js)
 
 ### Building
 #### Building using grunt:
