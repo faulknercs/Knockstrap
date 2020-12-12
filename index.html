@@ -5,10 +5,10 @@
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/examples.css" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min.js"></script>
     <script src="js/knockstrap.min.js"></script>
 </head>
@@ -101,13 +101,18 @@
     </ul>
 </div>
 <div class="row">
-    <a class="btn btn-primary btn-lg" href="https://github.com/faulknercs/Knockstrap/releases">Download</a>
+    <a class="btn btn-primary btn-md" href="https://github.com/faulknercs/Knockstrap/releases">Download</a>
 </div>
 <div class="row">
-    <h3>Using</h3>
+    <h3>Usage</h3>
     <p>
         If you have all dependencies, you only need to include <code>knockstrap.min.js</code> or <code>knockstrap.js</code> to your pages:
         <pre>&lt;script src="../path/to/knockstrap.min.js"&gt;&lt;/script&gt;</pre>
+        Or with cdn:
+        <pre>&lt;script src="https://cdn.jsdelivr.net/npm/knockstrap@1.4.1/build/knockstrap.js"&gt;&lt;/script&gt;</pre>
+    </p>
+    <p>
+        Also you can install it via <a href="https://www.npmjs.org/package/knockstrap">npm</a>, <a href="http://bower.io/search/?q=knockstrap">bower</a> or <a href="https://www.nuget.org/packages/Knockstrap/">nuget</a>.
     </p>
     <h4>Dependencies</h4>
     <ul>
@@ -278,7 +283,7 @@ function PopoverExampleViewModel() {
 }</pre>
 
     <h2>Options</h2>
-    <p>All of the options can be observables, also option's object can be observable too</p>
+    <p>All of the options can be observables (besides <code>trigger</code>, see <a href="https://github.com/faulknercs/Knockstrap/issues/44">details</a>), also option's object can be observable too</p>
     
     <div class="panel panel-default">
         <div class="panel-heading">
